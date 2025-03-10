@@ -3,7 +3,7 @@
 
 Player::Player(int s, int h) : Entity(s, h)
 {
-
+	m_base.setSize(sf::Vector2f(m_shape.getSize().x, 3));
 }
 
 void Player::update(float deltaTime)
@@ -29,6 +29,8 @@ void Player::update(float deltaTime)
 
 	m_gravity.applyGravity(this, deltaTime);
 	m_shape.setPosition(m_shape.getPosition() + m_YVelocity);
+
+	m_base.setPosition(m_shape.getPosition().x, m_shape.getPosition().y + m_shape.getSize().y);
 }
 
 void Player::draw(sf::RenderWindow& window)
