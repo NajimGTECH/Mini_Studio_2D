@@ -147,12 +147,16 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gravity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="menu_manager.cpp" />
     <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="menu_manager.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
   <ItemGroup>
