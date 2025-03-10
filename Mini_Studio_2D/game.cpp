@@ -7,6 +7,8 @@ void Game::run() {
 
 	Player player(100, 10);
 
+	window.setFramerateLimit(60);
+
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -15,6 +17,8 @@ void Game::run() {
 				std::cout << "Window closed" << std::endl;
 			}
 		}
+		player.update();
+
 		window.clear();
 		player.draw(window);
 		window.display();
