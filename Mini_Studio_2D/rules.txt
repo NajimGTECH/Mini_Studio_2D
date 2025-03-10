@@ -4,6 +4,8 @@ Conventions d'écriture:
 
 - Le code doit être écrit en anglais
 
+- Eviter les noms de variables ambigus: 's' for speed | 'v' for velocity
+
 - Le code ne doit pas contenir de fautes d'orthographe
 
 - Ne pas utiliser 'using namespace std' ou 'using namespace sf'
