@@ -6,6 +6,7 @@
 
 #include "entity.h"
 #include "gravity.h"
+#include "map.h"
 
 class Player : public Entity
 {
@@ -20,14 +21,15 @@ public:
 
 private:
 
-	bool m_hasJumped = false;
-	Gravity m_gravity;
+	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 
 	float m_jumpPower = 700.f;
 	float m_speed = 250.f;
 
-	std::mutex m_mutex;
+	bool m_hasJumped = false;
+;
+	Gravity m_gravity;
 
-	sf::Vector2f m_yVelocity = { 0.f, 0.f };
+	std::mutex m_mutex;
 };
 
