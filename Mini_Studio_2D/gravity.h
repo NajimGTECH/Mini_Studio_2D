@@ -9,6 +9,8 @@ public:
 
 	void applyGravity(Entity* entity, float deltaTime);
 
+	float getForce();
+
 private : 
-	float m_force = 9.81f;
+	float m_force = 9.81f*50;
 };

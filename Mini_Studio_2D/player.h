@@ -11,7 +11,7 @@ class Player : public Entity
 {
 public:
 	
-	Player(int s, int h);
+	Player(int size, int health);
 
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
@@ -23,8 +23,11 @@ private:
 	bool m_hasJumped = false;
 	Gravity m_gravity;
 
+	float m_jumpPower = 700.f;
+	float m_speed = 250.f;
+
 	std::mutex m_mutex;
 
-	sf::Vector2f m_YVelocity = { 0.f, 0.f };
+	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 };
 
