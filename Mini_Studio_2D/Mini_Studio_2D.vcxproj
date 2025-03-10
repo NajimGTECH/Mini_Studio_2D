@@ -143,17 +143,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="box.cpp" />
+    <ClCompile Include="chair.cpp" />
+    <ClCompile Include="closet.cpp" />
+    <ClCompile Include="desk.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gravity.cpp" />
+    <ClCompile Include="lamp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="shelf.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="box.h" />
+    <ClInclude Include="chair.h" />
+    <ClInclude Include="closet.h" />
+    <ClInclude Include="desk.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
+    <ClInclude Include="lamp.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="shelf.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />
