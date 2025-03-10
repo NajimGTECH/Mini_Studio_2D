@@ -12,10 +12,12 @@ public:
 	virtual void draw(sf::RenderWindow& window) = 0;
 
 	sf::RectangleShape& getShape();
+	sf::RectangleShape& getBase();
 
 protected:
 
 	sf::RectangleShape m_shape;
+	sf::RectangleShape m_base;
 	int m_size;
 	int m_hp;
 };

@@ -6,6 +6,10 @@ void Game::run() {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
 	window.setFramerateLimit(60);
 
+	Map map;
+
+	map.createMap();
+
 	Player player(100, 10);
 
 	sf::Clock clock;
@@ -24,6 +28,7 @@ void Game::run() {
 		player.update(deltaTime);
 
 		window.clear();
+		map.displayMap(window);
 		player.draw(window);
 		window.display();
 	}

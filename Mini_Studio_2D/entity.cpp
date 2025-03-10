@@ -10,3 +10,8 @@ Entity::Entity(int size, int hp) : m_size(size), m_hp(hp)
 sf::RectangleShape& Entity::getShape() {
 	return m_shape;
 }
+
+
+sf::RectangleShape& Entity::getBase() {
+	return m_base;
+}
