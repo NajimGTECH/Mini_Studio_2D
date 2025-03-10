@@ -22,8 +22,8 @@ void Player::update(float deltaTime)
 		m_shape.move(-2 * deltaTime * m_speed, 0);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-		if (!m_hasJumped)
 
+		if (!m_hasJumped)
 		std::thread(&Player::jump, this, deltaTime).detach();
 	}
 
@@ -40,7 +40,7 @@ void Player::jump(float deltaTime)
 {
 	const std::lock_guard<std::mutex> lock(m_mutex);
 
-	std::cout << "Jumping" << std::endl;
+	//std::cout << "Jumping" << std::endl;
 
 	m_hasJumped = true;
 

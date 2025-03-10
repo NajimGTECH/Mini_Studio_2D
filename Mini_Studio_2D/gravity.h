@@ -12,5 +12,5 @@ public:
 	float getForce();
 
 private : 
-	float m_force = 9.81f*50;
+	float m_force = 9.81f*50; //9.81f
 };
