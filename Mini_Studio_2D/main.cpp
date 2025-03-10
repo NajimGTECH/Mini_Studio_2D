@@ -1,8 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "player.h"
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Mini Studio 2D");
+
+	Player player(100, 10);
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -13,6 +16,7 @@ int main() {
 			}
 		}
 		window.clear();
+		player.draw(window);
 		window.display();
 	}
 }
