@@ -3,7 +3,10 @@
 
 Player::Player(int s, int h) : Entity(s, h)
 {
-	m_base.setSize(sf::Vector2f(m_shape.getSize().x - 10, 3));
+
+	m_shape.setPosition(500, 400);
+	m_base.setSize(sf::Vector2f(m_shape.getSize().x - 20, 12));
+	m_base.setPosition(m_shape.getPosition().x + 10, m_shape.getPosition().y + m_shape.getSize().y - 2);
 }
 
 void Player::update(float deltaTime)
@@ -11,15 +14,12 @@ void Player::update(float deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 	{
 		m_shape.move(2 * deltaTime * m_speed, 0);
+		direction = 1;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z)) {
-		m_shape.move(0, -2 * deltaTime * m_speed);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) {
-		m_shape.move(0, 2 * deltaTime * m_speed);
-	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
 		m_shape.move(-2 * deltaTime * m_speed, 0);
+		direction = 2;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
 
@@ -30,9 +30,7 @@ void Player::update(float deltaTime)
 	m_gravity.applyGravity(this, deltaTime);
 	m_shape.setPosition(m_shape.getPosition() + m_yVelocity);
 
-
-
-	m_base.setPosition(m_shape.getPosition().x + 5, m_shape.getPosition().y + m_shape.getSize().y - 2);
+	m_base.setPosition(m_shape.getPosition().x + 10, m_shape.getPosition().y + m_shape.getSize().y - 2);
 }
 
 void Player::draw(sf::RenderWindow& window)
@@ -65,4 +63,9 @@ void Player::jump(float deltaTime)
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(50));
 	m_hasJumped = false;
+}
+
+sf::Vector2f& Player::getYVelocity()
+{
+	return m_yVelocity;
 }

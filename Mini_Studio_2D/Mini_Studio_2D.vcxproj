@@ -148,6 +148,7 @@
     <ClCompile Include="closet.cpp" />
     <ClCompile Include="desk.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="entityManager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gravity.cpp" />
     <ClCompile Include="lamp.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="closet.h" />
     <ClInclude Include="desk.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="entityManager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
     <ClInclude Include="lamp.h" />

@@ -5,6 +5,7 @@
 
 #include "player.h"
 #include "map.h"
+#include "entityManager.h"
 
 class Game{
 public:

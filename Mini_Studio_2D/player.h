@@ -6,7 +6,6 @@
 
 #include "entity.h"
 #include "gravity.h"
-#include "map.h"
 
 class Player : public Entity
 {
@@ -14,10 +13,14 @@ public:
 	
 	Player(int size, int health);
 
+	int direction = 0;
+
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 
 	void jump(float deltaTime);
+
+	sf::Vector2f& getYVelocity();
 
 private:
 
