@@ -12,5 +12,6 @@ public:
 	Entity(int s, int h);
 	virtual void update() = 0;
 	virtual void draw(sf::RenderWindow& window) = 0;
+	sf::RectangleShape& getShape();
 };
 
