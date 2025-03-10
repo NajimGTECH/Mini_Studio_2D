@@ -12,7 +12,6 @@ void Game::run() {
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
 				window.close();
-				std::cout << "Window closed" << std::endl;
 			}
 		}
 		window.clear();
