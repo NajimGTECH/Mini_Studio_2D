@@ -1,0 +1,75 @@
+Conventions d'écriture:
+
+//* GENERAL *\\
+
+- Le code doit être écrit en anglais
+
+- Le code ne doit pas contenir de fautes d'orthographe
+
+- Ne pas utiliser 'using namespace std' ou 'using namespace sf'
+
+- Utiliser des commentaires pour expliquer le code et les fonctions:
+										// This is a comment
+
+
+//* VARIABLES *\\
+
+- Les noms de variables sont en camelCase:
+										*`myVariable`
+										*`myOtherVariable`
+
+- Les noms de constantes sont en MAJUSCULTE:
+										*`MY_CONSTANT`
+										*`MY_OTHER_CONSTANT`
+
+- Utiliser .f à la fin d'un float: 2.0f
+
+
+//* FONCTIONS *\\
+													
+- Les noms de fonctions commencent par un verbe:
+										*`doSomething()`
+										*`drawPlayer()`
+
+- Commenter les fonctions pour expliquer leur utilité:
+										// This function does something
+
+//* CLASSES *\\
+
+- Les noms des classes commencent par une majuctule:
+										*`MyClass`
+										*`MyOtherClass`
+
+- Les classes doivent être organisés dans cette structure:
+										1. Les methodes publiques
+										2. Les membres publiques
+										3. Les methodes privées
+										4. Les membres privées
+
+- Les membres privés doivent être précédés de 'm_':
+										*`m_myPrivateMember`
+
+
+//* FICHIERS *\\
+
+- Les noms de fichiers doivent être en snake_case:
+										*`my_file.cpp`
+										*`my_other_file.h`
+
+- Les fichiers .h doivent être protégés contre les inclusions multiples:
+										#ifndef MY_HEADER_H
+										#define MY_HEADER_H
+										#endif
+
+										ou
+
+										#pragma once
+
+- Les fichiers .cpp doivent inclure le fichier .h correspondant:
+										#include "MyHeader.h"
+
+- Les fichiers .cpp doivent inclure les fichiers .h dans l'ordre suivant:
+										1. Le fichier .h correspondant
+										2. Les fichiers .h de la bibliothèque standard
+										3. Les fichiers .h des bibliothèques tierces
+										4. Les fichiers .h du projet
