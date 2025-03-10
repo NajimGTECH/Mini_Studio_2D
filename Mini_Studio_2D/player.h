@@ -1,4 +1,9 @@
 #pragma once
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+
 #include "entity.h"
 #include "gravity.h"
 
@@ -17,6 +22,8 @@ private:
 
 	bool m_hasJumped = false;
 	Gravity m_gravity;
+
+	std::mutex m_mutex;
 
 	sf::Vector2f m_YVelocity = { 0.f, 0.f };
 };

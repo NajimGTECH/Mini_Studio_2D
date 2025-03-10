@@ -1,6 +1,5 @@
 #include "player.h"
-#include <thread>
-#include <iostream>
+
 
 Player::Player(int s, int h) : Entity(s, h)
 {
@@ -29,7 +28,7 @@ void Player::update(float deltaTime)
 	}
 
 	m_gravity.applyGravity(this, deltaTime);
-	//m_shape.setPosition(m_shape.getPosition() + m_YVelocity);
+	m_shape.setPosition(m_shape.getPosition() + m_YVelocity);
 }
 
 void Player::draw(sf::RenderWindow& window)
@@ -39,6 +38,10 @@ void Player::draw(sf::RenderWindow& window)
 
 void Player::jump(float deltaTime) 
 {
+	const std::lock_guard<std::mutex> lock(m_mutex);
+
+	std::cout << "Jumping" << std::endl;
+
 	m_hasJumped = true;
 
 	m_YVelocity = { 0.f, 30.f * deltaTime };
