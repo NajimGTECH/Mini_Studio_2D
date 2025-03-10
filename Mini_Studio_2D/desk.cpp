@@ -1,12 +1,12 @@
 #include "desk.h"
 
 Desk::Desk(int s, int h) : Entity(s, h) {
-	shape.setSize(sf::Vector2f(200, 100));
-	shape.setFillColor(sf::Color::Red);
+	m_shape.setSize(sf::Vector2f(200, 100));
+	m_shape.setFillColor(sf::Color::Red);
 }
 
-void Desk::update() {}
+void Desk::update(float deltaTime) {}
 
 void Desk::draw(sf::RenderWindow& window) {
-	window.draw(shape);
+	window.draw(m_shape);
 }

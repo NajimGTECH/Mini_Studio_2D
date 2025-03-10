@@ -13,5 +13,5 @@ sf::RectangleShape& Entity::getShape() {
 
 
 sf::RectangleShape& Entity::getBase() {
-	return base;
+	return m_base;
 }

@@ -4,10 +4,6 @@
 
 class Entity
 {
-protected:
-	sf::RectangleShape shape;
-	int size;
-	int hp;
 public:
 
 	Entity(int size, int hp);
@@ -21,6 +17,7 @@ public:
 protected:
 
 	sf::RectangleShape m_shape;
+	sf::RectangleShape m_base;
 	int m_size;
 	int m_hp;
 };

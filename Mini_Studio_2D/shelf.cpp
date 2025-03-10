@@ -1,12 +1,12 @@
 #include "shelf.h"
 
 Shelf::Shelf(int s, int h) : Entity(s, h){
-	shape.setSize(sf::Vector2f(500, 100));
-	shape.setFillColor(sf::Color::Green);
+	m_shape.setSize(sf::Vector2f(500, 100));
+	m_shape.setFillColor(sf::Color::Green);
 }
 
-void Shelf::update() {}
+void Shelf::update(float deltaTime) {}
 
 void Shelf::draw(sf::RenderWindow& window) {
-	window.draw(shape);
+	window.draw(m_shape);
 }

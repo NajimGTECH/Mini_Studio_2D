@@ -3,7 +3,7 @@
 class Desk : public Entity{
 public:
 	Desk(int s, int h);
-	void update() override;
+	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 };
 
