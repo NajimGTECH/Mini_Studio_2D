@@ -147,13 +147,19 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gravity.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map.cpp" />
+    <ClCompile Include="mapElements.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entity.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="mapElements.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="wall.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />

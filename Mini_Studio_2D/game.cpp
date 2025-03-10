@@ -3,7 +3,11 @@
 Game::Game() {}
 
 void Game::run() {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Mini Studio 2D");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
+
+	Map map;
+
+	map.createMap();
 
 	Player player(100, 10);
 
@@ -20,6 +24,7 @@ void Game::run() {
 		player.update();
 
 		window.clear();
+		map.displayMap(window);
 		player.draw(window);
 		window.display();
 	}

@@ -6,6 +6,7 @@ class Entity
 {
 protected:
 	sf::RectangleShape shape;
+	sf::RectangleShape base;
 	int size;
 	int hp;
 public:
@@ -13,5 +14,6 @@ public:
 	virtual void update() = 0;
 	virtual void draw(sf::RenderWindow& window) = 0;
 	sf::RectangleShape& getShape();
+	sf::RectangleShape& getBase();
 };
 

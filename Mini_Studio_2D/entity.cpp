@@ -9,3 +9,7 @@ Entity::Entity(int s, int h) : size(s), hp(h)
 sf::RectangleShape& Entity::getShape() {
 	return shape;
 }
+
+sf::RectangleShape& Entity::getBase() {
+	return base;
+}
