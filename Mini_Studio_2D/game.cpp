@@ -10,7 +10,7 @@ void Game::run() {
 
 	map.createMap();
 
-	EntityManager manager;
+	EntityManager manager(map);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
@@ -26,8 +26,9 @@ void Game::run() {
 			}
 		}
 
-		manager.player->update(deltaTime);
 		manager.CollideCheck(map, deltaTime);
+		manager.player->update(deltaTime);
+		
 
 		window.clear();
 		map.displayMap(window);

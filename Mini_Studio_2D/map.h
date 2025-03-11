@@ -10,6 +10,8 @@
 class Map
 {
 public:
+	Map();
+
 	void createMap();
 	void createWall(float x, float y, float width, float height);
 	void displayMap(sf::RenderWindow& window);
