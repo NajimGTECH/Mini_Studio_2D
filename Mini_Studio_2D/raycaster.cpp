@@ -1,3 +1,5 @@
+/*
+
 #include "raycaster.h"
 
 #define PI 3.14159265
@@ -127,3 +129,4 @@ float Raycaster::degToRad(float degree)
 {
     return degree * PI / 180;
 }
+*/

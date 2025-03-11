@@ -6,6 +6,6 @@ public:
 	RoboticArm(int s, int h);
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
-	void move()
+	void move();
 };
 

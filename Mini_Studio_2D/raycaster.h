@@ -1,3 +1,4 @@
+/*
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "window.h" // a voir si je garde
@@ -16,3 +17,4 @@ class Raycaster {
     };
 };
 
+*/

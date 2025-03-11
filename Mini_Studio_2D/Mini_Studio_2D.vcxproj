@@ -144,10 +144,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="box.cpp" />
+    <ClCompile Include="button.cpp" />
     <ClCompile Include="chair.cpp" />
     <ClCompile Include="closet.cpp" />
     <ClCompile Include="desk.cpp" />
+    <ClCompile Include="door.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="entityManager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gravity.cpp" />
     <ClCompile Include="lamp.cpp" />
@@ -164,10 +167,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="box.h" />
+    <ClInclude Include="button.h" />
     <ClInclude Include="chair.h" />
     <ClInclude Include="closet.h" />
     <ClInclude Include="desk.h" />
+    <ClInclude Include="door.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="entityManager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
     <ClInclude Include="menu.h" />
