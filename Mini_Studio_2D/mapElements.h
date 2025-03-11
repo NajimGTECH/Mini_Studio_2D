@@ -11,5 +11,8 @@ public:
 
 	MapElements(float x, float y, float width, float height);
 	void draw(sf::RenderWindow& window);
+
+	void openDoor();
+	void checkForButton();
 };
 
