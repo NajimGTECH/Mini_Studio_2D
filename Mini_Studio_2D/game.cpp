@@ -50,7 +50,6 @@ void Game::run() {
 
 		if (isPlaying) {
 			manager.player->update(deltaTime);
-			manager.CollideCheck(map, deltaTime);
 		manager.ButtonCheck(map, deltaTime);
 		manager.player->update(deltaTime);
 		
