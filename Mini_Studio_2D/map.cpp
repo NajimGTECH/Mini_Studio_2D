@@ -15,8 +15,8 @@ void Map::createMap() {
 		switch (ch)
 		{
 		case '#': createWall(x, y, 60, 60);x += 60; i++; break;
-	
-
+		case 'D': createDoor(x, y, 60, 60); x += 60; i++; break;
+		case 'B': createButton(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
 		}
 
@@ -33,16 +33,40 @@ void Map::createMap() {
 }
 
 void Map::createWall(float x, float y, float width, float height) {
-	m_elements.push_back(std::make_shared<Wall>(x, y, width, height));
+	allWalls.push_back(std::make_shared<Wall>(x, y, width, height));
+}
+
+void Map::createDoor(float x, float y, float width, float height) {
+	allDoors.push_back(std::make_shared<Door>(x, y, width, height));
+}
+
+void Map::createButton(float x, float y, float width, float height) {
+	allButtons.push_back(std::make_shared<Button>(x, y, width, height));
 }
 
 void Map::displayMap(sf::RenderWindow& window) {
-	for (auto& wall : m_elements) {
+	for (auto& wall : allWalls) {
 		wall->draw(window);
+	}
+	for (auto& door : allDoors) {
+		door->draw(window);
+	}
+	for (auto& button : allButtons) {
+		button->draw(window);
 	}
 }
 
-std::vector<std::shared_ptr<MapElements>>& Map::getMapElements()
+std::vector<std::shared_ptr<MapElements>>& Map::getAllWalls()
 {
-	return m_elements;
+	return allWalls;
+}
+
+std::vector<std::shared_ptr<MapElements>>& Map::getAllDoors()
+{
+	return allDoors;
+}
+
+std::vector<std::shared_ptr<MapElements>>& Map::getAllButtons()
+{
+	return allButtons;
 }
