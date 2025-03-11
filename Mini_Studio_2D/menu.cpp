@@ -114,8 +114,8 @@ void Menu::switchToControls() {
 
 	vector<string> controlsText = {
 		"Movement - Z/Q/S/D",
-		"Left click - Smite",
-		"Space - Bomb (need to be unlocked)"
+		"Left click - Aspirator ",
+		"Space - Jump"
 	};
 
 	for (int i = 0; i < controlsText.size(); i++) {

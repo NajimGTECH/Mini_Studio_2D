@@ -19,6 +19,9 @@ void Game::run() {
 	sf::Clock clock;
 	float deltaTime = 0.0f;
 
+	bool isPlaying = false;
+
+
 	while (window.isOpen()) {
 		window.clear();
 
@@ -31,15 +34,22 @@ void Game::run() {
 			}
 		}
 
-		manager.player->update(deltaTime);
-		manager.CollideCheck(map, deltaTime);
+		if (menuManager.isPlayButtonClicked()) {
+			isPlaying = true;
+		}
 
-		menu.drawMenu(window);
-		menuManager.handleEvents();
+		if (isPlaying) {
+			manager.player->update(deltaTime);
+			manager.CollideCheck(map, deltaTime);
 
-		window.clear();
-		map.displayMap(window);
-		manager.player->draw(window);
+			map.displayMap(window);
+			manager.player->draw(window);
+		}
+		else {
+			menu.drawMenu(window);
+			menuManager.handleEvents();
+		}
+
 		window.display();
 	}
 }

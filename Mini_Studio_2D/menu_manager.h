@@ -7,8 +7,8 @@
 class MenuManager {
 public:
     MenuManager(RenderWindow& window, Menu& menu);
-
     void handleEvents();
+    bool isPlayButtonClicked();
 
 private:
     RenderWindow& window;

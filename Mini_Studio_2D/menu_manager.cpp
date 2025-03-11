@@ -19,7 +19,7 @@ void MenuManager::handleEvents() {
             if (menu.menuState == MenuState::MAIN) {
                 if (option == 0) {
                     cout << "Lancer la partie !" << endl;
-
+                    menu.startGame = true; // Indique que le jeu doit commencer
                 }
                 else if (option == 1) {
                     menu.switchToOptions();
@@ -64,4 +64,8 @@ void MenuManager::handleEvents() {
             }
         }
     }
+}
+
+bool MenuManager::isPlayButtonClicked() {
+    return menu.startGame;
 }
