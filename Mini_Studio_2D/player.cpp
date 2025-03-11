@@ -111,7 +111,7 @@ void Player::canJump(bool canJump)
 
 bool Player::checkIfGrounded()
 {
-	for (auto& wall : m_map.getMapElements()) {
+	for (auto& wall : m_map.getAllWalls()) {
 
 		if (m_base.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
 		{

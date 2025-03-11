@@ -36,7 +36,7 @@ private:
 	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 
 	float m_jumpPower = 700.f;
-	float m_speed = 325.f;
+	float m_speed = 500.f;
 
 	bool m_canJump = false;
 ;

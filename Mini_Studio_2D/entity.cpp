@@ -22,7 +22,7 @@ bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)
 	hitboxDummy.setSize(m_shape.getSize());
 	hitboxDummy.setPosition(m_shape.getPosition() + targetVelocity);
 
-	for (auto& wall : m_map.getMapElements()) {
+	for (auto& wall : m_map.getAllWalls()) {
 
 		if (hitboxDummy.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
 		{
