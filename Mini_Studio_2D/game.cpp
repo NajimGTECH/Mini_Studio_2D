@@ -32,9 +32,6 @@ void Game::run() {
 		menu.drawMenu(window);
 		menuManager.handleEvents();
 
-
-
-
 		player.draw(window);
 
 

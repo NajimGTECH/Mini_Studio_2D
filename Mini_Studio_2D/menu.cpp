@@ -7,10 +7,10 @@ using namespace sf;
 
 
 Menu::Menu(float _width, float _height) : selectedIndex(0), menuState(MenuState::MAIN) {
-	if (!Menufont.loadFromFile("Assets/TexteMenu/Hylia.otf")) {
+	if (!Menufont.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
 		cout << "Error loading font" << endl;
 	}
-	if (!menuMusic.openFromFile("Assets/AudioMenu/Lost Woods.mp3")) {
+	if (!menuMusic.openFromFile("Assets/AudioMenu/Menumusic.mp3")) {
 		cout << "Erreur chargement musique" << endl;
 	}
 	else {
