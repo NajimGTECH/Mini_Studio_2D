@@ -49,4 +49,10 @@ void EntityManager::CollideCheck(Map& map, float deltaTime) {
 			std::cout << map.getAllButtons().size() << std::endl;
 		}
 	}
+
+	if (player->getShape().getPosition().x > 1920) {
+		player->getShape().setPosition(100, 500);
+		map.lvl++;
+		map.loaded = false;
+	}
 }

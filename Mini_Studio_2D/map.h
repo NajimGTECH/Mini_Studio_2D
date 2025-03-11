@@ -12,7 +12,7 @@
 class Map
 {
 public:
-	void createMap();
+	void createMap(int lvl);
 	void createWall(float x, float y, float width, float height);
 	void createDoor(float x, float y, float width, float height);
 	void createButton(float x, float y, float width, float height);
@@ -21,6 +21,9 @@ public:
 	std::vector<std::shared_ptr<MapElements>>& getAllWalls();
 	std::vector<std::shared_ptr<MapElements>>& getAllDoors();
 	std::vector<std::shared_ptr<MapElements>>& getAllButtons();
+
+	bool loaded = false;
+	int lvl = 1;
 
 private:
 

@@ -8,14 +8,18 @@ void Game::run() {
 
 	Map map;
 
-	map.createMap();
-
 	EntityManager manager;
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
 
 	while (window.isOpen()) {
+
+		if (!map.loaded) {
+			map.createMap(map.lvl);
+			map.loaded = true;
+			std::cout << "map loaded" << std::endl;
+		}
 
 		deltaTime = clock.restart().asSeconds();
 
