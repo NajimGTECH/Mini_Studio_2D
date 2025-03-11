@@ -1,10 +1,11 @@
 #pragma once
-#include "entity.h"
-class Lamp : public Entity{
+#include "entity.h"*
+
+class RoboticArm : public Entity {
 public:
-	Lamp(int s, int h);
+	RoboticArm(int s, int h);
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
-	void illuminate();
+	void move()
 };
 

@@ -1,13 +1,13 @@
 #include "map.h"
 
 void Map::createMap() {
-	mapFile.open("map.txt");
+	m_mapFile.open("map.txt");
 	int i = 0, x = 0, y = 0, j = 0;
 	char ch;
-	if (!mapFile) {
+	if (!m_mapFile) {
 		std::cerr << "unable to open file";
 	}
-	while (mapFile.get(ch)) {
+	while (m_mapFile.get(ch)) {
 		switch (ch)
 		{
 		case '#': createWall(x, y, 60, 60);x += 60; i++; break;
@@ -29,11 +29,16 @@ void Map::createMap() {
 }
 
 void Map::createWall(float x, float y, float width, float height) {
-	walls.push_back(new Wall(x, y, width, height));
+	m_elements.push_back(std::make_shared<Wall>(x, y, width, height));
 }
 
 void Map::displayMap(sf::RenderWindow& window) {
-	for (auto& wall : walls) {
+	for (auto& wall : m_elements) {
 		wall->draw(window);
 	}
+}
+
+std::vector<std::shared_ptr<MapElements>>& Map::getMapElements()
+{
+	return m_elements;
 }
