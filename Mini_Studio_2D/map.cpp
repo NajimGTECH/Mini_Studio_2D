@@ -38,6 +38,10 @@ void Map::displayMap(sf::RenderWindow& window) {
 	}
 }
 
+std::ifstream& Map::getMapFile(){
+	return m_mapFile;
+}
+
 std::vector<std::shared_ptr<MapElements>>& Map::getMapElements()
 {
 	return m_elements;

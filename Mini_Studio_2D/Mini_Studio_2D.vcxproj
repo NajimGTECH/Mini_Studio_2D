@@ -178,6 +178,7 @@
     <ClInclude Include="robotic_arm.h" />
     <ClInclude Include="shelf.h" />
     <ClInclude Include="wall.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />

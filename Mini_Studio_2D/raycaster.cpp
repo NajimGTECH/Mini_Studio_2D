@@ -28,14 +28,42 @@ sf::Vector2f normalize(const sf::Vector2f& vector) {
     return sf::Vector2f(0.f, 0.f);
 }
 
+std::vector<int> Raycaster::getMapCollision() {
+    map.getMapFile().open("map.txt");
+    int i = 0, x = 0, y = 0, j = 0;
+    char ch;
+    if (!map.getMapFile()) {
+        std::cerr << "unable to open file";
+    }
+    while (map.getMapFile().get(ch)) {
+        switch (ch)
+        {
+        case '#': mapCollision.push_back(1); x += 60; i++; break;
 
-void Raycaster::renderRay(Grid& grid)
-{
+
+        case ' ': mapCollision.push_back(0); x += 60; i++; break;
+        }
+
+        if (i == 32) {
+            y += 60; x = 0; i = 0; j++;
+        }
+
+        if (j == 18) {
+            y = 0; x = 0; i = 0; j++;
+        }
+
+    }
+}
+
+
+
+void Raycaster::renderRay(){
+
     intersections.clear();
-    sf::Vector2f rayStart = attachedEntity->shape.getPosition(); // attachedEntity->m_shape.getPosition(); ( get a faire)
-    float startAngle = attachedEntity->orientation - attachedEntity->fov / 2.f; // a faire ( git : arientation et fov)
+    sf::Vector2f rayStart = attachedEntity->getShape().getPosition(); // attachedEntity->m_shape.getPosition(); ( get a faire)
+    float startAngle = attachedEntity->getOrientation() - attachedEntity->getFov() / 2.f; // a faire ( git : arientation et fov)
 
-	const float STEP_ANGLE = attachedEntity->fov / window::WINDOW_WIDTH; // a voir si juste taille de window actuelle ou namespace pour global
+	const float STEP_ANGLE = attachedEntity->getFov() / window::WINDOW_WIDTH; // a voir si juste taille de window actuelle ou namespace pour global
 
     int side = 0;
 
@@ -49,7 +77,7 @@ void Raycaster::renderRay(Grid& grid)
         };
 
         sf::Vector2f mapCheck = {
-             static_cast<int>(rayStart.x / CELL_SIZE) * (float)CELL_SIZE, // taille de la map divisée par le nombre de caractère 
+             static_cast<int>(rayStart.x / CELL_SIZE) * (float)CELL_SIZE, // taille des tiles 64 currently
              static_cast<int>(rayStart.y / CELL_SIZE) * (float)CELL_SIZE
         };
         sf::Vector2f rayLength;
@@ -87,15 +115,13 @@ void Raycaster::renderRay(Grid& grid)
 
         while (!isTileFound && distance < maxDistance)
         {
-            if (rayLength.x < rayLength.y)
-            {
+            if (rayLength.x < rayLength.y) {
                 mapCheck.x += step.x;
                 distance = rayLength.x;
                 rayLength.x += rayUnitStepSize.x;
                 side = 0;
             }
-            else
-            {
+            else {
                 mapCheck.y += step.y;
                 distance = rayLength.y;
                 rayLength.y += rayUnitStepSize.y;
@@ -105,15 +131,14 @@ void Raycaster::renderRay(Grid& grid)
             int gridX = static_cast<int>(mapCheck.x / CELL_SIZE);
             int gridY = static_cast<int>(mapCheck.y / CELL_SIZE);
 
-            if (gridX >= 0 && gridX < GRID_WIDTH && gridY >= 0 && gridY < GRID_HEIGHT) // a calculé en fonction de map et tiles
-            {
-                if (!grid.cells[gridY][gridX].walkable) // faire avec une autre nos collisions
-                {
-                    isTileFound = true;
+            if (gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18){ // a changer en fonction du nb de caracteres
+                for (int i = 0; i < mapCollision.size(); i++) {
+                    if ( mapCollision[i] == 1 ){ // faire avec une autre nos collisions
+                        isTileFound = true;
+                    }
                 }
             }
-            else
-            {
+            else {
                 isTileFound = true;
             }
         }

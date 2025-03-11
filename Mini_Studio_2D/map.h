@@ -2,7 +2,6 @@
 #include <vector>
 #include <memory>
 #include <fstream>
-
 #include "mapElements.h"
 #include "wall.h"
 
@@ -14,6 +13,7 @@ public:
 	void createWall(float x, float y, float width, float height);
 	void displayMap(sf::RenderWindow& window);
 
+	std::ifstream& getMapFile();
 	std::vector<std::shared_ptr<MapElements>>& getMapElements();
 
 private:

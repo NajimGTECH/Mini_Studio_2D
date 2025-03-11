@@ -1,18 +1,22 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "window.h" // a voir si je garde
+#include "window.h" 
 #include "entity.h"
+#include "entityManager.h"
+#include "map.h"
 #include <cmath>
 
 class Raycaster {
-
-    public:
+public:
         Raycaster() {};
+        void renderRay(); // suremnet pas besoin d'argument : utile que pour collisions
+        float degToRad(float degree);
+        std::vector<int> getMapCollision();
+
+        Map map;
+		const int CELL_SIZE = 64;
+        std::vector<int> mapCollision;
         std::shared_ptr<Entity> attachedEntity;
         std::vector<sf::Vector2f> intersections;
-
-        void renderRay(Grid& grid); // suremnet pas besoin d'argument : utile que pour collisions
-        float degToRad(float degree);
-    };
 };
 

@@ -12,4 +12,5 @@ void Lamp::draw(sf::RenderWindow& window) {
 }
 
 void Lamp::illuminate() {
+	
 }

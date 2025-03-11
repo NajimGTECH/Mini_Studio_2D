@@ -15,3 +15,11 @@ sf::RectangleShape& Entity::getShape() {
 sf::RectangleShape& Entity::getBase() {
 	return m_base;
 }
+
+float Entity::getFov() const {
+	return m_fov;
+}
+
+float Entity::getOrientation() const {
+	return m_orientation;
+}
