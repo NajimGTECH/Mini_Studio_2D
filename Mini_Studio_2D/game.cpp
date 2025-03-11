@@ -50,10 +50,7 @@ void Game::run() {
 
 		if (isPlaying) {
 			manager.player->update(deltaTime);
-		manager.ButtonCheck(map, deltaTime);
-		manager.player->update(deltaTime);
-		
-
+			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
 		}
@@ -61,6 +58,8 @@ void Game::run() {
 			menu.drawMenu(window);
 			menuManager.handleEvents();
 		}
+
+		std::cout << deltaTime << endl;
 
 		window.display();
 	}
