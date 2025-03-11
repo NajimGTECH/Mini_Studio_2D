@@ -1,6 +1,6 @@
 #include "entity.h"
 
-Entity::Entity(int size, int hp) : m_size(size), m_hp(hp)
+Entity::Entity(int size, int hp, Map& map) : m_size(size), m_hp(hp), m_map(map)
 {
 
 	m_shape.setSize(sf::Vector2f(m_size, size));
@@ -14,4 +14,20 @@ sf::RectangleShape& Entity::getShape() {
 
 sf::RectangleShape& Entity::getBase() {
 	return m_base;
+}
+
+bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)
+{
+	sf::RectangleShape hitboxDummy;
+	hitboxDummy.setSize(m_shape.getSize());
+	hitboxDummy.setPosition(m_shape.getPosition() + targetVelocity);
+
+	for (auto& wall : m_map.getAllWalls()) {
+
+		if (hitboxDummy.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
+		{
+			return true;
+		}
+	}
+	return false;
 }

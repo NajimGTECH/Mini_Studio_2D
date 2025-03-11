@@ -155,6 +155,8 @@
     <ClCompile Include="gravity.cpp" />
     <ClCompile Include="lamp.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="menu_manager.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mapElements.cpp" />
     <ClCompile Include="player.cpp" />
@@ -174,6 +176,8 @@
     <ClInclude Include="entityManager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="menu_manager.h" />
     <ClInclude Include="lamp.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="mapElements.h" />

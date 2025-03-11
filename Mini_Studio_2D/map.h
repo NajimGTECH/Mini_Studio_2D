@@ -12,7 +12,9 @@
 class Map
 {
 public:
-	void createMap(int lvl);
+	Map();
+
+	void createMap();
 	void createWall(float x, float y, float width, float height);
 	void createDoor(float x, float y, float width, float height);
 	void createButton(float x, float y, float width, float height);

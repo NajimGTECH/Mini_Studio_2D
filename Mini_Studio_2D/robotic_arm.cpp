@@ -1,6 +1,6 @@
 #include "robotic_arm.h"
 
-RoboticArm::RoboticArm(int s, int h) : Entity(s, h) {
+RoboticArm::RoboticArm(int s, int h, Map& map) : Entity(s, h, map) {
 	/*texture.loadFromFile("assets/robotic_arm.png");
 	sprite.setTexture(texture);*/
 }

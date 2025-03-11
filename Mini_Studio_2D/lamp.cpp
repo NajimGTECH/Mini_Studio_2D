@@ -1,6 +1,6 @@
 #include "lamp.h"
 
-Lamp::Lamp(int s, int h) : Entity(s, h) {
+Lamp::Lamp(int s, int h, Map& map) : Entity(s, h, map) {
 	m_shape.setSize(sf::Vector2f(50, 100));
 	m_shape.setFillColor(sf::Color::Yellow);
 }
