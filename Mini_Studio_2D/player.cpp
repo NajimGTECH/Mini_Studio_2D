@@ -40,6 +40,10 @@ void Player::update(float deltaTime)
 	{
 		m_canJump = true;
 	}
+	else
+	{
+		m_canJump = false;
+	}
 
 	//std::cout << "Plr velocity: " << getYVelocity().x << ", " << getYVelocity().y << std::endl;
 }

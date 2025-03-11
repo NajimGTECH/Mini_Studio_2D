@@ -5,7 +5,7 @@ Game::Game() {}
 
 void Game::run() {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(120);
 
 	Menu menu(1920, 1080);
 	MenuManager menuManager(window, menu);
