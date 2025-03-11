@@ -26,6 +26,12 @@ void Game::run() {
 			std::cout << "map loaded" << std::endl;
 		}
 
+		if (manager.player->getShape().getPosition().x > 1920) {
+			map.lvl++;
+			map.loaded = false;
+			manager.player->getShape().setPosition(100, 500);
+		}
+
 		deltaTime = clock.restart().asSeconds();
 
 		sf::Event event;
@@ -35,7 +41,7 @@ void Game::run() {
 			}
 		}
 
-		manager.CollideCheck(map, deltaTime);
+		manager.ButtonCheck(map, deltaTime);
 		manager.player->update(deltaTime);
 		
 

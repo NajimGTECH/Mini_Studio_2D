@@ -29,5 +29,12 @@ bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)
 			return true;
 		}
 	}
+	for (auto& door : m_map.getAllDoors()) {
+
+		if (hitboxDummy.getGlobalBounds().intersects(door->shape.getGlobalBounds()))
+		{
+			return true;
+		}
+	}
 	return false;
 }

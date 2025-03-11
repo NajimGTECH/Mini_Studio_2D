@@ -13,7 +13,7 @@ public:
 
 	EntityManager(Map& map);
 
-	void CollideCheck(Map& map, float deltaTime);
+	void ButtonCheck(Map& map, float deltaTime);
 
 };
 

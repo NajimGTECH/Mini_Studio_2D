@@ -13,23 +13,24 @@ void Player::update(float deltaTime)
 {
 	sf::Vector2f moveVelocity = { 0.f, 0.f };
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30)
 	{
 		moveVelocity = { deltaTime * m_speed, 0.f };
 		if (!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -30)
 	{
 		moveVelocity = { deltaTime * -m_speed, 0.f };
 		if(!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Joystick::isButtonPressed(0 , 0)) {
 
 		if (m_canJump)
 		std::thread(&Player::jump, this, deltaTime).detach();
 	}
+
 
 	m_gravity.applyGravity(this, deltaTime);
 

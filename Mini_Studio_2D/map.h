@@ -14,7 +14,7 @@ class Map
 public:
 	Map();
 
-	void createMap();
+	void createMap(int);
 	void createWall(float x, float y, float width, float height);
 	void createDoor(float x, float y, float width, float height);
 	void createButton(float x, float y, float width, float height);

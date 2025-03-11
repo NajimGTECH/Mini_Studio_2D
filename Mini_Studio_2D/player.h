@@ -4,13 +4,13 @@
 #include <thread>
 #include <mutex>
 
+
 #include "entity.h"
 #include "gravity.h"
 
 class Player : public Entity
 {
 public:
-	
 	Player(int size, int health, Map& map);
 
 	int direction = 0;
