@@ -38,10 +38,10 @@ std::vector<int> Raycaster::getMapCollision() {
     while (map.getMapFile().get(ch)) {
         switch (ch)
         {
-        case '#': mapCollision.push_back(1); x += 60; i++; break;
+        case '#': mapCollision.push_back(1); break;
 
 
-        case ' ': mapCollision.push_back(0); x += 60; i++; break;
+        case ' ': mapCollision.push_back(0); break;
         }
 
         if (i == 32) {
@@ -53,6 +53,8 @@ std::vector<int> Raycaster::getMapCollision() {
         }
 
     }
+    map.getMapFile().close();
+    return mapCollision;
 }
 
 
@@ -65,7 +67,6 @@ void Raycaster::renderRay(){
 
 	const float STEP_ANGLE = attachedEntity->getFov() / window::WINDOW_WIDTH; // a voir si juste taille de window actuelle ou namespace pour global
 
-    int side = 0;
 
     for (int i = 0; i <= window::WINDOW_WIDTH; i++)
     {
@@ -81,7 +82,6 @@ void Raycaster::renderRay(){
              static_cast<int>(rayStart.y / CELL_SIZE) * (float)CELL_SIZE
         };
         sf::Vector2f rayLength;
-
         sf::Vector2f step;
 
         //check horizontal lines
@@ -119,23 +119,20 @@ void Raycaster::renderRay(){
                 mapCheck.x += step.x;
                 distance = rayLength.x;
                 rayLength.x += rayUnitStepSize.x;
-                side = 0;
             }
             else {
                 mapCheck.y += step.y;
                 distance = rayLength.y;
                 rayLength.y += rayUnitStepSize.y;
-                side = 1;
             }
 
             int gridX = static_cast<int>(mapCheck.x / CELL_SIZE);
             int gridY = static_cast<int>(mapCheck.y / CELL_SIZE);
 
-            if (gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18){ // a changer en fonction du nb de caracteres
-                for (int i = 0; i < mapCollision.size(); i++) {
-                    if ( mapCollision[i] == 1 ){ // faire avec une autre nos collisions
-                        isTileFound = true;
-                    }
+            if (gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18) { // a changer en fonction du nb de caracteres
+                int index = gridY * 32 + gridX;
+                if (mapCollision[i] == 1) { // faire avec une autre nos collisions
+                    isTileFound = true;
                 }
             }
             else {

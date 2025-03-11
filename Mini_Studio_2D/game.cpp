@@ -7,7 +7,7 @@ void Game::run() {
 	window.setFramerateLimit(60);
 
 	Map map;
-
+	Lamp lamp(64, 64);
 	map.createMap();
 
 	EntityManager manager;
@@ -28,10 +28,12 @@ void Game::run() {
 
 		manager.player->update(deltaTime);
 		manager.CollideCheck(map, deltaTime);
+		lamp.update(deltaTime);
 
 		window.clear();
 		map.displayMap(window);
 		manager.player->draw(window);
+		lamp.draw(window);
 		window.display();
 	}
 }

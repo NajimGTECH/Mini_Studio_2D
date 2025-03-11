@@ -6,6 +6,7 @@
 #include "player.h"
 #include "map.h"
 #include "entityManager.h"
+#include "lamp.h"
 
 class Game{
 public:
