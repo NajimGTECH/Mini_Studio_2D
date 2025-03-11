@@ -1,7 +1,19 @@
 #include "map.h"
 
-void Map::createMap() {
-	m_mapFile.open("map.txt");
+Map::Map() {}
+
+
+void Map::createMap(int lvl) {
+	switch (lvl)
+	{
+	case 1: m_mapFile.open("map1.txt"); break;
+	case 2: m_mapFile.close(); m_mapFile.open("map2.txt"); break;
+	}
+
+	allWalls.clear();
+	allButtons.clear();
+	allDoors.clear();
+
 	int i = 0, x = 0, y = 0, j = 0;
 	char ch;
 	if (!m_mapFile) {

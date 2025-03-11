@@ -5,16 +5,14 @@ Game::Game() {}
 
 void Game::run() {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(120);
 
 	Menu menu(1920, 1080);
 	MenuManager menuManager(window, menu);
 
 	Map map;
 
-	map.createMap();
-
-	EntityManager manager;
+	EntityManager manager(map);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
@@ -24,6 +22,18 @@ void Game::run() {
 
 	while (window.isOpen()) {
 		window.clear();
+
+		if (!map.loaded) {
+			map.createMap(map.lvl);
+			map.loaded = true;
+			std::cout << "map loaded" << std::endl;
+		}
+
+		if (manager.player->getShape().getPosition().x > 1920) {
+			map.lvl++;
+			map.loaded = false;
+			manager.player->getShape().setPosition(100, 500);
+		}
 
 		deltaTime = clock.restart().asSeconds();
 
@@ -41,6 +51,9 @@ void Game::run() {
 		if (isPlaying) {
 			manager.player->update(deltaTime);
 			manager.CollideCheck(map, deltaTime);
+		manager.ButtonCheck(map, deltaTime);
+		manager.player->update(deltaTime);
+		
 
 			map.displayMap(window);
 			manager.player->draw(window);

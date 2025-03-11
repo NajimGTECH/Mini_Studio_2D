@@ -8,5 +8,5 @@ void MapElements::draw(sf::RenderWindow& window) {
 
 void MapElements::openDoor() {
 	std::cout << "door is open" << std::endl;
-	shape.move(0, -100);
+	shape.move(0, -200);
 }

@@ -13,6 +13,5 @@ public:
 	void draw(sf::RenderWindow& window);
 
 	void openDoor();
-	void checkForButton();
 };
 
