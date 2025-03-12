@@ -25,6 +25,12 @@
     <Filter Include="Fichiers d%27en-tête\tools">
       <UniqueIdentifier>{662c0fd7-7859-4442-8c32-8ae6845790d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\map related">
+      <UniqueIdentifier>{df675c78-a3c5-4cb0-830f-f4d63e7001bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\map related">
+      <UniqueIdentifier>{eb9d8dd1-2f36-413e-b816-8f64aa219cf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -40,15 +46,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="gravity.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="map.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="mapElements.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="wall.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="raycaster.cpp">
@@ -73,7 +70,16 @@
       <Filter>Fichiers sources\tools</Filter>
     </ClCompile>
     <ClCompile Include="robotic_arm.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="mapElements.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="wall.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>Fichiers sources\map related</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -87,15 +93,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="gravity.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="map.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="mapElements.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="wall.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="raycaster.h">
@@ -120,7 +117,16 @@
       <Filter>Fichiers d%27en-tête\tools</Filter>
     </ClInclude>
     <ClInclude Include="robotic_arm.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="wall.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="mapElements.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
