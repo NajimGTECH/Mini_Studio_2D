@@ -16,7 +16,7 @@ public:
         Map map;
 		const int CELL_SIZE = 64;
         std::vector<int> mapCollision;
-        std::shared_ptr<Entity> attachedEntity;
+        Entity* attachedEntity;
         std::vector<sf::Vector2f> intersections;
 };
 

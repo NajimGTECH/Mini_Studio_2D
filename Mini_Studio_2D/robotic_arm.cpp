@@ -10,7 +10,7 @@ void RoboticArm::update(float deltaTime) {
 }
 
 void RoboticArm::draw(sf::RenderWindow& window) {
-	// Draw the robotic arm
+	window.draw(m_shape);
 }
 
 void RoboticArm::move() {

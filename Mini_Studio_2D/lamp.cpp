@@ -16,7 +16,7 @@ void Lamp::draw(sf::RenderWindow& window) {
 }
 
 void Lamp::illuminate() {
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {*/
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
 		raycast.renderRay();
 		fov_Vizualisation.clear();
 		fov_Vizualisation.append(sf::Vertex(getShape().getPosition(), sf::Color(255, 0, 0, 100)));
@@ -25,5 +25,5 @@ void Lamp::illuminate() {
 			fov_Vizualisation.append(sf::Vertex(intersection, sf::Color(255, 0, 0, 100)));
 		}
 		std::cout << raycast.intersections.size() << std::endl << "illuminate" << std::endl;
-	/*}*/
+	}
 }

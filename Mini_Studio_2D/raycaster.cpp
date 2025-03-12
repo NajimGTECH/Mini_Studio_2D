@@ -59,13 +59,13 @@ std::vector<int> Raycaster::getMapCollision() {
 
 
 
-void Raycaster::renderRay(){
+void Raycaster::renderRay() {
 
     intersections.clear();
     sf::Vector2f rayStart = attachedEntity->getShape().getPosition(); // attachedEntity->m_shape.getPosition(); ( get a faire)
     float startAngle = attachedEntity->getOrientation() - attachedEntity->getFov() / 2.f; // a faire ( git : arientation et fov)
 
-	const float STEP_ANGLE = attachedEntity->getFov() / window::WINDOW_WIDTH; // a voir si juste taille de window actuelle ou namespace pour global
+    const float STEP_ANGLE = attachedEntity->getFov() / window::WINDOW_WIDTH; // a voir si juste taille de window actuelle ou namespace pour global
 
 
     for (int i = 0; i <= window::WINDOW_WIDTH; i++)
@@ -129,20 +129,22 @@ void Raycaster::renderRay(){
             int gridX = static_cast<int>(mapCheck.x / CELL_SIZE);
             int gridY = static_cast<int>(mapCheck.y / CELL_SIZE);
 
-            if (gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18) { // a changer en fonction du nb de caracteres
-                int index = gridY * 32 + gridX;
-                if (mapCollision[i] == 1) { // faire avec une autre nos collisions
+            if (!mapCollision.empty() && gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18) {
+                if (gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18) { // a changer en fonction du nb de caracteres
+                    for ( int i = 0; i < getMapCollision().size(); i++)
+                    if (mapCollision[i] == 1) { // faire avec une autre nos collisions
+                        isTileFound = true;
+                    }
+                }
+                else {
                     isTileFound = true;
                 }
             }
-            else {
-                isTileFound = true;
-            }
-        }
 
-        intersections.push_back(rayStart + rayDir * distance);
+            intersections.push_back(rayStart + rayDir * distance);
+        }
+        //return intersections;
     }
-    //return intersections;
 }
 
 float Raycaster::degToRad(float degree)
