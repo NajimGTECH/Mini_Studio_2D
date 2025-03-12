@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\fournitures">
+      <UniqueIdentifier>{0fbb16a3-c1ad-4cc1-9a97-9c060d010e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\tools">
+      <UniqueIdentifier>{cd6e3978-1aec-4d47-aafc-a0e6eeee5c97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\fournitures">
+      <UniqueIdentifier>{6c8b046d-589a-4d4d-a662-ad9be7f42367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\tools">
+      <UniqueIdentifier>{662c0fd7-7859-4442-8c32-8ae6845790d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,25 +36,10 @@
     <ClCompile Include="entity.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="box.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="chair.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="closet.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="desk.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="game.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="gravity.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="lamp.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="map.cpp">
@@ -51,13 +48,31 @@
     <ClCompile Include="mapElements.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="shelf.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="wall.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="raycaster.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="box.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="chair.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="closet.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="desk.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="shelf.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="lamp.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="robotic_arm.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,25 +83,10 @@
     <ClInclude Include="entity.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="box.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="chair.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="closet.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="desk.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="game.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="gravity.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="lamp.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="map.h">
@@ -95,13 +95,31 @@
     <ClInclude Include="mapElements.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="shelf.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="wall.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="raycaster.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="box.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="chair.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="closet.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="desk.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="shelf.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="lamp.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="robotic_arm.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
