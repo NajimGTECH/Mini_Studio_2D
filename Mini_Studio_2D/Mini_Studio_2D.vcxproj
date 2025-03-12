@@ -155,6 +155,7 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mapElements.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="raycaster.cpp" />
     <ClCompile Include="shelf.cpp" />
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="mapElements.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="raycaster.h" />
     <ClInclude Include="shelf.h" />
     <ClInclude Include="wall.h" />
   </ItemGroup>
