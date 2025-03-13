@@ -4,7 +4,7 @@
 
 class Lamp : public Entity{
 public:
-	Lamp(int s, int h);
+	Lamp(int s, int h, Map& map);
 
 	test raycast;
 	sf::VertexArray fov_Vizualisation;

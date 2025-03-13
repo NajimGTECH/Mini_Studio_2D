@@ -28,7 +28,7 @@ float Entity::setOrientation(float orientation) {
 	m_orientation = orientation;
 	return m_orientation;
 }
-}
+
 
 bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)
 {

@@ -1,6 +1,6 @@
 #include "lamp.h"
 
-Lamp::Lamp(int s, int h) : Entity(s, h) {
+Lamp::Lamp(int s, int h, Map& map) : Entity(s, h, map) {
 	m_shape.setPosition(500, 400);
 	fov_Vizualisation = sf::VertexArray(sf::TriangleFan, 0);
 

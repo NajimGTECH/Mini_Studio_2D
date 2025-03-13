@@ -11,10 +11,7 @@ void Game::run() {
 	MenuManager menuManager(window, menu);
 
 	Map map;
-	Lamp lamp(64, 64);
-	map.createMap();
-
-	EntityManager manager;
+	Lamp lamp(60, 60, map);
 
 	EntityManager manager(map);
 
@@ -49,7 +46,6 @@ void Game::run() {
 		}
 
 		manager.player->update(deltaTime);
-		manager.CollideCheck(map, deltaTime);
 		lamp.illuminate(map);
 		lamp.raycast.attachedEntity = &lamp;
 		if (menuManager.isPlayButtonClicked()) {

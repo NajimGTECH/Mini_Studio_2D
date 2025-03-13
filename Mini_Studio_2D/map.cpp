@@ -80,7 +80,7 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllButtons()
 }
 
 bool Map::isWalkable(int x, int y) const {
-	for (const auto& element : m_elements) {
+	for (const auto& element : allWalls) {
 		if (element->shape.getGlobalBounds().contains(x * 60, y * 60)) {
 			return false;
 		}
