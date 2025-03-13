@@ -7,6 +7,9 @@ Player::Player(int size, int health, Map& map) : Entity(size, health, map)
 	m_base.setSize(sf::Vector2f(m_shape.getSize().x * 0.9f, m_shape.getSize().y / 10.f));
 
 	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x/7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y);
+
+	auto waterJet = std::make_shared<WaterJet>(0, -1, map);
+	m_tools.push_back(waterJet);
 }
 
 void Player::update(float deltaTime)
@@ -48,6 +51,12 @@ void Player::update(float deltaTime)
 	}
 
 	//std::cout << "Plr velocity: " << getYVelocity().x << ", " << getYVelocity().y << std::endl;
+
+	//update loop for the player tools
+	for (auto& tool : m_tools)
+	{
+		tool->update(deltaTime);
+	}
 }
 
 void Player::draw(sf::RenderWindow& window)

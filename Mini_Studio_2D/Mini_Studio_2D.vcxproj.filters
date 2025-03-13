@@ -105,6 +105,9 @@
     <ClCompile Include="terminal.cpp">
       <Filter>Fichiers sources\map related</Filter>
     </ClCompile>
+    <ClCompile Include="water_jet.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="player.h">
@@ -142,6 +145,12 @@
     </ClInclude>
     <ClInclude Include="terminal.h">
       <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="water_jet.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="tools_include.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
