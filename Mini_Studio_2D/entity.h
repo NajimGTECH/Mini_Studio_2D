@@ -18,6 +18,8 @@ public:
 
 	sf::RectangleShape& getShape();
 	sf::RectangleShape& getBase();
+	sf::Sprite& getSprite();
+	sf::Texture& getTexture();
 	float setOrientation(float orientation);
 
 	bool isCollisionDetected(sf::Vector2f targetVelocity);
@@ -25,6 +27,8 @@ public:
 protected:
 
 	sf::RectangleShape m_shape;
+	sf::Sprite m_sprite;
+	sf::Texture m_texture;
 	sf::RectangleShape m_base;
 	int m_size;
 	int m_hp;

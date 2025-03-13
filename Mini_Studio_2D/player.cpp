@@ -15,12 +15,14 @@ void Player::update(float deltaTime)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30)
 	{
+		m_walkSide = true;
 		moveVelocity = { deltaTime * m_speed, 0.f };
 		if (!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -30)
 	{
+		m_walkSide = false;
 		moveVelocity = { deltaTime * -m_speed, 0.f };
 		if(!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
@@ -97,6 +99,10 @@ sf::Vector2f Player::getYVelocity()
 float Player::getSpeed()
 {
 	return m_speed;
+}
+
+bool Player::getWalkSide() {
+	return m_walkSide;
 }
 
 bool Player::isJumping()

@@ -16,6 +16,14 @@ sf::RectangleShape& Entity::getBase() {
 	return m_base;
 }
 
+sf::Sprite& Entity::getSprite() {
+	return m_sprite;
+}
+
+sf::Texture& Entity::getTexture() {
+	return m_texture;
+}
+
 float Entity::getFov() const {
 	return m_fov;
 }

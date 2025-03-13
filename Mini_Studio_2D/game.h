@@ -5,6 +5,7 @@
 
 #include "entityManager.h"
 #include "lamp.h"
+#include "closet.h"
 
 class Game{
 public:

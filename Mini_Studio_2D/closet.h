@@ -1,9 +1,14 @@
 #pragma once
 #include "entity.h"
+#include "player.h"
+
 class Closet : public Entity{
 public:
 	Closet(int s, int h, Map& map);
-	void update();
-	void draw(sf::RenderWindow& window);
+
+	void update(float deltaTime) override;
+	void draw(sf::RenderWindow& window) override;
+	void push(Player& player);
+
 };
 

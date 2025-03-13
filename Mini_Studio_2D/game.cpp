@@ -14,6 +14,7 @@ void Game::run() {
 	Lamp lamp(60, 60, map);
 
 	EntityManager manager(map);
+	Closet closet(60, 60, map);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
@@ -69,6 +70,7 @@ void Game::run() {
 		map.displayMap(window);
 		manager.player->draw(window);
 		lamp.draw(window);
+		closet.draw(window);
 		window.display();
 	}
 }
