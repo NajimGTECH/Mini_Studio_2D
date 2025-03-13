@@ -7,9 +7,9 @@
 #include "map.h"
 #include <cmath>
 
-class test {
+class Raycast {
     public:
-        test() {};
+        Raycast() {};
         Entity* attachedEntity;
         std::vector<sf::Vector2f> intersections;
 

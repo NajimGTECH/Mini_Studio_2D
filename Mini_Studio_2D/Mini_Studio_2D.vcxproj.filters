@@ -48,9 +48,6 @@
     <ClCompile Include="gravity.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="raycaster.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="box.cpp">
       <Filter>Fichiers sources\fournitures</Filter>
     </ClCompile>
@@ -84,7 +81,7 @@
     <ClCompile Include="entityManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="test.cpp">
+    <ClCompile Include="raycast.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp">
@@ -97,6 +94,12 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="menu_manager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="door.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,12 +128,15 @@
     <ClInclude Include="menu_manager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />
-    <ClInclude Include="raycaster.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="box.h">
       <Filter>Fichiers d%27en-tête\fournitures</Filter>
     </ClInclude>
@@ -167,7 +173,7 @@
     <ClInclude Include="window.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
+    <ClInclude Include="raycast.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

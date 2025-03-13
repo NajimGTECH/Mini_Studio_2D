@@ -1,13 +1,13 @@
 #pragma once
 #include "entity.h"
-#include "test.h"
+#include "raycast.h"
 
 class Lamp : public Entity{
 public:
 	Lamp(int s, int h, Map& map);
 
 	bool E = false;
-	test raycast;
+	Raycast raycast;
 	sf::VertexArray fov_Vizualisation;
 
 	void update(float deltaTime) override;

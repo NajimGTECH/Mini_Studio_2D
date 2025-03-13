@@ -1,5 +1,4 @@
-#include "test.h"
-#include "Raycaster.h"
+#include "raycast.h"
 
 #define PI 3.14159265
 #define NUM_RAYS 100 // Définir le nombre de rayons souhaité
@@ -27,7 +26,7 @@ sf::Vector2f normalize(const sf::Vector2f& vector) {
     return sf::Vector2f(0.f, 0.f);
 }
 
-void test::renderRay(Map& map)
+void Raycast::renderRay(Map& map)
 {
     intersections.clear();
     sf::Vector2f rayStart = attachedEntity->getShape().getPosition();
@@ -116,7 +115,7 @@ void test::renderRay(Map& map)
     }
 }
 
-float test::degToRad(float degree)
+float Raycast::degToRad(float degree)
 {
     return degree * PI / 180;
 }

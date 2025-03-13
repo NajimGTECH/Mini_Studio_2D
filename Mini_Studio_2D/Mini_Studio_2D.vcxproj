@@ -160,10 +160,9 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mapElements.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="raycaster.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
     <ClCompile Include="shelf.cpp" />
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="raycast.cpp" />
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,10 +182,9 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="mapElements.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="raycaster.h" />
     <ClInclude Include="robotic_arm.h" />
     <ClInclude Include="shelf.h" />
-    <ClInclude Include="test.h" />
+    <ClInclude Include="raycast.h" />
     <ClInclude Include="wall.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
