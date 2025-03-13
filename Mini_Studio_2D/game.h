@@ -8,6 +8,9 @@
 #include "entityManager.h"
 
 class Game{
+private:
+	bool m_terminal = false;
+
 public:
 	Game();
 	void run();

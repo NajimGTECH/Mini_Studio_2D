@@ -14,6 +14,7 @@ public:
 	EntityManager(Map& map);
 
 	void ButtonCheck(Map& map, float deltaTime);
+	bool TerminalCheck( Map& map);
 
 };
 

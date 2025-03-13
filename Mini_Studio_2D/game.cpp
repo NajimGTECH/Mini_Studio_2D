@@ -41,6 +41,9 @@ void Game::run() {
 			}
 		}
 
+		m_terminal = manager.TerminalCheck(map);
+
+
 		manager.ButtonCheck(map, deltaTime);
 		manager.player->update(deltaTime);
 		

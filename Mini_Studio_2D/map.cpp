@@ -4,11 +4,8 @@ Map::Map() {}
 
 
 void Map::createMap(int lvl) {
-	switch (lvl)
-	{
-	case 1: m_mapFile.open("map1.txt"); break;
-	case 2: m_mapFile.close(); m_mapFile.open("map2.txt"); break;
-	}
+	m_mapFile.close();
+	m_mapFile.open("map" + std::to_string(lvl) + ".txt");
 
 	allWalls.clear();
 	allButtons.clear();
@@ -16,15 +13,18 @@ void Map::createMap(int lvl) {
 
 	int i = 0, x = 0, y = 0, j = 0;
 	char ch;
+
 	if (!m_mapFile) {
 		std::cerr << "unable to open file";
 	}
+
 	while (m_mapFile.get(ch)) {
 		switch (ch)
 		{
 		case '#': createWall(x, y, 60, 60);x += 60; i++; break;
 		case 'D': createDoor(x, y, 60, 60); x += 60; i++; break;
 		case 'B': createButton(x, y, 60, 60); x += 60; i++; break;
+		case 'T': createTerminal(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
 		}
 
@@ -36,8 +36,11 @@ void Map::createMap(int lvl) {
 		if (j == 18) {
 			y = 0; x = 0; i = 0; j++;
 		}
-
 	}
+}
+
+void Map::createTerminal(float x, float y, float width, float height) {
+	allTerminals.push_back(std::make_shared<Terminal>(x, y, width, height));
 }
 
 void Map::createWall(float x, float y, float width, float height) {
@@ -62,7 +65,11 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& button : allButtons) {
 		button->draw(window);
 	}
+	for (auto& terminal : allTerminals) {
+		terminal->draw(window);
+	}
 }
+
 
 std::vector<std::shared_ptr<MapElements>>& Map::getAllWalls()
 {
@@ -77,4 +84,9 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllDoors()
 std::vector<std::shared_ptr<MapElements>>& Map::getAllButtons()
 {
 	return allButtons;
+}
+
+std::vector<std::shared_ptr<MapElements>>& Map::getAllTerminals()
+{
+	return allTerminals;
 }
