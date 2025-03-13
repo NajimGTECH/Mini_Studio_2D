@@ -68,7 +68,7 @@ void Game::run() {
 			menuManager.handleEvents();
 		}
 
-		std::cout << deltaTime << endl;
+		//std::cout << deltaTime << endl;
 
 		window.display();
 	}
