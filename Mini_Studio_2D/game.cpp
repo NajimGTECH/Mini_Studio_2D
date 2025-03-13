@@ -44,9 +44,18 @@ void Game::run() {
 			}
 		}
 
+
+		m_terminal = manager.TerminalCheck(map);
+
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
 		}
+
+
+		if (m_terminal) {
+			isPlaying = false;
+		}
+
 
 		if (isPlaying) {
 			manager.player->update(deltaTime);

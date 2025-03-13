@@ -18,6 +18,7 @@ void EntityManager::ButtonCheck(Map& map, float deltaTime) {
 bool EntityManager::TerminalCheck( Map& map) {
 	for (auto& terminal : map.getAllTerminals()) {
 		if (player->getShape().getGlobalBounds().intersects(terminal->shape.getGlobalBounds()) && sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+			std::cout << "terminal" << std::endl;
 			return true;
 		}
 	}
