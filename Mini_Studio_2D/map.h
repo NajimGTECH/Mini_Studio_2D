@@ -29,6 +29,7 @@ public:
 
 private:
 
+
 	std::ifstream m_mapFile;
 	std::vector<std::shared_ptr<MapElements>> allWalls;
 	std::vector<std::shared_ptr<MapElements>> allDoors;

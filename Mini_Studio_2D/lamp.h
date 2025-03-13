@@ -6,6 +6,7 @@ class Lamp : public Entity{
 public:
 	Lamp(int s, int h, Map& map);
 
+	bool E = false;
 	test raycast;
 	sf::VertexArray fov_Vizualisation;
 

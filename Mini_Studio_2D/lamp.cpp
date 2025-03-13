@@ -13,14 +13,15 @@ void Lamp::update(float deltaTime) {
 
 void Lamp::draw(sf::RenderWindow& window) {
 	window.draw(m_shape);
-	window.draw(fov_Vizualisation);
+	if (!E) {
+			window.draw(fov_Vizualisation);
+	}
 }
 
 void Lamp::illuminate(Map& map) {
-	int countE = 0;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-		/*if (countE == 0) {
-			countE++;*/
+
+	if ( !E && sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+		E = true;
 		raycast.renderRay(map);
 		fov_Vizualisation.clear();
 		fov_Vizualisation.append(sf::Vertex(getShape().getPosition(), sf::Color(255, 0, 0, 100)));
@@ -36,9 +37,8 @@ void Lamp::illuminate(Map& map) {
 			m_shape.move(5.0f, 0.0f); // Déplacez la lampe vers la droite
 			raycast.attachedEntity->setOrientation(360.0f); // Mettre à jour l'orientation de l'entité
 		}
-		/*}*/
-		/*else {
-			countE = 0;
-		}*/
+	}
+	if (E && sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+		E = false;
 	}
 }
