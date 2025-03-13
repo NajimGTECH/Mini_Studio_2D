@@ -17,6 +17,9 @@ void Game::run() {
 	sf::Clock clock;
 	float deltaTime = 0.0f;
 
+	bool isPlaying = false;
+
+
 	while (window.isOpen()) {
 		window.clear();
 
@@ -41,19 +44,23 @@ void Game::run() {
 			}
 		}
 
-		m_terminal = manager.TerminalCheck(map);
+		if (menuManager.isPlayButtonClicked()) {
+			isPlaying = true;
+		}
 
+		if (isPlaying) {
+			manager.player->update(deltaTime);
+			manager.ButtonCheck(map, deltaTime);
+			map.displayMap(window);
+			manager.player->draw(window);
+		}
+		else {
+			menu.drawMenu(window);
+			menuManager.handleEvents();
+		}
 
-		manager.ButtonCheck(map, deltaTime);
-		manager.player->update(deltaTime);
-		
+		std::cout << deltaTime << endl;
 
-		menu.drawMenu(window);
-		menuManager.handleEvents();
-
-		window.clear();
-		map.displayMap(window);
-		manager.player->draw(window);
 		window.display();
 	}
 }
