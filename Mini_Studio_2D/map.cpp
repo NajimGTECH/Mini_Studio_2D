@@ -10,6 +10,7 @@ void Map::createMap(int lvl) {
 	allWalls.clear();
 	allButtons.clear();
 	allDoors.clear();
+	allTerminals.clear();
 
 	int i = 0, x = 0, y = 0, j = 0;
 	char ch;
