@@ -7,8 +7,8 @@ NPC::NPC(int size, int hp, Map& map, sf::Vector2f position) : Entity(size, hp, m
     dialogues = {
         "YOKOSO",
         "MONSTER Hunter Wild sous coté de fou",
-        "J'aime la vie"
-        "En fait Luden c'est un passif mytique"
+        "J'aime la vie",
+        "En fait Luden c'est un passif mytique",
     };
 
     dialogueBox.setSize(sf::Vector2f(400, 80));
@@ -27,7 +27,13 @@ bool NPC::isPlayerNearby(sf::Vector2f playerPos) {
         std::abs(m_shape.getPosition().y - playerPos.y) < 100);
 }
 
-std::string NPC::getDialogue() {
-    dialogueIndex = (dialogueIndex + 1) % dialogues.size();
+std::string NPC::getDialogue(float deltaTime) {
+
+    if (timeSinceLastDialogue >= dialogueInterval) { 
+        dialogueIndex = (dialogueIndex + 1) % dialogues.size();
+        timeSinceLastDialogue = 0.0f; 
+    }
+    timeSinceLastDialogue += deltaTime;
+
     return dialogues[dialogueIndex];
 }

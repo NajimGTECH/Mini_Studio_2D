@@ -11,13 +11,15 @@ public:
     void update(float deltaTime) override;
     void draw(sf::RenderWindow& window) override;
     bool isPlayerNearby(sf::Vector2f playerPos);
-    std::string getDialogue();
+    std::string getDialogue(float deltaTime);
 
 private:
     sf::Text dialogueText;
     sf::RectangleShape dialogueBox;
     std::vector<std::string> dialogues;
     int dialogueIndex = 0;
+    float timeSinceLastDialogue = 2.0f;
+    float dialogueInterval = 2.0f;
 };
 
 

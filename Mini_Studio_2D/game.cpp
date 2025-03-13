@@ -68,7 +68,7 @@ void Game::run() {
 					if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 						sf::Text dialogue;
 						dialogue.setFont(font);
-						dialogue.setString(npc->getDialogue());
+						dialogue.setString(npc->getDialogue(deltaTime));
 						dialogue.setCharacterSize(20);
 						dialogue.setFillColor(sf::Color::White);
 						dialogue.setPosition(npc->getShape().getPosition().x, npc->getShape().getPosition().y - 40);
