@@ -9,8 +9,7 @@
 
 class Game{
 private:
-	bool m_terminal = false;
-
+	bool m_terminal;
 public:
 	Game();
 	void run();

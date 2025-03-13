@@ -4,6 +4,7 @@
 Game::Game() {}
 
 void Game::run() {
+	m_terminal = false;
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
 	window.setFramerateLimit(120);
 
@@ -17,6 +18,7 @@ void Game::run() {
 	sf::Clock clock;
 	float deltaTime = 0.0f;
 
+	bool menub = true;
 	bool isPlaying = false;
 
 
@@ -42,34 +44,48 @@ void Game::run() {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
+			if (event.type == sf::Event::KeyReleased) {
+				if (event.key.code == sf::Keyboard::E) {
+						if (manager.TerminalCheck(map)) {
+						m_terminal = !m_terminal;
+					}
+				}	
+			}
 		}
 
-
-		m_terminal = manager.TerminalCheck(map);
 
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
-		}
-
-
-		if (m_terminal) {
-			isPlaying = false;
+			menub = false;
 		}
 
 
 		if (isPlaying) {
-			manager.player->update(deltaTime);
+			
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
+			if (!m_terminal) {
+				manager.player->update(deltaTime);
+			}
+			else if (m_terminal) {
+				sf::RectangleShape darkback;
+				darkback.setSize(sf::Vector2f(1920, 1080));
+				darkback.setFillColor(sf::Color(0, 0, 0, 200));
+				window.draw(darkback);
+				sf::RectangleShape terminal;
+				terminal.setSize(sf::Vector2f(800, 600));
+				terminal.setPosition(560, 240);
+				terminal.setFillColor(sf::Color(150, 150, 150));
+				window.draw(terminal);
+			}
 		}
-		else {
+		else if (menub){
 			menu.drawMenu(window);
 			menuManager.handleEvents();
 		}
 
 		//std::cout << deltaTime << endl;
-
 		window.display();
 	}
 }

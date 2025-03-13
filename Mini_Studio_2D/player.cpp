@@ -37,12 +37,12 @@ void Player::update(float deltaTime)
 	if (checkIfGrounded())
 	{
 		m_yVelocity.y = 0.f;
-		std::cout << "grounded:\t" << m_yVelocity.y << std::endl;
+		//std::cout << "grounded:\t" << m_yVelocity.y << std::endl;
 		m_canJump = true;
 	}
 	else
 	{
-		std::cout << "midair:\t" << m_yVelocity.y << std::endl;
+		//std::cout << "midair:\t" << m_yVelocity.y << std::endl;
 		m_gravity.applyGravity(this, deltaTime);
 		m_canJump = false;
 	}
