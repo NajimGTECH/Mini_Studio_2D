@@ -1,25 +1,16 @@
 #include "entityManager.h"
 
-EntityManager::EntityManager() {
-	player = std::make_shared<Player>(100, 10);
+EntityManager::EntityManager(Map& map) {
+	player = std::make_shared<Player>(100, 10, map);
 }
 
-void EntityManager::CollideCheck(Map& map, float deltaTime) {
-	for (auto& wall : map.getMapElements()) {
-		if (player->getBase().getGlobalBounds().intersects(wall->shape.getGlobalBounds())) {
-			player->getYVelocity().y = -9.81f * 50 * deltaTime;
-		}
-
-		if (player->direction == 1) {
-			if (player->getShape().getGlobalBounds().intersects(wall->shape.getGlobalBounds())) {
-				player->getShape().setPosition(player->getShape().getPosition().x - 6, player->getShape().getPosition().y);
+void EntityManager::ButtonCheck(Map& map, float deltaTime) {
+	for (auto& button : map.getAllButtons()) {
+		if (player->getBase().getGlobalBounds().intersects(button->shape.getGlobalBounds())) {
+			for (auto& door : map.getAllDoors()) {
+				door->openDoor();
 			}
-		}
-
-		if (player->direction == 2) {
-			if (player->getShape().getGlobalBounds().intersects(wall->shape.getGlobalBounds())) {
-				player->getShape().setPosition(player->getShape().getPosition().x + 6, player->getShape().getPosition().y);
-			}
+			map.getAllButtons().clear();
 		}
 	}
 }

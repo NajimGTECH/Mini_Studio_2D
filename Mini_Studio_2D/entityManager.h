@@ -11,9 +11,9 @@ public:
 
 	std::shared_ptr<Player> player;
 
-	EntityManager();
+	EntityManager(Map& map);
 
-	void CollideCheck(Map& map, float deltaTime);
+	void ButtonCheck(Map& map, float deltaTime);
 
 };
 

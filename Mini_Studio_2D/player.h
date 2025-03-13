@@ -4,14 +4,14 @@
 #include <thread>
 #include <mutex>
 
+
 #include "entity.h"
 #include "gravity.h"
 
 class Player : public Entity
 {
 public:
-	
-	Player(int size, int health);
+	Player(int size, int health, Map& map);
 
 	int direction = 0;
 
@@ -20,19 +20,27 @@ public:
 
 	void jump(float deltaTime);
 
-	sf::Vector2f& getYVelocity();
+	sf::Vector2f getYVelocity();
+	float getSpeed();
+	bool isJumping();
+
+	void setYVelocity(sf::Vector2f newVelocity);
+	void canJump(bool canJump);
+
+private:
+
+	bool checkIfGrounded();
 
 private:
 
 	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 
 	float m_jumpPower = 700.f;
-	float m_speed = 250.f;
+	float m_speed = 500.f;
 
-	bool m_hasJumped = false;
+	bool m_canJump = false;
 ;
 	Gravity m_gravity;
-
-	std::mutex m_mutex;
+	std::mutex m_mutex; //used to make player threads safe
 };
 

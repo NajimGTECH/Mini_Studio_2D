@@ -5,3 +5,8 @@ MapElements::MapElements(float x, float y, float width, float height) : x(x), y(
 void MapElements::draw(sf::RenderWindow& window) {
 	window.draw(shape);
 }
+
+void MapElements::openDoor() {
+	std::cout << "door is open" << std::endl;
+	shape.move(0, -200);
+}
