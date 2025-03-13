@@ -85,7 +85,7 @@ void Raycaster::renderRay() {
         sf::Vector2f step;
 
         //check horizontal lines
-        if (rayDir.x < 0)
+        /*if (rayDir.x < 0)
         {
             step.x = -1;
             rayLength.x = (rayStart.x - mapCheck.x) * rayUnitStepSize.x;
@@ -94,10 +94,10 @@ void Raycaster::renderRay() {
         {
             step.x = 1;
             rayLength.x = ((mapCheck.x + 1) - rayStart.x) * rayUnitStepSize.x;
-        }
+        }*/
 
         //check vertical lines
-        if (rayDir.y < 0)
+        /*if (rayDir.y < 0)
         {
             step.y = -1;
             rayLength.y = (rayStart.y - mapCheck.y) * rayUnitStepSize.y;
@@ -106,7 +106,7 @@ void Raycaster::renderRay() {
         {
             step.y = 1;
             rayLength.y = ((mapCheck.y + 1) - rayStart.y) * rayUnitStepSize.y;
-        }
+        }*/
 
 
         bool isTileFound = false;
@@ -131,8 +131,8 @@ void Raycaster::renderRay() {
 
             if (!mapCollision.empty() && gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18) {
                 if (gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18) { // a changer en fonction du nb de caracteres
-                    for ( int i = 0; i < getMapCollision().size(); i++)
-                    if (mapCollision[i] == 1) { // faire avec une autre nos collisions
+                    int index = gridY * 32 + gridX;
+                    if (mapCollision[index] == 1) {
                         isTileFound = true;
                     }
                 }
