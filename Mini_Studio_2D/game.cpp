@@ -14,8 +14,16 @@ void Game::run() {
 
 	EntityManager manager(map);
 
+	manager.addNPC(sf::Vector2f(400, 500), map);
+
+
 	sf::Clock clock;
 	float deltaTime = 0.0f;
+	
+	sf::Font font;
+	if (!font.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
+		std::cerr << "Erreur : Impossible de charger la police arial.ttf" << std::endl;
+	}
 
 	bool isPlaying = false;
 
@@ -53,6 +61,21 @@ void Game::run() {
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
+			manager.drawNPCs(window);
+
+			for (auto& npc : manager.npcs) {
+				if (npc->isPlayerNearby(manager.player->getShape().getPosition())) {
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+						sf::Text dialogue;
+						dialogue.setFont(font);
+						dialogue.setString(npc->getDialogue());
+						dialogue.setCharacterSize(20);
+						dialogue.setFillColor(sf::Color::White);
+						dialogue.setPosition(npc->getShape().getPosition().x, npc->getShape().getPosition().y - 40);
+						window.draw(dialogue);
+					}
+				}
+			}
 		}
 		else {
 			menu.drawMenu(window);

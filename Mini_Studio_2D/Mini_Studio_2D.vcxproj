@@ -159,6 +159,7 @@
     <ClCompile Include="menu_manager.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mapElements.cpp" />
+    <ClCompile Include="npc.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="raycaster.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="lamp.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="mapElements.h" />
+    <ClInclude Include="npc.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="raycaster.h" />
     <ClInclude Include="robotic_arm.h" />
