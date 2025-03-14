@@ -4,9 +4,9 @@
 Player::Player(int size, int health, Map& map) : Entity(size, health, map)
 {
 	m_shape.setPosition(500, 400);
-	m_base.setSize(sf::Vector2f(m_shape.getSize().x * 0.8f, m_shape.getSize().y / 10.f));
+	m_base.setSize(sf::Vector2f(m_shape.getSize().x * 0.9f, m_shape.getSize().y / 10.f));
 
-	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x/10.f, m_shape.getPosition().y + m_shape.getSize().y * 1.05f - m_base.getSize().y);
+	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x/7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y);
 }
 
 void Player::update(float deltaTime)
@@ -33,18 +33,19 @@ void Player::update(float deltaTime)
 		std::thread(&Player::jump, this, deltaTime).detach();
 	}
 
-
-	m_gravity.applyGravity(this, deltaTime);
-
 	m_shape.setPosition(m_shape.getPosition() + m_yVelocity);
-	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x / 10.f, m_shape.getPosition().y + m_shape.getSize().y * 1.05f - m_base.getSize().y + 5);
+	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x / 7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y + 5);
 
 	if (checkIfGrounded())
 	{
+		m_yVelocity.y = 0.f;
+		std::cout << "grounded:\t" << m_yVelocity.y << std::endl;
 		m_canJump = true;
 	}
 	else
 	{
+		std::cout << "midair:\t" << m_yVelocity.y << std::endl;
+		m_gravity.applyGravity(this, deltaTime);
 		m_canJump = false;
 	}
 
@@ -62,9 +63,9 @@ void Player::jump(float deltaTime)
 {
 	const std::lock_guard<std::mutex> lock(m_mutex);
 
-	std::cout << "Jumping" << std::endl;
-
 	if (m_canJump == false) return;
+
+	std::cout << "Jumping" << std::endl;
 
 	m_canJump = false;
 
@@ -83,7 +84,7 @@ void Player::jump(float deltaTime)
 		}
 
 		if (!isCollisionDetected(jumpVelocity)) { m_yVelocity += jumpVelocity;  }
-		else { m_yVelocity = { 0.f, 0.f }; break; }
+		else { m_yVelocity = { 0.f, 0.f }; std::cout << "Collision detected while jumping" << std::endl; break; }
 
 		if (m_yVelocity.y == m_gravity.getForce() * deltaTime) break;
 
