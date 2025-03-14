@@ -26,7 +26,7 @@ void Player::update(float deltaTime)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -30)
 	{
-		moveVelocity = { deltaTime * -m_speed, 0.f };
+		moveVelocity = { deltaTime * -m_speed, 0.f }; 
 		m_direction += { -1.f, 0.f };
 		if(!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
