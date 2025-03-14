@@ -107,6 +107,8 @@ void WaterDroplet::update(float deltaTime)
 	sf::Vector2f gravityVelocity = { 0.f, (gravity.getForce() * gravityMultiplier) * deltaTime };
 
 	shape.setPosition(shape.getPosition() + moveVelocity + gravityVelocity);
+
+	checkIfOnStain();
 }
 
 void WaterDroplet::draw(sf::RenderWindow& window)
@@ -123,6 +125,17 @@ void WaterDroplet::setRadius(float radius)
 void WaterDroplet::setDirection(sf::Vector2f newDirection)
 {
 	direction = newDirection;
+}
+
+void WaterDroplet::checkIfOnStain()
+{
+	for (auto& stain : m_map.getAllStains()) {
+
+		if (shape.getGlobalBounds().intersects(stain->shape.getGlobalBounds()))
+		{
+			stain->washStain();
+		}
+	}
 }
 
 void WaterDroplet::decreseDirection(float deltaTime)

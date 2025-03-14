@@ -10,3 +10,13 @@ void MapElements::openDoor() {
 	std::cout << "door is open" << std::endl;
 	shape.move(0, -200);
 }
+
+void MapElements::washStain()
+{
+	m_opacity -= 1;
+
+	if (m_opacity <= 0)
+		m_opacity = 0;
+
+	shape.setFillColor(sf::Color(190, 95, 30, m_opacity));
+}

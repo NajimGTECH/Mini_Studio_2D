@@ -35,6 +35,8 @@ public:
 	void setRadius(float radius);
 	void setDirection(sf::Vector2f newDirection);
 
+	void checkIfOnStain();
+
 	void decreseDirection(float deltaTime); //thread
 
 public:

@@ -26,6 +26,7 @@ void Map::createMap(int lvl) {
 		case 'D': createDoor(x, y, 60, 60); x += 60; i++; break;
 		case 'B': createButton(x, y, 60, 60); x += 60; i++; break;
 		case 'T': createTerminal(x, y, 60, 60); x += 60; i++; break;
+		case '~': createStain(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
 		}
 
@@ -42,6 +43,11 @@ void Map::createMap(int lvl) {
 
 void Map::createTerminal(float x, float y, float width, float height) {
 	allTerminals.push_back(std::make_shared<Terminal>(x, y, width, height));
+}
+
+void Map::createStain(float x, float y, float width, float height)
+{
+	allStains.push_back(std::make_shared<Stain>(x, y, width, height));
 }
 
 void Map::createWall(float x, float y, float width, float height) {
@@ -69,6 +75,9 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& terminal : allTerminals) {
 		terminal->draw(window);
 	}
+	for (auto& stain : allStains) {
+		stain->draw(window);
+	}
 }
 
 
@@ -90,4 +99,9 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllButtons()
 std::vector<std::shared_ptr<MapElements>>& Map::getAllTerminals()
 {
 	return allTerminals;
+}
+
+std::vector<std::shared_ptr<MapElements>>& Map::getAllStains()
+{
+	return allStains;
 }
