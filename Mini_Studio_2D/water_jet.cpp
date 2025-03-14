@@ -14,7 +14,7 @@ void WaterJet::update(float deltaTime)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		sf::Vector2i mousePosition = sf::Mouse::getPosition();
-		sf::Vector2f playerPosition = m_owner->getShape().getPosition();
+		sf::Vector2f playerPosition = m_owner->getShape().getPosition() + m_owner->getShape().getSize() / 2.f;
 
 		m_direction = getDirectionFromPlayerToMouse(playerPosition, mousePosition);
 
