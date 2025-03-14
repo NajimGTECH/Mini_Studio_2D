@@ -48,6 +48,7 @@ void Game::run() {
 				if (event.key.code == sf::Keyboard::E) {
 						if (manager.TerminalCheck(map)) {
 						m_terminal = !m_terminal;
+						manager.code.setString("");
 					}
 				}	
 			}
@@ -69,15 +70,7 @@ void Game::run() {
 				manager.player->update(deltaTime);
 			}
 			else if (m_terminal) {
-				sf::RectangleShape darkback;
-				darkback.setSize(sf::Vector2f(1920, 1080));
-				darkback.setFillColor(sf::Color(0, 0, 0, 200));
-				window.draw(darkback);
-				sf::RectangleShape terminal;
-				terminal.setSize(sf::Vector2f(800, 600));
-				terminal.setPosition(560, 240);
-				terminal.setFillColor(sf::Color(150, 150, 150));
-				window.draw(terminal);
+				manager.displayTerminal(window);
 			}
 		}
 		else if (menub){

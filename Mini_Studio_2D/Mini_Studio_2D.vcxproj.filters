@@ -105,6 +105,9 @@
     <ClCompile Include="terminal.cpp">
       <Filter>Fichiers sources\map related</Filter>
     </ClCompile>
+    <ClCompile Include="digit.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="player.h">
@@ -141,6 +144,9 @@
       <Filter>Fichiers d%27en-tête\map related</Filter>
     </ClInclude>
     <ClInclude Include="terminal.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="digit.h">
       <Filter>Fichiers d%27en-tête\map related</Filter>
     </ClInclude>
   </ItemGroup>
