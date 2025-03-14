@@ -10,6 +10,7 @@
 #include "box.h"
 #include "bookShelf.h"
 #include "chair.h"
+#include "shelf.h"
 
 class Game{
 public:

@@ -1,18 +1,18 @@
 #include "lamp.h"
 
 Lamp::Lamp(int s, int h, Map& map) : Entity(s, h, map) {
-	m_shape.setPosition(500, 400);
+	m_texture.loadFromFile("Assets/Fournitures/lamp.png");
+	m_sprite.setTexture(m_texture);
+	m_sprite.setScale(2.0f, 2.0f);
+	m_sprite.setPosition(100, 100);
 	fov_Vizualisation = sf::VertexArray(sf::TriangleFan, 0);
 
 }
 
-void Lamp::update(float deltaTime) {
-	//radiusVision.setPosition(shape.getPosition());
-	std::cout << "update" << std::endl;
-}
+void Lamp::update(float deltaTime) {}
 
 void Lamp::draw(sf::RenderWindow& window) {
-	window.draw(m_shape);
+	window.draw(m_sprite);
 	if (!E) {
 			window.draw(fov_Vizualisation);
 	}
@@ -24,17 +24,17 @@ void Lamp::illuminate(Map& map) {
 		E = true;
 		raycast.renderRay(map);
 		fov_Vizualisation.clear();
-		fov_Vizualisation.append(sf::Vertex(getShape().getPosition(), sf::Color(255, 0, 0, 100)));
+		fov_Vizualisation.append(sf::Vertex(getSprite().getPosition(), sf::Color(255, 0, 0, 100)));
 
 		for (const auto& intersection : raycast.intersections) {
 			fov_Vizualisation.append(sf::Vertex(intersection, sf::Color(255, 150, 30, 100)));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-			m_shape.move(-5.0f, 0.0f); // Déplacez la lampe vers la gauche
+			m_sprite.move(-5.0f, 0.0f); // Déplacez la lampe vers la gauche
 			raycast.attachedEntity->setOrientation(180.0f); // Mettre à jour l'orientation de l'entité
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-			m_shape.move(5.0f, 0.0f); // Déplacez la lampe vers la droite
+			m_sprite.move(5.0f, 0.0f); // Déplacez la lampe vers la droite
 			raycast.attachedEntity->setOrientation(360.0f); // Mettre à jour l'orientation de l'entité
 		}
 	}

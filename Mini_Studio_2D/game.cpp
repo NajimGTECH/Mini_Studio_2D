@@ -11,14 +11,15 @@ void Game::run() {
 	MenuManager menuManager(window, menu);
 
 	Map map;
-	Lamp lamp(60, 60, map);
-
 	EntityManager manager(map);
+
+	Lamp lamp(60, 60, map);
 	Closet closet(60, 60, map);
 	Desk desk(60, 60, map);
 	Box box(60, 60, map);
 	BookShelf bookShelf(60, 60, map);
 	Chair chair(60, 60, map);
+	Shelf shelf(60, 60, map);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
@@ -78,7 +79,9 @@ void Game::run() {
 		desk.draw(window);*/
 		/*box.draw(window);*/
 		/*bookShelf.draw(window);*/
-		chair.draw(window);
+		/*chair.draw(window);*/
+		/*shelf.draw(window);*/
+
 		window.display();
 	}
 }

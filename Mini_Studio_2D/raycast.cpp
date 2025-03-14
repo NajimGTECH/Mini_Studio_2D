@@ -1,7 +1,7 @@
 #include "raycast.h"
 
 #define PI 3.14159265
-#define NUM_RAYS 100 // Définir le nombre de rayons souhaité
+#define NUM_RAYS 10 // Définir le nombre de rayons souhaité
 
 sf::Vector2f operator-(const sf::Vector2f& vector, float value)
 {
@@ -29,13 +29,13 @@ sf::Vector2f normalize(const sf::Vector2f& vector) {
 void Raycast::renderRay(Map& map)
 {
     intersections.clear();
-    sf::Vector2f rayStart = attachedEntity->getShape().getPosition();
+    sf::Vector2f rayStart = attachedEntity->getSprite().getPosition();
     float startAngle = attachedEntity->getOrientation() - attachedEntity->getFov() / 2.0f;
 
-    const float STEP_ANGLE = attachedEntity->getFov() / 10;
+    const float STEP_ANGLE = attachedEntity->getFov() / NUM_RAYS;
 
 
-    for (int i = 0; i <= 10; i++)
+    for (int i = 0; i <= NUM_RAYS; i++)
     {
         sf::Vector2f rayDir = normalize({ cos(degToRad(startAngle + i * STEP_ANGLE)), sin(degToRad(startAngle + i * STEP_ANGLE)) });
 
