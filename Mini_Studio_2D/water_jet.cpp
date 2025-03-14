@@ -107,8 +107,6 @@ void WaterDroplet::update(float deltaTime)
 	sf::Vector2f gravityVelocity = { 0.f, (gravity.getForce() * gravityMultiplier) * deltaTime };
 
 	shape.setPosition(shape.getPosition() + moveVelocity + gravityVelocity);
-
-	gravityMultiplier += .005f;
 }
 
 void WaterDroplet::draw(sf::RenderWindow& window)
@@ -155,6 +153,8 @@ void WaterDroplet::decreseDirection(float deltaTime)
 		}
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		gravityMultiplier += .01f;
 		loop++;
 	}
+	gravityMultiplier += 1.f;
 }
