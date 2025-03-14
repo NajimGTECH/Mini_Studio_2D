@@ -23,3 +23,8 @@ float Entity::getFov() const {
 float Entity::getOrientation() const {
 	return m_orientation;
 }
+
+float Entity::setOrientation(float orientation) {
+	m_orientation = orientation;
+	return m_orientation;
+}

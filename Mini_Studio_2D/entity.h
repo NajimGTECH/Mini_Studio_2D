@@ -16,6 +16,7 @@ public:
 
 	sf::RectangleShape& getShape();
 	sf::RectangleShape& getBase();
+	float setOrientation(float orientation);
 
 protected:
 
@@ -24,6 +25,6 @@ protected:
 	int m_size;
 	int m_hp;
 	float m_fov = 60.0f;
-	float m_orientation = 90.0f;
+	float m_orientation = 360.0f;
 };
 

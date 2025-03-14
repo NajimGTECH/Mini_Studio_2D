@@ -29,6 +29,7 @@ sf::Vector2f normalize(const sf::Vector2f& vector) {
 }
 
 std::vector<int> Raycaster::getMapCollision() {
+
     map.getMapFile().open("map.txt");
     int i = 0, x = 0, y = 0, j = 0;
     char ch;
@@ -38,10 +39,10 @@ std::vector<int> Raycaster::getMapCollision() {
     while (map.getMapFile().get(ch)) {
         switch (ch)
         {
-        case '#': mapCollision.push_back(1); break;
+        case '#': mapCollision.push_back(1); x += 60; i++; break;
 
 
-        case ' ': mapCollision.push_back(0); break;
+        case ' ': mapCollision.push_back(0); x += 60; i++; break;
         }
 
         if (i == 32) {
