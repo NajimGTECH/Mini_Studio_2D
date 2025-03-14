@@ -1,11 +1,12 @@
 #pragma once
 #include "entity.h"
 #include "player.h"
-class Desk : public Entity{
+
+class BookShelf : public Entity{
 public:
-	Desk(int s, int h, Map& map);
+	BookShelf(int s, int h, Map& map);
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
-	void push(Player& player);
+	void Push(Player& player);
 };
 

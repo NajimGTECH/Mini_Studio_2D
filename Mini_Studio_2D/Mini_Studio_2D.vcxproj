@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bookShelf.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="chair.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bookShelf.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="chair.h" />

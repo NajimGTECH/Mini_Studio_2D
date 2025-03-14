@@ -1,9 +1,10 @@
 #include "closet.h"
 
 Closet::Closet(int s, int h, Map& map) : Entity(s, h, map) {
-	m_texture.loadFromFile("Assets/Meubles/closet.png");
+	m_texture.loadFromFile("Assets/Fournitures/closet.png");
 	m_sprite.setTexture(m_texture);
 	m_sprite.setPosition(500, 400);
+	m_sprite.setScale(0.5, 0.5);
 }
 
 void Closet::update(float deltaTime) {

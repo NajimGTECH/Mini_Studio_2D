@@ -1,19 +1,26 @@
 #include "chair.h"
 
 Chair::Chair(int s, int h, Map& map) : Entity(s, h, map){
-	m_shape.setSize(sf::Vector2f(50, 70));
-	m_shape.setFillColor(sf::Color::Green);
+	m_texture.loadFromFile("Assets/Fournitures/chair.png");
+	m_sprite.setTexture(m_texture);
+	m_sprite.setScale(0.3f, 0.3f);
+	m_sprite.setPosition(100, 100);
 }
 
-void Chair::update() {
+void Chair::update(float deltaTime) {
 }
 
 void Chair::draw(sf::RenderWindow& window) {
-	window.draw(m_shape);
+	window.draw(m_sprite);
 }
 
-void Chair::push() {
-	//while (shape.getGlobalBounds().contains(otherSprite)) {
-	//		m_shape.move(1, 0);
-	//}
+void Chair::push(Player& player) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		if (player.getWalkSide()) {
+			m_shape.move(2, 0);
+		}
+		else {
+			m_shape.move(-2, 0);
+		}
+	}
 }

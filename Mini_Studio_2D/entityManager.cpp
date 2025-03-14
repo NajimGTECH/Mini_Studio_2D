@@ -14,3 +14,4 @@ void EntityManager::ButtonCheck(Map& map, float deltaTime) {
 		}
 	}
 }
+

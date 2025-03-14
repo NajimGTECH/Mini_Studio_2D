@@ -6,6 +6,10 @@
 #include "entityManager.h"
 #include "lamp.h"
 #include "closet.h"
+#include "desk.h"
+#include "box.h"
+#include "bookShelf.h"
+#include "chair.h"
 
 class Game{
 public:
