@@ -28,7 +28,7 @@ void Game::run() {
 
 		manager.player->update(deltaTime);
 		manager.CollideCheck(map, deltaTime);
-		lamp.update(deltaTime);
+		lamp.illuminate(map);
 		lamp.raycast.attachedEntity = &lamp;
 
 		window.clear();

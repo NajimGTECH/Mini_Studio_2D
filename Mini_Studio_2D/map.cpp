@@ -46,3 +46,12 @@ std::vector<std::shared_ptr<MapElements>>& Map::getMapElements()
 {
 	return m_elements;
 }
+
+bool Map::isWalkable(int x, int y) const {
+	for (const auto& element : m_elements) {
+		if (element->shape.getGlobalBounds().contains(x * 60, y * 60)) {
+			return false;
+		}
+	}
+	return true;
+}

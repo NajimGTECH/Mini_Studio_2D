@@ -159,6 +159,7 @@
     <ClCompile Include="raycaster.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
     <ClCompile Include="shelf.cpp" />
+    <ClCompile Include="test.cpp" />
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +178,7 @@
     <ClInclude Include="raycaster.h" />
     <ClInclude Include="robotic_arm.h" />
     <ClInclude Include="shelf.h" />
+    <ClInclude Include="test.h" />
     <ClInclude Include="wall.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>

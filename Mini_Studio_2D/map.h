@@ -12,6 +12,7 @@ public:
 	void createMap();
 	void createWall(float x, float y, float width, float height);
 	void displayMap(sf::RenderWindow& window);
+	bool isWalkable(int x, int y) const;
 
 	std::ifstream& getMapFile();
 	std::vector<std::shared_ptr<MapElements>>& getMapElements();
