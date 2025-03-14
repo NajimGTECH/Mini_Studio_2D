@@ -69,8 +69,8 @@ void WaterJet::newDroplet(float deltaTime)
 		newDrop->setRadius(10.f); //m_shape.getSize().y / 4.f
 		newDrop->setDirection(
 			{
-				m_owner->getDirection().x * 750,
-				m_owner->getDirection().y * 750,
+				m_owner->getDirection().x * 1000,
+				m_owner->getDirection().y * 650,
 			}
 			);
 		newDrop->owner = m_owner;
@@ -152,9 +152,11 @@ void WaterDroplet::decreseDirection(float deltaTime)
 			direction.y += 10.f;
 		}
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		shape.setFillColor(sf::Color(0, 255, 255, 255 - loop * 1.75f ));
 		gravityMultiplier += .01f;
 		loop++;
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
-	gravityMultiplier += 1.f;
+	gravityMultiplier += 0.5f;
 }
