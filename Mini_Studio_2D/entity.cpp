@@ -16,6 +16,11 @@ sf::RectangleShape& Entity::getBase() {
 	return m_base;
 }
 
+sf::Vector2f Entity::getDirection()
+{
+	return m_direction;
+}
+
 bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)
 {
 	sf::RectangleShape hitboxDummy;
