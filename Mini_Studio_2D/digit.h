@@ -7,8 +7,9 @@ class Digit
 public :
 	bool isClicked = false;
 	int value;
+	int type;
 	sf::RectangleShape shape;
 	sf::Texture texture;
-	Digit(int);
+	Digit(int, int);
 };
 

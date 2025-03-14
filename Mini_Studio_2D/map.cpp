@@ -5,7 +5,9 @@ Map::Map() {}
 
 void Map::createMap(int lvl) {
 	m_mapFile.close();
+	m_codeFile.close();
 	m_mapFile.open("map" + std::to_string(lvl) + ".txt");
+	m_codeFile.open("codes.txt");
 
 	allWalls.clear();
 	allButtons.clear();
@@ -16,8 +18,27 @@ void Map::createMap(int lvl) {
 	char ch;
 
 	if (!m_mapFile) {
-		std::cerr << "unable to open file";
+		std::cerr << "unable to open map file";
 	}
+	if (!m_codeFile) {
+		std::cerr << "unable to open code file";
+	}
+
+	std::string line;
+	int currentLine = 0;
+
+	while (std::getline(m_codeFile, line)) {
+		currentLine++;
+		if (currentLine == lvl) {  // Si on atteint la ligne du niveau demandé
+			m_code = line;
+			std::cout << "got it" << std::endl;
+			break;
+		}
+	}
+
+
+	std::cout << m_code << " est le code" << std::endl;
+
 
 	while (m_mapFile.get(ch)) {
 		switch (ch)
@@ -90,4 +111,9 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllButtons()
 std::vector<std::shared_ptr<MapElements>>& Map::getAllTerminals()
 {
 	return allTerminals;
+}
+
+std::string Map::getCode()
+{
+	return m_code;
 }

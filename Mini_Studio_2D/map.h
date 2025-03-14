@@ -30,8 +30,12 @@ public:
 	bool loaded = false;
 	int lvl = 1;
 
+	std::string getCode();
+	
 private:
 
+	std::string m_code;
+	std::ifstream m_codeFile;
 	std::ifstream m_mapFile;
 	std::vector<std::shared_ptr<MapElements>> allWalls;
 	std::vector<std::shared_ptr<MapElements>> allDoors;

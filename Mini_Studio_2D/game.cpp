@@ -70,7 +70,7 @@ void Game::run() {
 				manager.player->update(deltaTime);
 			}
 			else if (m_terminal) {
-				manager.displayTerminal(window);
+				manager.displayTerminal(window, map);
 			}
 		}
 		else if (menub){

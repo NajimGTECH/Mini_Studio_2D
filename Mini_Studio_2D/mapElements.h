@@ -8,6 +8,7 @@ class MapElements
 {
 public:
 	sf::RectangleShape shape;
+	bool opened = false;
 
 	float x, y, width, height;
 
