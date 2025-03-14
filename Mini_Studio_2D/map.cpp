@@ -11,6 +11,7 @@ void Map::createMap(int lvl) {
 	allButtons.clear();
 	allDoors.clear();
 	allTerminals.clear();
+	allStains.clear();
 
 	int i = 0, x = 0, y = 0, j = 0;
 	char ch;
