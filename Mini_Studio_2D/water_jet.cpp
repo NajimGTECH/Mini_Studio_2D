@@ -76,7 +76,7 @@ void WaterJet::newDroplet(float deltaTime)
 		newDrop->owner = m_owner;
 		newDrop->shape.setPosition(newDrop->owner->getShape().getPosition() + newDrop->owner->getShape().getSize() / 2.f);
 
-		std::thread(&WaterDroplet::decreseDirection, this, deltaTime).detach();
+		std::thread(&WaterDroplet::decreseDirection, newDrop, deltaTime).detach();
 
 		m_waterDroplets.push_back(newDrop);
 
@@ -104,9 +104,11 @@ void WaterDroplet::update(float deltaTime)
 {
 	sf::Vector2f moveVelocity = { deltaTime * direction.x, deltaTime * direction.y };
 
-	//sf::Vector2f gravityVelocity = { 0.f, gravity.getForce()/2.f * deltaTime };
+	sf::Vector2f gravityVelocity = { 0.f, (gravity.getForce() * gravityMultiplier) * deltaTime };
 
-	shape.setPosition(shape.getPosition() + moveVelocity);
+	shape.setPosition(shape.getPosition() + moveVelocity + gravityVelocity);
+
+	gravityMultiplier += .005f;
 }
 
 void WaterDroplet::draw(sf::RenderWindow& window)
@@ -127,20 +129,32 @@ void WaterDroplet::setDirection(sf::Vector2f newDirection)
 
 void WaterDroplet::decreseDirection(float deltaTime)
 {
-	for (float i = vectorSize; i > 0; i -= vectorSize / 120.f)
-	{
-		jumpVelocity = { 0.f, vectorSize / 120.f * deltaTime };
+	int maxLoop = 100;
+	int loop = 0;
 
-		if (m_yVelocity.y > 0) {
-			m_yVelocity = { 0.f, 0.f };
-			break;
+	while (loop <= maxLoop)
+	{
+		if (direction.x > 0)
+		{
+			direction.x -= 10.f;
+		}
+		else 
+		if (direction.x < 0)
+		{
+			direction.x += 10.f;
 		}
 
-		if (!isCollisionDetected(jumpVelocity)) { m_yVelocity += jumpVelocity; }
-		else { m_yVelocity = { 0.f, 0.f }; std::cout << "Collision detected while jumping" << std::endl; break; }
-
-		if (m_yVelocity.y == m_gravity.getForce() * deltaTime) break;
+		if (direction.y > 0)
+		{
+			direction.y -= 10.f;
+		}
+		else
+		if (direction.y < 0)
+		{
+			direction.y += 10.f;
+		}
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		loop++;
 	}
 }

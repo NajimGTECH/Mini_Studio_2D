@@ -41,6 +41,8 @@ public:
 	sf::CircleShape shape;
 	sf::Vector2f direction;
 
+	float gravityMultiplier = .1f; //the gravity will smoothly affect the droplet
+
 	Entity* owner;
 
 	Gravity gravity;
