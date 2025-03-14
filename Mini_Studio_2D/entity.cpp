@@ -28,6 +28,11 @@ float Entity::getFov() const {
 	return m_fov;
 }
 
+sf::Texture Entity::setTexture(sf::Texture texture) {
+	m_texture = texture;
+	return m_texture;
+}
+
 float Entity::getOrientation() const {
 	return m_orientation;
 }
