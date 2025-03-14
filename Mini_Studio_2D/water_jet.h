@@ -15,8 +15,11 @@ public:
 	void newDroplet(float deltaTime);
 
 private:
+
+	sf::Vector2f getDirectionFromPlayerToMouse(const sf::Vector2f& playerPosition, const sf::Vector2i& mousePosition);
+
+private:
 	Entity* m_owner;
-	sf::RectangleShape m_waterHitbox;
 
 	std::vector<std::shared_ptr<WaterDroplet>> m_waterDroplets;
 
@@ -38,6 +41,8 @@ public:
 	void checkIfOnStain();
 
 	void decreseDirection(float deltaTime); //thread
+
+	bool isCollisionDetected(); //checks if shape touches the walls
 
 public:
 	sf::CircleShape shape;

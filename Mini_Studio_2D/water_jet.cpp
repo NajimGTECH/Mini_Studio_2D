@@ -5,8 +5,6 @@
 WaterJet::WaterJet(int size, int health, Map& map, Entity* owner) : Entity(size, health, map)
 {
 		m_owner = owner;
-		m_waterHitbox.setFillColor(sf::Color(0, 255, 255, 100));
-		m_waterHitbox.setSize({ m_owner->getShape().getSize().x, m_owner->getShape().getSize().y / 1.5f });
 }
 
 void WaterJet::update(float deltaTime) 
@@ -15,13 +13,12 @@ void WaterJet::update(float deltaTime)
 
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
+		sf::Vector2i mousePosition = sf::Mouse::getPosition();
+		sf::Vector2f playerPosition = m_owner->getShape().getPosition();
+
+		m_direction = getDirectionFromPlayerToMouse(playerPosition, mousePosition);
+
 		//std::cout << "Water jet used:\t" << m_owner->getDirection().x << ", " << m_owner->getDirection().y << std::endl;
-		m_waterHitbox.setPosition(
-			{
-				m_owner->getShape().getPosition().x + (m_owner->getShape().getSize().x * m_owner->getDirection().x),
-				m_owner->getShape().getPosition().y + ((m_owner->getShape().getSize().y / 4.75f) + (m_owner->getShape().getSize().y * m_owner->getDirection().y))
-			}
-		);
 		m_isActive = true;
 		newDroplet(deltaTime);
 	}
@@ -33,7 +30,7 @@ void WaterJet::update(float deltaTime)
 	for (int i = m_waterDroplets.size() - 1; i >= 0; i--) {
 		auto drop = m_waterDroplets[i];
 		//std::cout << "POS: " << drop->getShape().getPosition().x << ", " << drop->getShape().getPosition().y << std::endl;
-		if (drop->getShape().getPosition().y >= 2000) {
+		if (drop->getShape().getPosition().y >= 2000 || drop->isCollisionDetected()) {
 			drop.reset();
 			m_waterDroplets.erase(m_waterDroplets.begin() + i);
 		}
@@ -47,13 +44,25 @@ void WaterJet::update(float deltaTime)
 
 void WaterJet::draw(sf::RenderWindow & window) {
 	// Draw the water jet
-	if(m_isActive)
-	window.draw(m_waterHitbox);
 
 	for (auto& drop : m_waterDroplets)
 	{
 		drop->draw(window);
 	}
+}
+
+sf::Vector2f WaterJet::getDirectionFromPlayerToMouse(const sf::Vector2f& playerPosition, const sf::Vector2i& mousePosition)
+{
+	sf::Vector2f direction = sf::Vector2f(mousePosition.x, mousePosition.y) - playerPosition;
+
+	float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+
+	if (length != 0)
+	{
+		direction /= length;
+	}
+
+	return direction;
 }
 
 void WaterJet::newDroplet(float deltaTime)
@@ -69,8 +78,8 @@ void WaterJet::newDroplet(float deltaTime)
 		newDrop->setRadius(10.f); //m_shape.getSize().y / 4.f
 		newDrop->setDirection(
 			{
-				m_owner->getDirection().x * 1000,
-				m_owner->getDirection().y * 650,
+				m_direction.x * 1100,
+				m_direction.y * 1100,
 			}
 			);
 		newDrop->owner = m_owner;
@@ -91,7 +100,7 @@ void WaterJet::newDroplet(float deltaTime)
 WaterDroplet::WaterDroplet(Map& map): Entity(10, -1, map)
 {
 	shape.setFillColor(sf::Color(0, 255, 255, 255));
-	shape.setRadius(10);
+	shape.setRadius(5);
 	owner = nullptr;
 }
 
@@ -103,10 +112,11 @@ WaterDroplet::~WaterDroplet()
 void WaterDroplet::update(float deltaTime)
 {
 	sf::Vector2f moveVelocity = { deltaTime * direction.x, deltaTime * direction.y };
-
 	sf::Vector2f gravityVelocity = { 0.f, (gravity.getForce() * gravityMultiplier) * deltaTime };
 
-	shape.setPosition(shape.getPosition() + moveVelocity + gravityVelocity);
+	sf::Vector2f velocity = moveVelocity + gravityVelocity;
+
+	shape.setPosition(shape.getPosition() + velocity);
 
 	checkIfOnStain();
 }
@@ -172,4 +182,23 @@ void WaterDroplet::decreseDirection(float deltaTime)
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 	}
 	gravityMultiplier += 0.5f;
+}
+
+bool WaterDroplet::isCollisionDetected()
+{
+	for (auto& wall : m_map.getAllWalls()) {
+
+		if (shape.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
+		{
+			return true;
+		}
+	}
+	for (auto& door : m_map.getAllDoors()) {
+
+		if (shape.getGlobalBounds().intersects(door->shape.getGlobalBounds()))
+		{
+			return true;
+		}
+	}
+	return false;
 }
