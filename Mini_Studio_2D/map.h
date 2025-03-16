@@ -20,6 +20,7 @@ public:
 	void createDoor(float x, float y, float width, float height);
 	void createButton(float x, float y, float width, float height);
 	void createTerminal(float x, float y, float width, float height);
+	void createLastDoor(float x, float y, float width, float height);
 	void displayMap(sf::RenderWindow& window);
 
 	std::vector<std::shared_ptr<MapElements>>& getAllWalls();

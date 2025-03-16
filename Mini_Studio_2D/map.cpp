@@ -47,6 +47,7 @@ void Map::createMap(int lvl) {
 		case 'D': createDoor(x, y, 60, 60); x += 60; i++; break;
 		case 'B': createButton(x, y, 60, 60); x += 60; i++; break;
 		case 'T': createTerminal(x, y, 60, 60); x += 60; i++; break;
+		case 'P': createLastDoor(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
 		}
 
@@ -62,19 +63,23 @@ void Map::createMap(int lvl) {
 }
 
 void Map::createTerminal(float x, float y, float width, float height) {
-	allTerminals.push_back(std::make_shared<Terminal>(x, y, width, height));
+	allTerminals.push_back(std::make_shared<Terminal>(x, y, width, height, 2));
 }
 
 void Map::createWall(float x, float y, float width, float height) {
-	allWalls.push_back(std::make_shared<Wall>(x, y, width, height));
+	allWalls.push_back(std::make_shared<Wall>(x, y, width, height, 0));
 }
 
 void Map::createDoor(float x, float y, float width, float height) {
-	allDoors.push_back(std::make_shared<Door>(x, y, width, height));
+	allDoors.push_back(std::make_shared<Door>(x, y, width, height, 1));
 }
 
 void Map::createButton(float x, float y, float width, float height) {
-	allButtons.push_back(std::make_shared<Button>(x, y, width, height));
+	allButtons.push_back(std::make_shared<Button>(x, y, width, height, 1));
+}
+
+void Map::createLastDoor(float x, float y, float width, float height) {
+	allDoors.push_back(std::make_shared<Door>(x, y, width, height, 2));
 }
 
 void Map::displayMap(sf::RenderWindow& window) {
