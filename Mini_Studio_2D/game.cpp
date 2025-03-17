@@ -58,21 +58,6 @@ void Game::run() {
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
-			manager.drawNPCs(window);
-
-			for (auto& npc : manager.npcs) {
-				if (npc->isPlayerNearby(manager.player->getShape().getPosition())) {
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
-						sf::Text dialogue;
-						dialogue.setFont(font);
-						dialogue.setString(npc->getDialogue(deltaTime));
-						dialogue.setCharacterSize(20);
-						dialogue.setFillColor(sf::Color::White);
-						dialogue.setPosition(npc->getShape().getPosition().x, npc->getShape().getPosition().y - 40);
-						window.draw(dialogue);
-					}
-				}
-			}
 		}
 		else {
 			menu.drawMenu(window);
