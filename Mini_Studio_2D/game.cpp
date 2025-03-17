@@ -75,7 +75,7 @@ void Game::run() {
 		}
 		else if (menub){
 			menu.drawMenu(window);
-			menuManager.handleEvents();
+			menuManager.handleEvents(deltaTime);
 		}
 
 		//std::cout << deltaTime << endl;
