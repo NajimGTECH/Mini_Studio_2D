@@ -57,18 +57,19 @@ void Game::run() {
 				}
 			}
 		}
-			if (event.type == sf::Event::KeyReleased) {
-				if (event.key.code == sf::Keyboard::E) {
-						if (manager.TerminalCheck(map)) {
-						m_terminal = !m_terminal;
-						manager.code.setString("");
-					}
-				}	
+		if (event.type == sf::Event::KeyReleased) {
+			if (event.key.code == sf::Keyboard::E) {
+				if (manager.TerminalCheck(map)) {
+					m_terminal = !m_terminal;
+					manager.code.setString("");
+				}
 			}
 		}
 
+
 		manager.player->update(deltaTime);
 		lamp.raycast.attachedEntity = &lamp;
+		lamp.update(deltaTime);
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
 			menub = false;
@@ -76,7 +77,7 @@ void Game::run() {
 
 
 		if (isPlaying) {
-			
+
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
@@ -87,7 +88,7 @@ void Game::run() {
 				manager.displayTerminal(window, map);
 			}
 		}
-		else if (menub){
+		else if (menub) {
 			menu.drawMenu(window);
 			menuManager.handleEvents(deltaTime);
 		}

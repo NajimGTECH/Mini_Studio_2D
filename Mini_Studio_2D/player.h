@@ -4,7 +4,7 @@
 #include <thread>
 #include <mutex>
 
-#include "entity.h"
+//#include "entity.h"
 #include "gravity.h"
 #include "tools_include.h"
 
