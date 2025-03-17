@@ -3,7 +3,7 @@
 
 Player::Player(int size, int health, Map& map) : Entity(size, health, map)
 {
-	m_shape.setPosition(500, 400);
+	m_shape.setPosition(500, 300);
 	m_base.setSize(sf::Vector2f(m_shape.getSize().x * 0.9f, m_shape.getSize().y / 10.f));
 
 	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x/7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y);
@@ -114,7 +114,7 @@ void Player::jump(float deltaTime)
 
 		if (m_yVelocity.y == m_gravity.getForce() * deltaTime) break;
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 	}
 }
 

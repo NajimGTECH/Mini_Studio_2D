@@ -8,10 +8,10 @@ void Game::run() {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
 	window.setFramerateLimit(120);
 
-	Menu menu(1920, 1080);
-	MenuManager menuManager(window, menu);
-
 	Map map;
+
+	Menu menu(1920, 1080);
+	MenuManager menuManager(window, menu, map);
 
 	EntityManager manager(map);
 
@@ -23,17 +23,13 @@ void Game::run() {
 
 
 	while (window.isOpen()) {
+
 		window.clear();
 
-		if (!map.loaded) {
-			map.createMap(map.lvl);
+		if (manager.player->getShape().getPosition().x > 1950) 
+		{
+			map.createMap(map.currentLevel + 1);
 			map.loaded = true;
-			std::cout << "map loaded" << std::endl;
-		}
-
-		if (manager.player->getShape().getPosition().x > 1920) {
-			map.lvl++;
-			map.loaded = false;
 			manager.player->getShape().setPosition(100, 500);
 		}
 

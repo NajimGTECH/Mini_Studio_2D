@@ -3,20 +3,21 @@
 Map::Map() {}
 
 
-void Map::createMap(int lvl) {
+void Map::createMap(int levelIndex) {
+
+	currentLevel++;
+
 	m_mapFile.close();
 	m_codeFile.close();
-	m_mapFile.open("map" + std::to_string(lvl) + ".txt");
+	m_mapFile.open("Maps/Level_" + std::to_string(levelIndex) + ".txt");
 	m_codeFile.open("codes.txt");
 
+	//clearing everything from the previous map
 	allWalls.clear();
 	allButtons.clear();
 	allDoors.clear();
 	allTerminals.clear();
 	allStains.clear();
-
-	int i = 0, x = 0, y = 0, j = 0;
-	char ch;
 
 	if (!m_mapFile) {
 		std::cerr << "unable to open map file";
@@ -30,28 +31,57 @@ void Map::createMap(int lvl) {
 
 	while (std::getline(m_codeFile, line)) {
 		currentLine++;
-		if (currentLine == lvl) {  // Si on atteint la ligne du niveau demandé
+		if (currentLine == levelIndex) {  // Si on atteint la ligne du niveau demandé
 			m_code = line;
 			std::cout << "got it" << std::endl;
 			break;
 		}
 	}
-
-
 	std::cout << m_code << " est le code" << std::endl;
 
+	readMapFile();
+}
+
+void Map::createCustomLevel(std::string customLevelPath)
+{
+	m_mapFile.close();
+	m_codeFile.close();
+	m_mapFile.open("CustomLevels/" + customLevelPath);
+	m_codeFile.open("codes.txt");
+
+	//clearing everything from the previous map
+	allWalls.clear();
+	allButtons.clear();
+	allDoors.clear();
+	allTerminals.clear();
+	allStains.clear();
+
+	if (!m_mapFile) {
+		std::cerr << "unable to open map file: " << "CustomLevels/" + customLevelPath << std::endl;
+	}
+	if (!m_codeFile) {
+		std::cerr << "unable to open code file";
+	}
+
+	readMapFile();
+}
+
+void Map::readMapFile()
+{
+	int i = 0, x = 0, y = 0, j = 0;
+	char ch;
 
 	while (m_mapFile.get(ch)) {
 		switch (ch)
 		{
-		case '#': createWall(x, y, 60, 60);x += 60; i++; break;
+		case '#': createWall(x, y, 60, 60); x += 60; i++; break;
 		case 'D': createDoor(x, y, 60, 60); x += 60; i++; break;
 		case 'B': createButton(x, y, 60, 60); x += 60; i++; break;
 		case 'T': createTerminal(x, y, 60, 60); x += 60; i++; break;
 		case 'P': createLastDoor(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
 
-		//Stains:
+			//Stains:
 		case '~': createStain(x, y, 60, 60, ""); x += 60; i++; break;
 		case '0': createStain(x, y, 60, 60, "0"); x += 60; i++; break;
 		case '1': createStain(x, y, 60, 60, "1"); x += 60; i++; break;

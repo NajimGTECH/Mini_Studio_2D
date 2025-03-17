@@ -16,7 +16,10 @@ class Map
 public:
 	Map();
 
-	void createMap(int);
+	void createMap(int levelIndex);
+	void createCustomLevel(std::string customLevelPath);
+
+	void readMapFile();
 
 	void createWall(float x, float y, float width, float height);
 	void createDoor(float x, float y, float width, float height);
@@ -34,15 +37,17 @@ public:
 	std::vector<std::shared_ptr<MapElements>>& getAllStains();
 
 	bool loaded = false;
-	int lvl = 1;
+	int currentLevel = 0;
 
 	std::string getCode();
 	
 private:
 
 	std::string m_code;
+
 	std::ifstream m_codeFile;
 	std::ifstream m_mapFile;
+
 	std::vector<std::shared_ptr<MapElements>> allWalls;
 	std::vector<std::shared_ptr<MapElements>> allDoors;
 	std::vector<std::shared_ptr<MapElements>> allButtons;
