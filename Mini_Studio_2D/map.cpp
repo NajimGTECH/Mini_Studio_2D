@@ -26,10 +26,22 @@ void Map::createMap(int lvl) {
 		case 'D': createDoor(x, y, 60, 60); x += 60; i++; break;
 		case 'B': createButton(x, y, 60, 60); x += 60; i++; break;
 		case 'T': createTerminal(x, y, 60, 60); x += 60; i++; break;
-		case '~': createStain(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
-		}
 
+		//Stains:
+		case '~': createStain(x, y, 60, 60, ""); x += 60; i++; break;
+		case '0': createStain(x, y, 60, 60, "0"); x += 60; i++; break;
+		case '1': createStain(x, y, 60, 60, "1"); x += 60; i++; break;
+		case '2': createStain(x, y, 60, 60, "2"); x += 60; i++; break;
+		case '3': createStain(x, y, 60, 60, "3"); x += 60; i++; break;
+		case '4': createStain(x, y, 60, 60, "4"); x += 60; i++; break;
+		case '5': createStain(x, y, 60, 60, "5"); x += 60; i++; break;
+		case '6': createStain(x, y, 60, 60, "6"); x += 60; i++; break;
+		case '7': createStain(x, y, 60, 60, "7"); x += 60; i++; break;
+		case '8': createStain(x, y, 60, 60, "8"); x += 60; i++; break;
+		case '9': createStain(x, y, 60, 60, "9"); x += 60; i++; break;
+
+		}
 
 		if (i == 32) {
 			y += 60; x = 0; i = 0; j++;
@@ -44,10 +56,10 @@ void Map::createMap(int lvl) {
 void Map::createTerminal(float x, float y, float width, float height) {
 	allTerminals.push_back(std::make_shared<Terminal>(x, y, width, height));
 }
-
-void Map::createStain(float x, float y, float width, float height)
+ 
+void Map::createStain(float x, float y, float width, float height, std::string text)
 {
-	allStains.push_back(std::make_shared<Stain>(x, y, width, height));
+	allStains.push_back(std::make_shared<Stain>(x, y, width, height, text));
 }
 
 void Map::createWall(float x, float y, float width, float height) {

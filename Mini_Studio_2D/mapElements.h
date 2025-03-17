@@ -18,5 +18,8 @@ public:
 protected:
 
 	int m_opacity = 255;
+
+	sf::Font m_font;
+	sf::Text m_text;
 };
 
