@@ -272,7 +272,7 @@ void Menu::switchToCustomLevels()
 			for (const auto& file : fs::directory_iterator(filePath)) {
 				if (fs::is_regular_file(file)) 
 				{
-					if (customLevelFiles.size() < 5)
+					if (customLevelFiles.size() < 5 && file.path().extension() == ".txt")
 					{
 						customLevelFiles.push_back(file);
 					}
