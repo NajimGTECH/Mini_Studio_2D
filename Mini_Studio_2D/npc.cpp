@@ -1,6 +1,6 @@
 #include "npc.h"
 
-NPC::NPC(float x, float y, float width, float height) : MapElements(x, y, width, height) {
+NPC::NPC(float x, float y, float width, float height, DialogueBox& dialogueBox) : MapElements(x, y, width, height), dialogue(dialogueBox) {
     shape.setSize(sf::Vector2f(width, height));
     shape.setFillColor(sf::Color::Yellow); 
     shape.setPosition(x, y);
@@ -11,7 +11,8 @@ void NPC::draw(sf::RenderWindow& window) {
 }
 
 void NPC::interact() {
-    std::cout << "PNJ : Bonjour, aventurier ! Besoin d'aide ?" << std::endl;
+    dialogue.setText("PNJ : Bonjour, aventurier !");
+    dialogue.show(true);
 }
 
 bool NPC::isNearPlayer(float playerX, float playerY) {

@@ -54,7 +54,7 @@ void Map::createButton(float x, float y, float width, float height) {
 }
 
 void Map::createNPC(float x, float y, float width, float height) {
-	allNPCs.push_back(std::make_shared<NPC>(x, y, width, height));
+	allNPCs.push_back(std::make_shared<NPC>(x, y, width, height, *dialogueBox));
 }
 
 
@@ -71,6 +71,10 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& npc : allNPCs) {
 		npc->draw(window);
 	}
+}
+
+void Map::setDialogueBox(DialogueBox* db) {
+	dialogueBox = db;
 }
 
 std::vector<std::shared_ptr<MapElements>>& Map::getAllWalls()

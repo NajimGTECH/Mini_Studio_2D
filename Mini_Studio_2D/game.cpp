@@ -22,6 +22,9 @@ void Game::run() {
 		std::cerr << "Erreur : Impossible de charger la police arial.ttf" << std::endl;
 	}
 
+	DialogueBox dialogueBox(font);
+	map.setDialogueBox(&dialogueBox);
+
 	bool isPlaying = false;
 
 
@@ -49,6 +52,16 @@ void Game::run() {
 			}
 		}
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+			for (auto& npc : map.getAllNPCs()) {
+				auto npcPtr = std::dynamic_pointer_cast<NPC>(npc);
+				if (npcPtr && npcPtr->isNearPlayer(manager.player->getShape().getPosition().x,
+					manager.player->getShape().getPosition().y)) {
+					npcPtr->interact();
+				}
+			}
+		}
+
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
 		}
@@ -57,6 +70,7 @@ void Game::run() {
 			manager.player->update(deltaTime);
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
+			dialogueBox.draw(window);
 			manager.player->draw(window);
 		}
 		else {

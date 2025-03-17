@@ -10,7 +10,8 @@ public:
 	float x, y, width, height;
 
 	MapElements(float x, float y, float width, float height);
-	void draw(sf::RenderWindow& window);
+	virtual void draw(sf::RenderWindow& window); 
+	virtual ~MapElements() {} 
 
 	void openDoor();
 };

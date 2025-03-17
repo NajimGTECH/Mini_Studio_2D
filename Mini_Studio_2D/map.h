@@ -21,6 +21,7 @@ public:
 	void createDoor(float x, float y, float width, float height);
 	void createButton(float x, float y, float width, float height);
 	void createNPC(float x, float y, float width, float height);
+	void setDialogueBox(DialogueBox* db);
 	void displayMap(sf::RenderWindow& window);
 
 	std::vector<std::shared_ptr<MapElements>>& getAllWalls();
@@ -39,6 +40,7 @@ private:
 	std::vector<std::shared_ptr<MapElements>> allDoors;
 	std::vector<std::shared_ptr<MapElements>> allButtons;
 	std::vector<std::shared_ptr<MapElements>> allNPCs;
+	DialogueBox* dialogueBox;
 
 
 };
