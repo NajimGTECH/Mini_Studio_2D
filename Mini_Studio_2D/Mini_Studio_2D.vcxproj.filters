@@ -109,6 +109,7 @@
       <Filter>Fichiers sources\tools</Filter>
     </ClCompile>
     <ClCompile Include="stain.cpp">
+    <ClCompile Include="digit.cpp">
       <Filter>Fichiers sources\map related</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,6 +157,7 @@
       <Filter>Fichiers d%27en-tête\tools</Filter>
     </ClInclude>
     <ClInclude Include="stain.h">
+    <ClInclude Include="digit.h">
       <Filter>Fichiers d%27en-tête\map related</Filter>
     </ClInclude>
   </ItemGroup>
