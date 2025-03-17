@@ -1,25 +1,14 @@
 #pragma once
-
-#include "entity.h"
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include <iostream>
+#include "mapElements.h"
 
-class NPC : public Entity {
+class NPC : public MapElements {
 public:
-    NPC(int size, int hp, Map& map, sf::Vector2f position);
+    NPC(float x, float y, float width, float height);
 
-    void update(float deltaTime) override;
     void draw(sf::RenderWindow& window) override;
-    bool isPlayerNearby(sf::Vector2f playerPos);
-    std::string getDialogue(float deltaTime);
+    void interact();
 
-private:
-    sf::Text dialogueText;
-    sf::RectangleShape dialogueBox;
-    std::vector<std::string> dialogues;
-    int dialogueIndex = 0;
-    float timeSinceLastDialogue = 2.0f;
-    float dialogueInterval = 2.0f;
+    bool isNearPlayer(float playerX, float playerY);
 };
-
-

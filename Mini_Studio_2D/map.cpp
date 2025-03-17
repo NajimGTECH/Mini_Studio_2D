@@ -25,6 +25,7 @@ void Map::createMap(int lvl) {
 		case '#': createWall(x, y, 60, 60);x += 60; i++; break;
 		case 'D': createDoor(x, y, 60, 60); x += 60; i++; break;
 		case 'B': createButton(x, y, 60, 60); x += 60; i++; break;
+		case 'N': createNPC(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
 		}
 
@@ -52,6 +53,11 @@ void Map::createButton(float x, float y, float width, float height) {
 	allButtons.push_back(std::make_shared<Button>(x, y, width, height));
 }
 
+void Map::createNPC(float x, float y, float width, float height) {
+	allNPCs.push_back(std::make_shared<NPC>(x, y, width, height));
+}
+
+
 void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& wall : allWalls) {
 		wall->draw(window);
@@ -61,6 +67,9 @@ void Map::displayMap(sf::RenderWindow& window) {
 	}
 	for (auto& button : allButtons) {
 		button->draw(window);
+	}
+	for (auto& npc : allNPCs) {
+		npc->draw(window);
 	}
 }
 
@@ -77,4 +86,9 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllDoors()
 std::vector<std::shared_ptr<MapElements>>& Map::getAllButtons()
 {
 	return allButtons;
+}
+
+std::vector<std::shared_ptr<MapElements>>& Map::getAllNPCs()
+{
+	return allNPCs;
 }

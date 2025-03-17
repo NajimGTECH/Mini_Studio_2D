@@ -14,9 +14,6 @@ void Game::run() {
 
 	EntityManager manager(map);
 
-	manager.addNPC(sf::Vector2f(400, 500), map);
-
-
 	sf::Clock clock;
 	float deltaTime = 0.0f;
 	
