@@ -14,7 +14,7 @@ public:
 
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
-	void illuminate(Map& map);
+	void illuminate();
 
 private:
 	Entity* m_owner;
