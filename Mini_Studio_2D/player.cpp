@@ -7,24 +7,41 @@ Player::Player(int size, int health, Map& map) : Entity(size, health, map)
 	m_base.setSize(sf::Vector2f(m_shape.getSize().x * 0.9f, m_shape.getSize().y / 10.f));
 
 	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x/7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y);
+
+	auto waterJet = std::make_shared<WaterJet>(0, -1, map, this);
+	m_tools.push_back(waterJet);
 }
 
 void Player::update(float deltaTime)
 {
 	sf::Vector2f moveVelocity = { 0.f, 0.f };
+	m_direction = { 0.f, 0.f };
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30)
 	{
 		m_walkSide = true;
 		moveVelocity = { deltaTime * m_speed, 0.f };
+		m_direction += { 1.f, 0.f };
 		if (!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -30)
 	{
+		moveVelocity = { deltaTime * -m_speed, 0.f }; 
+		m_direction += { -1.f, 0.f };
 		m_walkSide = false;
 		moveVelocity = { deltaTime * -m_speed, 0.f };
 		if(!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
+	{
+		m_direction += { 0.f, -1.f };
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+	{
+		m_direction += { 0.f, 1.f };
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Joystick::isButtonPressed(0 , 0)) {
@@ -43,12 +60,18 @@ void Player::update(float deltaTime)
 	}
 	else
 	{
-		std::cout << "midair:\t" << m_yVelocity.y << std::endl;
+		//std::cout << "midair:\t" << m_yVelocity.y << std::endl;
 		m_gravity.applyGravity(this, deltaTime);
 		m_canJump = false;
 	}
 
 	//std::cout << "Plr velocity: " << getYVelocity().x << ", " << getYVelocity().y << std::endl;
+
+	//update loop for the player tools
+	for (auto& tool : m_tools)
+	{
+		tool->update(deltaTime);
+	}
 }
 
 void Player::draw(sf::RenderWindow& window)
@@ -56,6 +79,12 @@ void Player::draw(sf::RenderWindow& window)
 	window.draw(m_shape);
 	m_base.setFillColor(sf::Color::Blue);
 	window.draw(m_base);
+
+	//draw loop for the player tools
+	for (auto& tool : m_tools)
+	{
+		tool->draw(window);
+	}
 }
 
 void Player::jump(float deltaTime) 

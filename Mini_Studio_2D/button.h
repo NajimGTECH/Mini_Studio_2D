@@ -4,6 +4,6 @@ class Button :
     public MapElements
 {
 public:
-	Button(float x, float y, float width, float height);
+	Button(float x, float y, float width, float height, int);
 };
 

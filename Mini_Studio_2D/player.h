@@ -4,9 +4,9 @@
 #include <thread>
 #include <mutex>
 
-
 #include "entity.h"
 #include "gravity.h"
+#include "tools_include.h"
 
 class Player : public Entity
 {
@@ -40,6 +40,8 @@ private:
 	float m_speed = 500.f;
 
 	bool m_canJump = false;
+
+	std::vector<std::shared_ptr<Entity>> m_tools;
 	bool m_walkSide = false;
 ;
 	Gravity m_gravity;

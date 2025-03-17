@@ -22,10 +22,13 @@ public:
 	sf::Texture& getTexture();
 	sf::Texture setTexture(sf::Texture texture);
 	float setOrientation(float orientation);
+	sf::Vector2f getDirection();
 
 	bool isCollisionDetected(sf::Vector2f targetVelocity);
 
 protected:
+
+	sf::Vector2f m_direction = { 0, 0 };
 
 	sf::RectangleShape m_shape;
 	sf::Sprite m_sprite;

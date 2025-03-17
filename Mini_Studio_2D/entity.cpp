@@ -16,6 +16,11 @@ sf::RectangleShape& Entity::getBase() {
 	return m_base;
 }
 
+sf::Vector2f Entity::getDirection()
+{
+	return m_direction;
+}
+
 sf::Sprite& Entity::getSprite() {
 	return m_sprite;
 }

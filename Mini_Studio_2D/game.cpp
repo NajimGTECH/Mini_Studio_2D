@@ -4,6 +4,7 @@
 Game::Game() {}
 
 void Game::run() {
+	m_terminal = false;
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
 	window.setFramerateLimit(120);
 
@@ -24,6 +25,7 @@ void Game::run() {
 	sf::Clock clock;
 	float deltaTime = 0.0f;
 
+	bool menub = true;
 	bool isPlaying = false;
 
 
@@ -55,22 +57,39 @@ void Game::run() {
 				}
 			}
 		}
+			if (event.type == sf::Event::KeyReleased) {
+				if (event.key.code == sf::Keyboard::E) {
+						if (manager.TerminalCheck(map)) {
+						m_terminal = !m_terminal;
+						manager.code.setString("");
+					}
+				}	
+			}
+		}
 
 		manager.player->update(deltaTime);
 		lamp.raycast.attachedEntity = &lamp;
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
+			menub = false;
 		}
 
+
 		if (isPlaying) {
-			manager.player->update(deltaTime);
+			
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
+			if (!m_terminal) {
+				manager.player->update(deltaTime);
+			}
+			else if (m_terminal) {
+				manager.displayTerminal(window, map);
+			}
 		}
-		else {
+		else if (menub){
 			menu.drawMenu(window);
-			menuManager.handleEvents();
+			menuManager.handleEvents(deltaTime);
 		}
 
 		window.clear();

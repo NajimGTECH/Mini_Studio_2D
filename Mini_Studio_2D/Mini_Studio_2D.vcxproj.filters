@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Fichiers sources">
@@ -96,6 +96,27 @@
     <ClCompile Include="menu_manager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="entityManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="door.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="terminal.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="water_jet.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="digit.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="stain.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
     <ClCompile Include="button.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -130,6 +151,30 @@
     </ClInclude>
     <ClInclude Include="menu_manager.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="entityManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="terminal.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="water_jet.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="tools_include.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="digit.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    <ClInclude">
+    <ClInclude Include="stain.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
     </ClInclude>
     <ClInclude Include="button.h">
       <Filter>Fichiers d%27en-tête</Filter>

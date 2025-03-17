@@ -149,6 +149,7 @@
     <ClCompile Include="chair.cpp" />
     <ClCompile Include="closet.cpp" />
     <ClCompile Include="desk.cpp" />
+    <ClCompile Include="digit.cpp" />
     <ClCompile Include="door.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entityManager.cpp" />
@@ -163,8 +164,11 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
     <ClCompile Include="shelf.cpp" />
+    <ClCompile Include="stain.cpp" />
+    <ClCompile Include="terminal.cpp" />
     <ClCompile Include="raycast.cpp" />
     <ClCompile Include="wall.cpp" />
+    <ClCompile Include="water_jet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bookShelf.h" />
@@ -173,6 +177,7 @@
     <ClInclude Include="chair.h" />
     <ClInclude Include="closet.h" />
     <ClInclude Include="desk.h" />
+    <ClInclude Include="digit.h" />
     <ClInclude Include="door.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
@@ -186,8 +191,12 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="robotic_arm.h" />
     <ClInclude Include="shelf.h" />
+    <ClInclude Include="stain.h" />
+    <ClInclude Include="terminal.h" />
+    <ClInclude Include="tools_include.h" />
     <ClInclude Include="raycast.h" />
     <ClInclude Include="wall.h" />
+    <ClInclude Include="water_jet.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>

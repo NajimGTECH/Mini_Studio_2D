@@ -13,6 +13,8 @@
 #include "shelf.h"
 
 class Game{
+private:
+	bool m_terminal;
 public:
 	Game();
 	void run();

@@ -7,7 +7,7 @@
 class MenuManager {
 public:
     MenuManager(RenderWindow& window, Menu& menu);
-    void handleEvents();
+    void handleEvents(float deltaTime);
     bool isPlayButtonClicked();
 
 private:
