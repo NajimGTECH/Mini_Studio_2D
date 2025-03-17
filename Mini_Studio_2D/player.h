@@ -38,6 +38,8 @@ private:
 	
 	sf::Vector2f m_coeffAnim;
 
+	bool m_hasBag = false;
+
 	float m_scaling = 0.6;
 
 	sf::Vector2f m_yVelocity = { 0.f, 0.f };

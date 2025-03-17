@@ -11,17 +11,26 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 	auto waterJet = std::make_shared<WaterJet>(sf::Vector2f(0, 0), -1, map, this);
 	m_tools.push_back(waterJet);
 
-	if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
-		return;
-	}
+	
 
+	if (m_hasBag) {
+		m_coeffAnim = sf::Vector2f(214, 328);
+		m_scaling = 0.6;
+		if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
+			return;
+		}
+	}
+	else {
+		m_coeffAnim = sf::Vector2f(175, 356);
+		m_scaling = 0.5;
+		if (!m_texture.loadFromFile("Assets/Player/spritesheet_nobag.png")) {
+			return;
+		}
+	}
 
 	m_sprite.setTexture(m_texture);
 	m_sprite.setPosition(m_shape.getPosition());
 	m_sprite.setScale(m_scaling, m_scaling);
-
-	m_coeffAnim.x = 214;
-	m_coeffAnim.y = 328;
 }
 
 void Player::update(float deltaTime)
