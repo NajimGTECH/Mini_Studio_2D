@@ -164,8 +164,10 @@
     <ClCompile Include="raycaster.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
     <ClCompile Include="shelf.cpp" />
+    <ClCompile Include="stain.cpp" />
     <ClCompile Include="terminal.cpp" />
     <ClCompile Include="wall.cpp" />
+    <ClCompile Include="water_jet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="box.h" />
@@ -188,8 +190,11 @@
     <ClInclude Include="raycaster.h" />
     <ClInclude Include="robotic_arm.h" />
     <ClInclude Include="shelf.h" />
+    <ClInclude Include="stain.h" />
     <ClInclude Include="terminal.h" />
+    <ClInclude Include="tools_include.h" />
     <ClInclude Include="wall.h" />
+    <ClInclude Include="water_jet.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />
