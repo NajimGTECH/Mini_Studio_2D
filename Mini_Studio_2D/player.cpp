@@ -10,6 +10,14 @@ Player::Player(int size, int health, Map& map) : Entity(size, health, map)
 
 	auto waterJet = std::make_shared<WaterJet>(0, -1, map, this);
 	m_tools.push_back(waterJet);
+
+	if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
+		return;
+	}
+	m_sprite.setTexture(m_texture);
+	m_sprite.setPosition(m_shape.getPosition());
+	m_sprite.setScale(0.2, 0.2);
+	m_sprite.setTextureRect(sf::IntRect(m_animVect.x * 164, m_animVect.y * 341, 164, 341));
 }
 
 void Player::update(float deltaTime)
@@ -17,14 +25,14 @@ void Player::update(float deltaTime)
 	sf::Vector2f moveVelocity = { 0.f, 0.f };
 	m_direction = { 0.f, 0.f };
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30 || sf::Joystick::getAxisPosition(0, sf::Joystick::PovX) > 30)
 	{
 		moveVelocity = { deltaTime * m_speed, 0.f };
 		m_direction += { 1.f, 0.f };
 		if (!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -30)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -30 || sf::Joystick::getAxisPosition(0, sf::Joystick::PovX) < -30)
 	{
 		moveVelocity = { deltaTime * -m_speed, 0.f }; 
 		m_direction += { -1.f, 0.f };
@@ -41,7 +49,7 @@ void Player::update(float deltaTime)
 		m_direction += { 0.f, 1.f };
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Joystick::isButtonPressed(0 , 0)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) || sf::Joystick::isButtonPressed(0 , 0) || sf::Joystick::getAxisPosition(0, sf::Joystick::PovY) > 30) {
 
 		if (m_canJump)
 		std::thread(&Player::jump, this, deltaTime).detach();
@@ -70,11 +78,15 @@ void Player::update(float deltaTime)
 	{
 		tool->update(deltaTime);
 	}
+
+	m_sprite.setPosition(m_shape.getPosition());
+
+	anim(deltaTime);
 }
 
 void Player::draw(sf::RenderWindow& window)
 {
-	window.draw(m_shape);
+	window.draw(m_sprite);
 	m_base.setFillColor(sf::Color::Blue);
 	window.draw(m_base);
 
@@ -133,6 +145,12 @@ bool Player::isJumping()
 	return m_canJump;
 }
 
+bool Player::isMoving()
+{
+	return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30 || sf::Joystick::getAxisPosition(0, sf::Joystick::PovX) > 30
+		|| sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -30 || sf::Joystick::getAxisPosition(0, sf::Joystick::PovX) < -30;
+}
+
 void Player::setYVelocity(sf::Vector2f newVelocity)
 {
 	m_yVelocity = newVelocity;
@@ -155,3 +173,18 @@ bool Player::checkIfGrounded()
 	return false;
 }
 
+void Player::anim(float deltaTime)
+{
+	int timeAnimation = m_animC.getElapsedTime().asMilliseconds();
+
+	if (isMoving()) {
+		if (timeAnimation >= 150) {
+			m_animVect.x++;
+			m_animC.restart();
+			std::cout << "switch" << std::endl;
+		}
+		if (m_animVect.x * 164 >= m_texture.getSize().x) {
+			m_animVect.x = 0;
+		}
+	}
+}

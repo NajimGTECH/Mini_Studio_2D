@@ -14,7 +14,7 @@ public:
 
 	float x, y, width, height;
 
-	MapElements(float x, float y, float width, float height, int);
+	MapElements(float x, float y, float width, float height, int id);
 	void draw(sf::RenderWindow& window);
 
 	void openDoor();

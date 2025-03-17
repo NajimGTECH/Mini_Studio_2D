@@ -17,12 +17,15 @@ public:
 
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
+	void anim(float deltatime) override;
 
 	void jump(float deltaTime);
 
 	sf::Vector2f getYVelocity();
 	float getSpeed();
 	bool isJumping();
+
+	bool isMoving();
 
 	void setYVelocity(sf::Vector2f newVelocity);
 	void canJump(bool canJump);
@@ -35,9 +38,11 @@ private:
 
 	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 
+	sf::Vector2i m_animVect = sf::Vector2i(0, 0);
+
 	float m_jumpPower = 700.f;
 	float m_speed = 500.f;
-
+	sf::Clock m_animC;
 	bool m_canJump = false;
 
 	std::vector<std::shared_ptr<Entity>> m_tools;

@@ -13,3 +13,7 @@ void Lamp::draw(sf::RenderWindow& window) {
 
 void Lamp::illuminate() {
 }
+
+void Lamp::anim(float deltaTime)
+{
+}

@@ -20,3 +20,7 @@ void RoboticArm::move()
 {
 	// Move the robotic arm
 }
+
+void RoboticArm::anim(float deltaTime)
+{
+}

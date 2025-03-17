@@ -10,3 +10,7 @@ void Shelf::update(float deltaTime) {}
 void Shelf::draw(sf::RenderWindow& window) {
 	window.draw(m_shape);
 }
+
+void Shelf::anim(float deltaTime)
+{
+}

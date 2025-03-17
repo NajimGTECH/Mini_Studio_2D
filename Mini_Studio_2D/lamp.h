@@ -6,5 +6,6 @@ public:
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 	void illuminate();
+	void anim(float deltaTime) override;
 };
 

@@ -11,3 +11,7 @@ void Closet::update() {
 void Closet::draw(sf::RenderWindow& window) {
 	window.draw(m_shape);
 }
+
+void Closet::anim(float deltaTime)
+{
+}

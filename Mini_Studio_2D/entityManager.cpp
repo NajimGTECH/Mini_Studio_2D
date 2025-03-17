@@ -139,7 +139,7 @@ void EntityManager::displayTerminal(sf::RenderWindow& window, Map& map) {
 
     cdelay--;
 
-    std::cout << selectedButton << std::endl;
+    //std::cout << selectedButton << std::endl;
 
 
     for (auto& button : m_buttons) {

@@ -10,3 +10,7 @@ void Desk::update(float deltaTime) {}
 void Desk::draw(sf::RenderWindow& window) {
 	window.draw(m_shape);
 }
+
+void Desk::anim(float deltaTime)
+{
+}
