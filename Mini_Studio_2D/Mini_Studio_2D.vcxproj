@@ -148,7 +148,11 @@
     <ClCompile Include="chair.cpp" />
     <ClCompile Include="closet.cpp" />
     <ClCompile Include="desk.cpp" />
+
+    <ClCompile Include="dialogue_box.cpp" />
+
     <ClCompile Include="digit.cpp" />
+
     <ClCompile Include="door.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entityManager.cpp" />
@@ -160,6 +164,7 @@
     <ClCompile Include="menu_manager.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mapElements.cpp" />
+    <ClCompile Include="npc.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="raycaster.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
@@ -175,7 +180,11 @@
     <ClInclude Include="chair.h" />
     <ClInclude Include="closet.h" />
     <ClInclude Include="desk.h" />
+
+    <ClInclude Include="dialogue_box.h" />
+
     <ClInclude Include="digit.h" />
+
     <ClInclude Include="door.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
@@ -186,6 +195,7 @@
     <ClInclude Include="lamp.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="mapElements.h" />
+    <ClInclude Include="npc.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="raycaster.h" />
     <ClInclude Include="robotic_arm.h" />

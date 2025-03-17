@@ -17,6 +17,14 @@ void Game::run() {
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
+	
+	sf::Font font;
+	if (!font.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
+		std::cerr << "Erreur : Impossible de charger la police arial.ttf" << std::endl;
+	}
+
+	DialogueBox dialogueBox(font);
+	map.setDialogueBox(&dialogueBox);
 
 	bool menub = true;
 	bool isPlaying = false;
@@ -55,6 +63,18 @@ void Game::run() {
 		}
 
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+			for (auto& npc : map.getAllNPCs()) {
+				auto npcPtr = std::dynamic_pointer_cast<NPC>(npc);
+				if (npcPtr && npcPtr->isNearPlayer(manager.player->getShape().getPosition().x,
+					manager.player->getShape().getPosition().y)) {
+					npcPtr->interact();
+				}
+			}
+		}
+
+
+
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
 			menub = false;
@@ -65,6 +85,7 @@ void Game::run() {
 			
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
+			dialogueBox.draw(window);
 			manager.player->draw(window);
 			if (!m_terminal) {
 				manager.player->update(deltaTime);

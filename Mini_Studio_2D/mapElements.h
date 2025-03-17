@@ -7,6 +7,10 @@
 class MapElements
 {
 public:
+  MapElements(float x, float y, float width, float height, int);
+  virtual ~MapElements() {} 
+
+	
 	sf::RectangleShape shape;
 	bool opened = false;
 
@@ -14,8 +18,12 @@ public:
 
 	float x, y, width, height;
 
-	MapElements(float x, float y, float width, float height, int);
-	void draw(sf::RenderWindow& window);
+
+
+	virtual void draw(sf::RenderWindow& window); 
+	
+	
+
 
 	void openDoor();
 	void washStain();

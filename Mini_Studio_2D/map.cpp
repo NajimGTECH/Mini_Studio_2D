@@ -47,6 +47,9 @@ void Map::createMap(int lvl) {
 		case '#': createWall(x, y, 60, 60);x += 60; i++; break;
 		case 'D': createDoor(x, y, 60, 60); x += 60; i++; break;
 		case 'B': createButton(x, y, 60, 60); x += 60; i++; break;
+
+		case 'N': createNPC(x, y, 60, 60); x += 60; i++; break;
+
 		case 'T': createTerminal(x, y, 60, 60); x += 60; i++; break;
 		case 'P': createLastDoor(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
@@ -101,6 +104,11 @@ void Map::createLastDoor(float x, float y, float width, float height) {
 	allDoors.push_back(std::make_shared<Door>(x, y, width, height, 2));
 }
 
+void Map::createNPC(float x, float y, float width, float height) {
+	allNPCs.push_back(std::make_shared<NPC>(x, y, width, height, *dialogueBox));
+}
+
+
 void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& wall : allWalls) {
 		wall->draw(window);
@@ -111,12 +119,22 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& button : allButtons) {
 		button->draw(window);
 	}
+
+	for (auto& npc : allNPCs) {
+		npc->draw(window);
+	}
+}
+
+void Map::setDialogueBox(DialogueBox* db) {
+	dialogueBox = db;
+
 	for (auto& terminal : allTerminals) {
 		terminal->draw(window);
 	}
 	for (auto& stain : allStains) {
 		stain->draw(window);
 	}
+
 }
 
 
@@ -135,6 +153,11 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllButtons()
 	return allButtons;
 }
 
+
+std::vector<std::shared_ptr<MapElements>>& Map::getAllNPCs()
+{
+	return allNPCs;
+
 std::vector<std::shared_ptr<MapElements>>& Map::getAllTerminals()
 {
 	return allTerminals;
@@ -148,4 +171,5 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllStains()
 std::string Map::getCode()
 {
 	return m_code;
+
 }
