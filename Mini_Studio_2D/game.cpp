@@ -49,10 +49,14 @@ void Game::run() {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
+			if (event.type == sf::Event::KeyReleased) {
+				if (event.key.code == sf::Keyboard::E) {
+					lamp.illuminate(map);
+				}
+			}
 		}
 
 		manager.player->update(deltaTime);
-		lamp.illuminate(map);
 		lamp.raycast.attachedEntity = &lamp;
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
@@ -68,8 +72,6 @@ void Game::run() {
 			menu.drawMenu(window);
 			menuManager.handleEvents();
 		}
-
-		//std::cout << deltaTime << endl;
 
 		window.clear();
 		map.displayMap(window);
