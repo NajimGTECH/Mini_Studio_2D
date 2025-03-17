@@ -11,10 +11,11 @@ void NPC::draw(sf::RenderWindow& window) {
 }
 
 void NPC::interact() {
-    dialogue.setText("PNJ : Bonjour, aventurier !");
-    dialogue.show(true);
+    dialogue.setText("Bonjour, tu doit être le nouvel employé.");
+    dialogue.show(true, shape.getPosition());
 }
 
 bool NPC::isNearPlayer(float playerX, float playerY) {
-    return (std::abs(playerX - x) < 60 && std::abs(playerY - y) < 60);
+    float detectionRadius = 200.0f; 
+    return (std::abs(playerX - x) < detectionRadius && std::abs(playerY - y) < detectionRadius);
 }
