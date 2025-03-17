@@ -1,8 +1,8 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <iostream>
-
 #include <vector>
+
+#include <SFML/Graphics.hpp>
 
 class MapElements
 {

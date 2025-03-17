@@ -272,7 +272,11 @@ void Menu::switchToCustomLevels()
 			for (const auto& file : fs::directory_iterator(filePath)) {
 				if (fs::is_regular_file(file)) 
 				{
-					customLevelFiles.push_back(file);
+					if (customLevelFiles.size() < 5)
+					{
+						customLevelFiles.push_back(file);
+					}
+					
 				}
 			}
 		}
@@ -286,31 +290,49 @@ void Menu::switchToCustomLevels()
 		std::cerr << "Erreur lors de l'accès au dossier: " << e.what() << std::endl;
 	}
 
-	for (int i = 0; i < customLevelFiles.size(); i++) {
+	for (int i = 0; i < 5; i++) {
 		Text text;
 		text.setFont(Menufont);
 
-		std::string buttonName = customLevelFiles[i].path().filename().string();
-		buttonName = buttonName.substr(0, buttonName.size() - 4); //to remove .txt
-
-		text.setString(buttonName);
-		text.setCharacterSize(25);
-
-		text.setFillColor(Color::White);
+		//Menu title
+		Text titleText;
+		titleText.setFont(Menufont);
+		titleText.setString("You can create up to 5 custom levels by adding them into the CustomLevels file");
+		titleText.setPosition({ 375 , 150});
+		text.setCharacterSize(20);
 
 		float posX = 960 - 125;
-		float posY = 300 + (i * 100);
+		float posY = 250 + (i * 100);
 
 		RectangleShape box(Vector2f(250, 60));
 		box.setPosition(Vector2f(posX, posY));
 		box.setFillColor(Color::Black);
-		box.setOutlineColor(Color::White);
 		box.setOutlineThickness(2);
+		text.setFillColor(sf::Color::White);
+
+		std::string buttonName = "empty";
+		if (customLevelFiles.size() > i)
+		{
+			buttonName = customLevelFiles[i].path().filename().string();
+			buttonName = buttonName.substr(0, buttonName.size() - 4); //to remove .txt
+			//text.setFillColor(sf::Color::White);
+			box.setOutlineColor(sf::Color::White);
+		}
+		else
+		{
+			//text.setFillColor(sf::Color::Red);
+			box.setOutlineColor(sf::Color::Red);
+
+		}
+
+		text.setString(buttonName);
+		text.setCharacterSize(25);
 
 		FloatRect textBounds = text.getLocalBounds();
 		text.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
 		text.setPosition(posX + box.getSize().x / 2.0f, posY + box.getSize().y / 2.0f);
 
+		menu.push_back(titleText);
 		menu.push_back(text);
 		menuBox.push_back(box);
 	}
@@ -350,6 +372,11 @@ void Menu::drawMenu(RenderWindow& window) {
 	}
 }
 
-int Menu::getselectedIndex() const {
+int Menu::getSelectedIndex() const {
 	return selectedIndex;
+}
+
+sf::Text& Menu::getTextFromOption(int option)
+{
+	return menu[option];
 }

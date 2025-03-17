@@ -114,7 +114,7 @@ void Player::jump(float deltaTime)
 
 		if (m_yVelocity.y == m_gravity.getForce() * deltaTime) break;
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 	}
 }
 

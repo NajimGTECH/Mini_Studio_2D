@@ -19,7 +19,8 @@ public:
 	void drawMenu(RenderWindow& window);
 	void update(Vector2f mousePos);
 
-	int getselectedIndex() const;
+	int getSelectedIndex() const;
+	sf::Text& getTextFromOption(int option);
 
 	bool isOptionClicked(Vector2f mousePos);
 
