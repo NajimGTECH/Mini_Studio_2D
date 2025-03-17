@@ -6,12 +6,12 @@
 
 class NPC : public MapElements {
 public:
-    NPC(float x, float y, float width, float height, DialogueBox& dialogueBox);
+    NPC(float x, float y, float width, float height, std::shared_ptr<DialogueBox> dialogueBox);
     void interact();
 
     void draw(sf::RenderWindow& window) override;
     bool isNearPlayer(float playerX, float playerY);
 
 private:
-    DialogueBox& dialogue;
+    std::shared_ptr<DialogueBox> dialogue;
 };

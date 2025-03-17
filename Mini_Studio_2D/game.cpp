@@ -20,11 +20,8 @@ void Game::run() {
 	
 	sf::Font font;
 	if (!font.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
-		std::cerr << "Erreur : Impossible de charger la police arial.ttf" << std::endl;
+		std::cerr << "Erreur : Impossible de charger la police SolarPunk.otf" << std::endl;
 	}
-
-	DialogueBox dialogueBox(font);
-	map.setDialogueBox(&dialogueBox);
 
 	bool menub = true;
 	bool isPlaying = false;
@@ -85,7 +82,6 @@ void Game::run() {
 			
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
-			dialogueBox.draw(window);
 			manager.player->draw(window);
 			if (!m_terminal) {
 				manager.player->update(deltaTime);

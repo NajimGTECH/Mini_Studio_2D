@@ -1,6 +1,11 @@
 #include "map.h"
 
-Map::Map() {}
+Map::Map() 
+{
+	if (!m_font.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
+		std::cerr << "Erreur : Impossible de charger la police SolarPunk.otf" << std::endl;
+	}
+}
 
 
 void Map::createMap(int lvl) {
@@ -104,8 +109,9 @@ void Map::createLastDoor(float x, float y, float width, float height) {
 	allDoors.push_back(std::make_shared<Door>(x, y, width, height, 2));
 }
 
-void Map::createNPC(float x, float y, float width, float height) {
-	allNPCs.push_back(std::make_shared<NPC>(x, y, width, height, *dialogueBox));
+void Map::createNPC(float x, float y, float width, float height) 
+{
+	allNPCs.push_back(std::make_shared<NPC>(x, y, width, height, std::make_shared<DialogueBox>(m_font)));
 }
 
 
@@ -123,20 +129,13 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& npc : allNPCs) {
 		npc->draw(window);
 	}
-}
-
-void Map::setDialogueBox(DialogueBox* db) {
-	dialogueBox = db;
-
 	for (auto& terminal : allTerminals) {
 		terminal->draw(window);
 	}
 	for (auto& stain : allStains) {
 		stain->draw(window);
 	}
-
 }
-
 
 std::vector<std::shared_ptr<MapElements>>& Map::getAllWalls()
 {
@@ -153,10 +152,10 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllButtons()
 	return allButtons;
 }
 
-
 std::vector<std::shared_ptr<MapElements>>& Map::getAllNPCs()
 {
 	return allNPCs;
+}
 
 std::vector<std::shared_ptr<MapElements>>& Map::getAllTerminals()
 {

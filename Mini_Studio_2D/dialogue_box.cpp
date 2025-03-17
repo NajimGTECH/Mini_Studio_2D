@@ -39,4 +39,9 @@ void DialogueBox::show(bool visible, sf::Vector2f npcPosition) {
     }
 }
 
+sf::Text& DialogueBox::getText()
+{
+    return dialogueText;
+}
+
 

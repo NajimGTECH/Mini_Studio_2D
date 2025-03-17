@@ -24,7 +24,6 @@ public:
 	void createDoor(float x, float y, float width, float height);
 	void createButton(float x, float y, float width, float height);
 	void createNPC(float x, float y, float width, float height);
-	void setDialogueBox(DialogueBox* db);
 	void createTerminal(float x, float y, float width, float height);
 	void createLastDoor(float x, float y, float width, float height);
 	void createStain(float x, float y, float width, float height, std::string text);
@@ -56,12 +55,10 @@ private:
 	std::vector<std::shared_ptr<MapElements>> allDoors;
 	std::vector<std::shared_ptr<MapElements>> allButtons;
 	std::vector<std::shared_ptr<MapElements>> allNPCs;
-  
-	DialogueBox* dialogueBox;
 
 	std::vector<std::shared_ptr<MapElements>> allTerminals;
 	std::vector<std::shared_ptr<MapElements>> allStains;
 
-
+	sf::Font m_font;
 };
 

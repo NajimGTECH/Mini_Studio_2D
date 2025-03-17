@@ -10,6 +10,8 @@ public:
     void draw(sf::RenderWindow& window);
     void show(bool visible, sf::Vector2f npcPosition);
 
+    sf::Text& getText();
+
 private:
     sf::RectangleShape box;
     sf::Text dialogueText;

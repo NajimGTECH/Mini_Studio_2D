@@ -1,6 +1,6 @@
 #include "npc.h"
 
-NPC::NPC(float x, float y, float width, float height, DialogueBox& dialogueBox) : MapElements(x, y, width, height), dialogue(dialogueBox) {
+NPC::NPC(float x, float y, float width, float height, std::shared_ptr<DialogueBox> dialogueBox) : MapElements(x, y, width, height, -1), dialogue(dialogueBox) {
     shape.setSize(sf::Vector2f(width, height));
     shape.setFillColor(sf::Color::Yellow); 
     shape.setPosition(x, y);
@@ -8,11 +8,12 @@ NPC::NPC(float x, float y, float width, float height, DialogueBox& dialogueBox) 
 
 void NPC::draw(sf::RenderWindow& window) {
     window.draw(shape);
+    window.draw(dialogue->getText());
 }
 
 void NPC::interact() {
-    dialogue.setText("Bonjour, tu doit être le nouvel employé.");
-    dialogue.show(true, shape.getPosition());
+    dialogue->setText("Bonjour, tu doit être le nouvel employé.");
+    dialogue->show(true, shape.getPosition());
 }
 
 bool NPC::isNearPlayer(float playerX, float playerY) {
