@@ -1,6 +1,6 @@
 #include "mapElements.h"
 
-MapElements::MapElements(float x, float y, float width, float height) : x(x), y(y), width(width), height(height) 
+MapElements::MapElements(float x, float y, float width, float height, int id) : x(x), y(y), width(width), height(height), id(id)
 {
 	if (!m_font.loadFromFile("Assets/Fonts/HelpMe.ttf"))
 	{

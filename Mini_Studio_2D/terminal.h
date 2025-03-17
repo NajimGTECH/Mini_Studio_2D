@@ -5,7 +5,7 @@ class Terminal :
 {
 public:
 
-	Terminal(float x, float y, float width, float height);
+	Terminal(float x, float y, float width, float height, int);
 
 };
 

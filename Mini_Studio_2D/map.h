@@ -22,6 +22,7 @@ public:
 	void createDoor(float x, float y, float width, float height);
 	void createButton(float x, float y, float width, float height);
 	void createTerminal(float x, float y, float width, float height);
+	void createLastDoor(float x, float y, float width, float height);
 	void createStain(float x, float y, float width, float height, std::string text);
 
 	void displayMap(sf::RenderWindow& window);

@@ -5,6 +5,6 @@ class Door :
     public MapElements
 {
 public:
-	Door(float x, float y, float width, float height);
+	Door(float x, float y, float width, float height, int);
 };
 
