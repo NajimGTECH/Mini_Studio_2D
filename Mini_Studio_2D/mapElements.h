@@ -16,5 +16,13 @@ public:
 	void draw(sf::RenderWindow& window);
 
 	void openDoor();
+	void washStain();
+
+protected:
+
+	int m_opacity = 255;
+
+	sf::Font m_font;
+	sf::Text m_text;
 };
 

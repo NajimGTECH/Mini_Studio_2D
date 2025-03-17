@@ -15,10 +15,13 @@ public:
 
 	sf::RectangleShape& getShape();
 	sf::RectangleShape& getBase();
+	sf::Vector2f getDirection();
 
 	bool isCollisionDetected(sf::Vector2f targetVelocity);
 
 protected:
+
+	sf::Vector2f m_direction = { 0, 0 };
 
 	sf::RectangleShape m_shape;
 	sf::RectangleShape m_base;
