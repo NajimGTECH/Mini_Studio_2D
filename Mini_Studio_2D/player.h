@@ -11,7 +11,7 @@
 class Player : public Entity
 {
 public:
-	Player(int size, int health, Map& map);
+	Player(sf::Vector2f size, int health, Map& map);
 
 	int direction = 0;
 
@@ -35,6 +35,10 @@ private:
 	bool checkIfGrounded();
 
 private:
+	
+	sf::Vector2f m_coeffAnim;
+
+	float m_scaling = 0.6;
 
 	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 

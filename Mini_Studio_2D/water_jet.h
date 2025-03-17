@@ -9,7 +9,7 @@ class WaterDroplet;
 
 class WaterJet : public Entity {
 public:
-	WaterJet(int s, int h, Map& map, Entity* owner);
+	WaterJet(sf::Vector2f s, int h, Map& map, Entity* owner);
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 	void newDroplet(float deltaTime);

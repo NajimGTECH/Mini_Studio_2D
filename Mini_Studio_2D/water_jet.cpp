@@ -2,7 +2,7 @@
 
 //* WATER JET *\\
 
-WaterJet::WaterJet(int size, int health, Map& map, Entity* owner) : Entity(size, health, map)
+WaterJet::WaterJet(sf::Vector2f size, int health, Map& map, Entity* owner) : Entity(size, health, map)
 {
 		m_owner = owner;
 }
@@ -115,7 +115,7 @@ void WaterJet::newDroplet(float deltaTime)
 
 //* WATER DROPLETS *\\
 
-WaterDroplet::WaterDroplet(Map& map): Entity(10, -1, map)
+WaterDroplet::WaterDroplet(Map& map): Entity(sf::Vector2f(10,10), -1, map)
 {
 	shape.setFillColor(sf::Color(0, 255, 255, 255));
 	shape.setRadius(5);
