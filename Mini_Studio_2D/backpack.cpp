@@ -13,7 +13,6 @@ void Backpack::draw(sf::RenderWindow& window) {
 
 void Backpack::update(float deltaTime) {
 	anim(deltaTime);
-	std::cout << m_sprite.getPosition().x << ' ' << m_sprite.getPosition().y << std::endl;
 }
 
 void Backpack::anim(float deltaTime) {

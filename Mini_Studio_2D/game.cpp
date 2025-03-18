@@ -35,6 +35,7 @@ void Game::run() {
 		{
 			map.currentLevel++;
 			map.createMap(map.currentLevel);
+			manager.generate(map, map.currentLevel);
 			map.loaded = true;
 			if (map.currentLevel == 1) {
 				manager.player->getShape().setPosition(700, -100);
@@ -84,6 +85,10 @@ void Game::run() {
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
+			for (auto enemy : manager.enemies) {
+				enemy->draw(window);
+				enemy->update(deltaTime);
+			}
 			if (map.currentLevel == 0) {
 				if (manager.backpack) {
 					manager.backpack->update(deltaTime);

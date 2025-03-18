@@ -28,11 +28,15 @@ public:
 
 protected:
 
+	sf::Clock m_animC;
 
+	sf::Vector2f m_coeffAnim;
+	sf::Vector2f m_animVect = sf::Vector2f(0,0);
 	sf::Vector2f m_direction = { 0, 0 };
 
 	bool m_hasBag = false;
 
+	float m_scaling;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::RectangleShape m_shape;

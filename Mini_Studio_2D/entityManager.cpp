@@ -3,6 +3,7 @@
 EntityManager::EntityManager(Map& map) {
 	player = std::make_shared<Player>(sf::Vector2f(75,130), 10, map);
     backpack = std::make_shared<Backpack>(map);
+    
 	m_font.loadFromFile("Assets/Font/digit.ttf");
 
 	std::vector<sf::Vector2f> buttonPositions = {
@@ -45,6 +46,55 @@ EntityManager::EntityManager(Map& map) {
         button->shape.setPosition(buttonPositions[i]);
         button->shape.setTexture(&button->texture);
         m_buttons.push_back(std::move(button));
+    }
+}
+
+void EntityManager::generate(Map& map, int levelIndex)
+{
+    enemies.clear();
+
+    int i = 0, x = 0, y = 0, j = 0;
+    char ch;
+
+    m_mapFile.close();
+    m_mapFile.open("Maps/Level_" + std::to_string(levelIndex) + ".txt");
+
+    while (m_mapFile.get(ch)) {
+        switch (ch)
+        {
+        case 'E': enemies.push_back(std::make_shared<Enemy>(sf::Vector2f(x, y), sf::Vector2f(x + 400,y), map)); x += 60; i++; break;
+        case '#':  x += 60; i++; break;
+        case 'D':  x += 60; i++; break;
+        case 'B':  x += 60; i++; break;
+
+        case 'N':  x += 60; i++; break;
+
+        case 'T':  x += 60; i++; break;
+        case 'P':  x += 60; i++; break;
+        case ' ':  x += 60; i++; break;
+            //Stains:
+        case '~':  x += 60; i++; break;
+        case '0':  x += 60; i++; break;
+        case '1':  x += 60; i++; break;
+        case '2':  x += 60; i++; break;
+        case '3':  x += 60; i++; break;
+        case '4':  x += 60; i++; break;
+        case '5':  x += 60; i++; break;
+        case '6':  x += 60; i++; break;
+        case '7':  x += 60; i++; break;
+        case '8':  x += 60; i++; break;
+        case '9':  x += 60; i++; break;
+
+        }
+
+
+        if (i == 32) {
+            y += 60; x = 0; i = 0; j++;
+        }
+
+        if (j == 18) {
+            y = 0; x = 0; i = 0; j++;
+        }
     }
 }
 

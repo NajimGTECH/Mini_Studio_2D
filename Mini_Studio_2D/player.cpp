@@ -3,6 +3,9 @@
 
 Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, map)
 {
+
+	m_scaling = 0.6;
+
 	m_shape.setPosition(500, 300);
 	m_base.setSize(sf::Vector2f(m_shape.getSize().x * 0.9f, m_shape.getSize().y / 10.f));
 

@@ -11,8 +11,6 @@
 #include "terminal.h"
 #include "stain.h"
 
-
-
 class Map
 {
 public:
@@ -46,6 +44,8 @@ public:
 	int currentLevel = 0;
 
 	std::string getCode();
+
+	std::ifstream& getMapFile();
 	
 private:
 

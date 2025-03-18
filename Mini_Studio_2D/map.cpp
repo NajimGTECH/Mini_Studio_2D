@@ -76,6 +76,7 @@ void Map::readMapFile()
 {
 	int i = 0, x = 0, y = 0, j = 0;
 	char ch;
+	int compte = 0;
 
 	while (m_mapFile.get(ch)) {
 		switch (ch)
@@ -89,6 +90,7 @@ void Map::readMapFile()
 		case 'T': createTerminal(x, y, 60, 60); x += 60; i++; break;
 		case 'P': createLastDoor(x, y, 60, 60); x += 60; i++; break;
 		case ' ': x += 60; i++; break;
+		case 'E': x += 60; i++; break;
 
 			//Stains:
 		case '~': createStain(x, y, 60, 60, ""); x += 60; i++; break;
@@ -112,7 +114,10 @@ void Map::readMapFile()
 		if (j == 18) {
 			y = 0; x = 0; i = 0; j++;
 		}
+		compte++;
 	}
+
+	std::cout << "mapsizeM" << compte;
 }
 
 void Map::createTerminal(float x, float y, float width, float height) {
@@ -202,4 +207,9 @@ std::string Map::getCode()
 {
 	return m_code;
 
+}
+
+std::ifstream& Map::getMapFile()
+{
+	return m_mapFile;
 }

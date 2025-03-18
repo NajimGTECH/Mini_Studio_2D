@@ -38,17 +38,13 @@ private:
 
 private:
 	
-	sf::Vector2f m_coeffAnim;
-
-	float m_scaling = 0.6;
 
 	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 
 	float m_jumpPower = 900.f;
-	sf::Vector2i m_animVect = sf::Vector2i(0, 0);
 
 	float m_speed = 500.f;
-	sf::Clock m_animC;
+
 	bool m_canJump = false;
 
 	std::vector<std::shared_ptr<Entity>> m_tools;
