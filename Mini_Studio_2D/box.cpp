@@ -12,3 +12,9 @@ void Box::update(float deltaTime){}
 void Box::draw(sf::RenderWindow& window){
 	window.draw(m_sprite);
 }
+	window.draw(m_shape);
+}
+
+void Box::anim(float deltaTime)
+{
+}

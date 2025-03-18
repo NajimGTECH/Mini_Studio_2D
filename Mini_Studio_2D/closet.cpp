@@ -24,3 +24,9 @@ void Closet::push(Player& player) {
 		}
 	}
 }
+	window.draw(m_shape);
+}
+
+void Closet::anim(float deltaTime)
+{
+}

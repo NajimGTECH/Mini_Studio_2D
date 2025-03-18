@@ -8,10 +8,14 @@ class Entity
 {
 public:
 
-	Entity(int size, int hp, Map& map);
+
+
+	Entity(sf::Vector2f size, int hp, Map& map);
 
 	virtual void update(float deltaTime) = 0;
 	virtual void draw(sf::RenderWindow& window) = 0;
+	virtual void anim(float deltatime) = 0;
+
 
 	float getFov() const;
 	float getOrientation() const;
@@ -29,14 +33,19 @@ public:
 
 protected:
 
+
 	sf::Vector2f m_direction = { 0, 0 };
 
+
+
+	sf::Texture m_texture;
+	sf::Sprite m_sprite;
 	sf::RectangleShape m_shape;
 	sf::Sprite m_sprite;
 	sf::Texture m_texture;
 	sf::Texture m_texture1;
 	sf::RectangleShape m_base;
-	int m_size;
+	sf::Vector2f m_size;
 	int m_hp;
 
 	Map& m_map;

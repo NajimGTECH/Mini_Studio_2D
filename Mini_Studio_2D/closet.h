@@ -9,6 +9,6 @@ public:
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 	void push(Player& player);
-
+	void anim(float deltaTime) override;
 };
 

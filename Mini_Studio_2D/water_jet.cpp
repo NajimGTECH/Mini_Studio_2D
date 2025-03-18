@@ -2,23 +2,43 @@
 
 //* WATER JET *\\
 
-WaterJet::WaterJet(int size, int health, Map& map, Entity* owner) : Entity(size, health, map)
+WaterJet::WaterJet(sf::Vector2f size, int health, Map& map, Entity* owner) : Entity(size, health, map)
 {
 		m_owner = owner;
 }
 
-void WaterJet::update(float deltaTime) 
+void WaterJet::update(float deltaTime)
 {
-		// Update the position of the water jet
+	
+	bool joystickMoved = sf::Joystick::getAxisPosition(0, sf::Joystick::U) > 50 || sf::Joystick::getAxisPosition(0, sf::Joystick::U) < -50 ||
+		sf::Joystick::getAxisPosition(0, sf::Joystick::V) > 50 || sf::Joystick::getAxisPosition(0, sf::Joystick::V) < -50;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || joystickMoved)
 	{
-		sf::Vector2i mousePosition = sf::Mouse::getPosition();
 		sf::Vector2f playerPosition = m_owner->getShape().getPosition() + m_owner->getShape().getSize() / 2.f;
+		sf::Vector2f direction;
 
-		m_direction = getDirectionFromPlayerToMouse(playerPosition, mousePosition);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			
+			sf::Vector2i mousePosition = sf::Mouse::getPosition();
+			direction = getDirectionFromPlayerToMouse(playerPosition, mousePosition);
+		}
+		else
+		{
+			float joystickU = sf::Joystick::getAxisPosition(0, sf::Joystick::U);
+			float joystickV = sf::Joystick::getAxisPosition(0, sf::Joystick::V);
 
-		//std::cout << "Water jet used:\t" << m_owner->getDirection().x << ", " << m_owner->getDirection().y << std::endl;
+			direction = sf::Vector2f(joystickU, joystickV);
+			float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+			if (length != 0)
+			{
+				direction /= length;
+			}
+		}
+
+
+		m_direction = direction;
 		m_isActive = true;
 		newDroplet(deltaTime);
 	}
@@ -29,7 +49,6 @@ void WaterJet::update(float deltaTime)
 
 	for (int i = m_waterDroplets.size() - 1; i >= 0; i--) {
 		auto drop = m_waterDroplets[i];
-		//std::cout << "POS: " << drop->getShape().getPosition().x << ", " << drop->getShape().getPosition().y << std::endl;
 		if (drop->getShape().getPosition().y >= 2000 || drop->isCollisionDetected()) {
 			drop.reset();
 			m_waterDroplets.erase(m_waterDroplets.begin() + i);
@@ -38,9 +57,8 @@ void WaterJet::update(float deltaTime)
 			drop->update(deltaTime);
 		}
 	}
-
-	std::cout << m_waterDroplets.size() << std::endl;
 }
+
 
 void WaterJet::draw(sf::RenderWindow & window) {
 	// Draw the water jet
@@ -97,7 +115,7 @@ void WaterJet::newDroplet(float deltaTime)
 
 //* WATER DROPLETS *\\
 
-WaterDroplet::WaterDroplet(Map& map): Entity(10, -1, map)
+WaterDroplet::WaterDroplet(Map& map): Entity(sf::Vector2f(10,10), -1, map)
 {
 	shape.setFillColor(sf::Color(0, 255, 255, 255));
 	shape.setRadius(5);
@@ -201,4 +219,12 @@ bool WaterDroplet::isCollisionDetected()
 		}
 	}
 	return false;
+}
+
+void WaterJet::anim(float deltaTime)
+{
+}
+
+void WaterDroplet::anim(float deltaTime) {
+
 }

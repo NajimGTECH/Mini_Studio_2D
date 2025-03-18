@@ -45,3 +45,8 @@ void Lamp::illuminate() {
 	fov_Vizualisation.clear();
 	fov_Vizualisation.append(sf::Vertex(getSprite().getPosition() + sf::Vector2f(10, 30), sf::Color(255, 0, 0, 100)));
 }
+}
+
+void Lamp::anim(float deltaTime)
+{
+}

@@ -11,12 +11,13 @@
 class Player : public Entity
 {
 public:
-	Player(int size, int health, Map& map);
+	Player(sf::Vector2f size, int health, Map& map);
 
 	int direction = 0;
 
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
+	void anim(float deltatime) override;
 
 	void jump(float deltaTime);
 
@@ -27,6 +28,8 @@ public:
 	bool getE() const;
 	void reverseE();
 
+	bool isMoving();
+
 	void setYVelocity(sf::Vector2f newVelocity);
 	void canJump(bool canJump);
 
@@ -35,12 +38,20 @@ private:
 	bool checkIfGrounded();
 
 private:
+	
+	sf::Vector2f m_coeffAnim;
+
+	bool m_hasBag = false;
+
+	float m_scaling = 0.6;
 
 	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 
-	float m_jumpPower = 700.f;
-	float m_speed = 500.f;
+	float m_jumpPower = 900.f;
+	sf::Vector2i m_animVect = sf::Vector2i(0, 0);
 
+	float m_speed = 500.f;
+	sf::Clock m_animC;
 	bool m_canJump = false;
 	bool m_walkSide = false;
 

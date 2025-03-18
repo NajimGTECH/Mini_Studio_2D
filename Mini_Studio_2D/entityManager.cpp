@@ -1,7 +1,7 @@
 #include "entityManager.h"
-#include "player.h"
 
-EntityManager::EntityManager(Map& map): player(std::make_shared<Player>(100, 10, map)) {
+EntityManager::EntityManager(Map& map) {
+	player = std::make_shared<Player>(sf::Vector2f(100,170), 10, map);
 	m_font.loadFromFile("Assets/Font/digit.ttf");
 
 	std::vector<sf::Vector2f> buttonPositions = {
@@ -46,6 +46,7 @@ EntityManager::EntityManager(Map& map): player(std::make_shared<Player>(100, 10,
         m_buttons.push_back(std::move(button));
     }
 }
+
 
 void EntityManager::ButtonCheck(Map& map, float deltaTime) {
     for (auto& button : map.getAllButtons()) {
@@ -139,7 +140,7 @@ void EntityManager::displayTerminal(sf::RenderWindow& window, Map& map) {
 
     cdelay--;
 
-    std::cout << selectedButton << std::endl;
+    //std::cout << selectedButton << std::endl;
 
 
     for (auto& button : m_buttons) {

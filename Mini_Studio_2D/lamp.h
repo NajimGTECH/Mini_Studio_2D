@@ -16,5 +16,6 @@ public:
 
 private:
 	Entity* m_owner;
+	void anim(float deltaTime) override;
 };
 

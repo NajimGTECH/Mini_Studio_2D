@@ -1,9 +1,9 @@
 #include "entity.h"
 
-Entity::Entity(int size, int hp, Map& map) : m_size(size), m_hp(hp), m_map(map)
+Entity::Entity(sf::Vector2f size, int hp, Map& map) : m_size(size), m_hp(hp), m_map(map)
 {
 
-	m_shape.setSize(sf::Vector2f(m_size, size));
+	m_shape.setSize(m_size);
 	m_shape.setFillColor(sf::Color::Green);
 }
 

@@ -22,3 +22,7 @@ void Desk::push(Player& player) {
 		}
 	}
 }
+
+void Desk::anim(float deltaTime)
+{
+}

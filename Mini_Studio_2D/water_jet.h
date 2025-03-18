@@ -9,10 +9,11 @@ class WaterDroplet;
 
 class WaterJet : public Entity {
 public:
-	WaterJet(int s, int h, Map& map, Entity* owner);
+	WaterJet(sf::Vector2f s, int h, Map& map, Entity* owner);
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 	void newDroplet(float deltaTime);
+	void anim(float deltaTime) override;
 
 private:
 
@@ -43,6 +44,8 @@ public:
 	void decreseDirection(float deltaTime); //thread
 
 	bool isCollisionDetected(); //checks if shape touches the walls
+
+	void anim(float deltaTime) override;
 
 public:
 	sf::CircleShape shape;

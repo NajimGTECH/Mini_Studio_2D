@@ -96,6 +96,22 @@
     <ClCompile Include="menu_manager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+
+    <ClCompile Include="button.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="door.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="entityManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="npc.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogue_box.cpp">
+      <Filter>Fichiers sources</Filter>
+
     <ClCompile Include="entityManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -116,6 +132,7 @@
     </ClCompile>
     <ClCompile Include="stain.cpp">
       <Filter>Fichiers sources\map related</Filter>
+
     </ClCompile>
     <ClCompile Include="button.cpp">
       <Filter>Fichiers sources</Filter>
@@ -152,6 +169,22 @@
     <ClInclude Include="menu_manager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+
+    <ClInclude Include="button.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="entityManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="npc.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogue_box.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+
     <ClInclude Include="entityManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -175,6 +208,7 @@
     <ClInclude">
     <ClInclude Include="stain.h">
       <Filter>Fichiers d%27en-tête\map related</Filter>
+
     </ClInclude>
     <ClInclude Include="button.h">
       <Filter>Fichiers d%27en-tête</Filter>
