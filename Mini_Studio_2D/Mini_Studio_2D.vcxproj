@@ -152,6 +152,7 @@
     <ClCompile Include="dialogue_box.cpp" />
     <ClCompile Include="digit.cpp" />
     <ClCompile Include="door.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entityManager.cpp" />
     <ClCompile Include="game.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="dialogue_box.h" />
     <ClInclude Include="digit.h" />
     <ClInclude Include="door.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
     <ClInclude Include="game.h" />

@@ -120,10 +120,10 @@ void Player::update(float deltaTime)
 
 void Player::draw(sf::RenderWindow& window)
 {
-	window.draw(m_shape);
+	//window.draw(m_shape);
 	window.draw(m_sprite);
 	m_base.setFillColor(sf::Color::Blue);
-	window.draw(m_base);
+	//window.draw(m_base);
 
 	//draw loop for the player tools
 	for (auto& tool : m_tools)
