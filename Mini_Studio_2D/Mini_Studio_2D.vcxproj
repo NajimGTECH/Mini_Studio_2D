@@ -143,16 +143,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="backpack.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="chair.cpp" />
     <ClCompile Include="closet.cpp" />
     <ClCompile Include="desk.cpp" />
-
     <ClCompile Include="dialogue_box.cpp" />
-
     <ClCompile Include="digit.cpp" />
-
     <ClCompile Include="door.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entityManager.cpp" />
@@ -175,16 +173,14 @@
     <ClCompile Include="water_jet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="backpack.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="chair.h" />
     <ClInclude Include="closet.h" />
     <ClInclude Include="desk.h" />
-
     <ClInclude Include="dialogue_box.h" />
-
     <ClInclude Include="digit.h" />
-
     <ClInclude Include="door.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />

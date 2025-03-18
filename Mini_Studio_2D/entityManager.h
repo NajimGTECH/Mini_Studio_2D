@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector> // Include vector header
 
+#include "backpack.h"
 #include "player.h"
 #include "map.h"
 #include "digit.h"
@@ -15,6 +16,7 @@ private:
 public:
 	sf::Text code;
 	std::shared_ptr<Player> player;
+	std::shared_ptr<Backpack> backpack;
 
 	EntityManager(Map& map);
 

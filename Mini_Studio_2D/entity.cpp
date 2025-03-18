@@ -11,6 +11,9 @@ sf::RectangleShape& Entity::getShape() {
 	return m_shape;
 }
 
+sf::Sprite& Entity::getSprite() {
+	return  m_sprite;
+}
 
 sf::RectangleShape& Entity::getBase() {
 	return m_base;
@@ -19,6 +22,11 @@ sf::RectangleShape& Entity::getBase() {
 sf::Vector2f Entity::getDirection()
 {
 	return m_direction;
+}
+
+bool Entity::hasBag()
+{
+	return m_hasBag;
 }
 
 bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)

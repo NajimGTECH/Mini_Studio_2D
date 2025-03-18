@@ -28,7 +28,7 @@ void MenuManager::handleEvents(float deltaTime) {
                     menu.startGame = true; // Indique que le jeu doit commencer
 
                     if (!m_map.loaded) {
-                        m_map.createMap(1);
+                        m_map.createMap(m_map.currentLevel);
                         m_map.loaded = true;
                         std::cout << "map loaded" << std::endl;
                     }

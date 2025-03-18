@@ -21,6 +21,8 @@ public:
 
 	void jump(float deltaTime);
 
+	void obtainBag();
+
 	sf::Vector2f getYVelocity();
 	float getSpeed();
 	bool isJumping();
@@ -37,8 +39,6 @@ private:
 private:
 	
 	sf::Vector2f m_coeffAnim;
-
-	bool m_hasBag = false;
 
 	float m_scaling = 0.6;
 

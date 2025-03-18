@@ -11,7 +11,6 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 	auto waterJet = std::make_shared<WaterJet>(sf::Vector2f(0, 0), -1, map, this);
 	m_tools.push_back(waterJet);
 
-	
 
 	if (m_hasBag) {
 		m_coeffAnim = sf::Vector2f(214, 328);
@@ -22,7 +21,7 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 	}
 	else {
 		m_coeffAnim = sf::Vector2f(175, 356);
-		m_scaling = 0.3;
+		m_scaling = 0.35;
 		if (!m_texture.loadFromFile("Assets/Player/spritesheet_nobag.png")) {
 			return;
 		}
@@ -35,6 +34,22 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 
 void Player::update(float deltaTime)
 {
+
+	if (m_hasBag) {
+		m_coeffAnim = sf::Vector2f(214, 328);
+		m_scaling = 0.4;
+		if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
+			return;
+		}
+	}
+	else {
+		m_coeffAnim = sf::Vector2f(175, 356);
+		m_scaling = 0.35;
+		if (!m_texture.loadFromFile("Assets/Player/spritesheet_nobag.png")) {
+			return;
+		}
+	}
+
 	sf::Vector2f moveVelocity = { 0.f, 0.f };
 	m_direction = { 0.f, 0.f };
 
@@ -105,10 +120,10 @@ void Player::update(float deltaTime)
 
 void Player::draw(sf::RenderWindow& window)
 {
-	//window.draw(m_shape);
+	window.draw(m_shape);
 	window.draw(m_sprite);
 	m_base.setFillColor(sf::Color::Blue);
-	//window.draw(m_base);
+	window.draw(m_base);
 
 	//draw loop for the player tools
 	for (auto& tool : m_tools)
@@ -148,6 +163,11 @@ void Player::jump(float deltaTime)
 
 		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 	}
+}
+
+void Player::obtainBag()
+{
+	m_hasBag = true;
 }
 
 sf::Vector2f Player::getYVelocity()

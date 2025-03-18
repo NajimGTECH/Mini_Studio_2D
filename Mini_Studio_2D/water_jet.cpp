@@ -13,7 +13,7 @@ void WaterJet::update(float deltaTime)
 	bool joystickMoved = sf::Joystick::getAxisPosition(0, sf::Joystick::U) > 50 || sf::Joystick::getAxisPosition(0, sf::Joystick::U) < -50 ||
 		sf::Joystick::getAxisPosition(0, sf::Joystick::V) > 50 || sf::Joystick::getAxisPosition(0, sf::Joystick::V) < -50;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || joystickMoved)
+	if ((sf::Mouse::isButtonPressed(sf::Mouse::Left) || joystickMoved) && m_owner->hasBag())
 	{
 		sf::Vector2f playerPosition = m_owner->getShape().getPosition() + m_owner->getShape().getSize() / 2.f;
 		sf::Vector2f direction;

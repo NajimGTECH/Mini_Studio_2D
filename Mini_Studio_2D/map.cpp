@@ -10,7 +10,7 @@ Map::Map()
 
 void Map::createMap(int levelIndex) {
 
-	currentLevel++;
+	std::cout << levelIndex;
 
 	m_mapFile.close();
 	m_codeFile.close();
@@ -23,6 +23,7 @@ void Map::createMap(int levelIndex) {
 	allDoors.clear();
 	allTerminals.clear();
 	allStains.clear();
+	allNPCs.clear();
 
 	if (!m_mapFile) {
 		std::cerr << "unable to open map file";

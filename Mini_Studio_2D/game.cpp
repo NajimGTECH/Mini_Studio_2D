@@ -31,10 +31,15 @@ void Game::run() {
 
 		window.clear();
 
-		if (manager.player->getShape().getPosition().x > 1950) 
+		if (manager.player->getShape().getPosition().x > 1950 || manager.player->getShape().getPosition().y > 1100)
 		{
-			map.createMap(map.currentLevel + 1);
+			map.currentLevel++;
+			map.createMap(map.currentLevel);
 			map.loaded = true;
+			if (map.currentLevel == 1) {
+				manager.player->getShape().setPosition(700, -100);
+			}
+			else
 			manager.player->getShape().setPosition(100, 700);
 		}
 
@@ -79,6 +84,17 @@ void Game::run() {
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
+			if (map.currentLevel == 0) {
+				if (manager.backpack) {
+					manager.backpack->update(deltaTime);
+
+					manager.backpack->draw(window);
+					if (manager.player->getShape().getGlobalBounds().intersects(manager.backpack->getSprite().getGlobalBounds())) {
+						manager.backpack.reset();
+						manager.player->obtainBag();
+					}
+				}
+			}
 			if (!m_terminal) {
 				manager.player->update(deltaTime);
 			}

@@ -19,8 +19,11 @@ public:
 
 	sf::RectangleShape& getShape();
 	sf::RectangleShape& getBase();
+	sf::Sprite& getSprite();
 	sf::Vector2f getDirection();
 
+
+	bool hasBag();
 	bool isCollisionDetected(sf::Vector2f targetVelocity);
 
 protected:
@@ -28,7 +31,7 @@ protected:
 
 	sf::Vector2f m_direction = { 0, 0 };
 
-
+	bool m_hasBag = false;
 
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;

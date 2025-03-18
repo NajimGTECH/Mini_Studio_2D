@@ -1,7 +1,8 @@
 #include "entityManager.h"
 
 EntityManager::EntityManager(Map& map) {
-	player = std::make_shared<Player>(sf::Vector2f(50,100), 10, map);
+	player = std::make_shared<Player>(sf::Vector2f(75,130), 10, map);
+    backpack = std::make_shared<Backpack>(map);
 	m_font.loadFromFile("Assets/Font/digit.ttf");
 
 	std::vector<sf::Vector2f> buttonPositions = {
