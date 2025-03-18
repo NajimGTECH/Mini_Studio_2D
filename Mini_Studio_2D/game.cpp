@@ -35,7 +35,7 @@ void Game::run() {
 		{
 			map.createMap(map.currentLevel + 1);
 			map.loaded = true;
-			manager.player->getShape().setPosition(100, 500);
+			manager.player->getShape().setPosition(100, 700);
 		}
 
 		deltaTime = clock.restart().asSeconds();
