@@ -1,6 +1,6 @@
 #include "chair.h"
 
-Chair::Chair(int s, int h, Map& map) : Entity(s, h, map){
+Chair::Chair(sf::Vector2f size, int h, Map& map) : Entity(size, h, map){
 	m_texture.loadFromFile("Assets/Fournitures/chair.png");
 	m_sprite.setTexture(m_texture);
 	m_sprite.setScale(0.3f, 0.3f);
@@ -24,3 +24,5 @@ void Chair::push(Player& player) {
 		}
 	}
 }
+
+void Chair::anim(float deltaTime){}

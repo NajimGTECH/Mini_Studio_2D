@@ -1,4 +1,5 @@
 #include "entityManager.h"
+#include "player.h"
 
 EntityManager::EntityManager(Map& map) {
 	player = std::make_shared<Player>(sf::Vector2f(100,170), 10, map);

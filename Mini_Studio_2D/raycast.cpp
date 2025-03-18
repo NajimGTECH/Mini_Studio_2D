@@ -1,7 +1,7 @@
 #include "raycast.h"
 
 #define PI 3.14159265
-#define NUM_RAYS 10 // Définir le nombre de rayons souhaité
+#define NUM_RAYS 550 // Définir le nombre de rayons souhaité
 
 sf::Vector2f operator-(const sf::Vector2f& vector, float value)
 {
@@ -100,7 +100,7 @@ void Raycast::renderRay(Map& map)
 
             if (gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18)
             {
-                if (!map.isWalkable(gridX, gridY))
+                if (map.isSolid(gridX, gridY))
                 {
                     isTileFound = true;
                 }

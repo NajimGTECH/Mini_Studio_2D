@@ -4,7 +4,7 @@
 
 class Closet : public Entity{
 public:
-	Closet(int s, int h, Map& map);
+	Closet(sf::Vector2f s, int h, Map& map);
 
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;

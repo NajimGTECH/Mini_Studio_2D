@@ -5,7 +5,7 @@
 
 class Lamp : public Entity{
 public:
-	Lamp(int s, int h, Map& map, Entity* owner);
+	Lamp(sf::Vector2f s, int h, Map& map, Entity* owner);
 
 	Raycast raycast;
 	sf::VertexArray fov_Vizualisation;

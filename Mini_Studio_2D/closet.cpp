@@ -1,6 +1,6 @@
 #include "closet.h"
 
-Closet::Closet(int s, int h, Map& map) : Entity(s, h, map) {
+Closet::Closet(sf::Vector2f s, int h, Map& map) : Entity(s, h, map) {
 	m_texture.loadFromFile("Assets/Fournitures/closet.png");
 	m_sprite.setTexture(m_texture);
 	m_sprite.setPosition(500, 400);
@@ -23,8 +23,6 @@ void Closet::push(Player& player) {
 			m_shape.move(-1, 0);
 		}
 	}
-}
-	window.draw(m_shape);
 }
 
 void Closet::anim(float deltaTime)

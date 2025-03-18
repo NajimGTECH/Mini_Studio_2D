@@ -36,12 +36,8 @@ protected:
 
 	sf::Vector2f m_direction = { 0, 0 };
 
-
-
-	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::RectangleShape m_shape;
-	sf::Sprite m_sprite;
 	sf::Texture m_texture;
 	sf::Texture m_texture1;
 	sf::RectangleShape m_base;

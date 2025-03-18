@@ -10,9 +10,9 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 
 	auto waterJet = std::make_shared<WaterJet>(sf::Vector2f(0, 0), -1, map, this);
 	m_tools.push_back(waterJet);
-	auto lamp = std::make_shared<Lamp>(0, -1, map, this);
+	auto lamp = std::make_shared<Lamp>(sf::Vector2f(0,0), -1, map, this);
 	m_tools.push_back(lamp);
-}
+
 
 	
 

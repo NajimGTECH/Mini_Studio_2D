@@ -1,6 +1,6 @@
 #include "desk.h"
 
-Desk::Desk(int s, int h, Map& map) : Entity(s, h, map) {
+Desk::Desk(sf::Vector2f s, int h, Map& map) : Entity(s, h, map) {
 	m_texture.loadFromFile("Assets/Fournitures/desk.png");
 	m_sprite.setTexture(m_texture);
 	m_sprite.setPosition(500, 400);

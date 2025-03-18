@@ -11,16 +11,15 @@ void Game::run() {
 	Map map;
 	EntityManager manager(map);
 
-	Closet closet(60, 60, map);
+	/*Closet closet(60, 60, map);
 	Desk desk(60, 60, map);
 	Box box(60, 60, map);
 	BookShelf bookShelf(60, 60, map);
 	Chair chair(60, 60, map);
-	Shelf shelf(60, 60, map);
+	Shelf shelf(60, 60, map);*/
 	Menu menu(1920, 1080);
 	MenuManager menuManager(window, menu, map);
 
-	EntityManager manager(map);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
@@ -37,6 +36,7 @@ void Game::run() {
 	while (window.isOpen()) {
 
 		window.clear();
+		deltaTime = clock.restart().asSeconds();
 
 		if (manager.player->getShape().getPosition().x > 1950) 
 		{
@@ -45,7 +45,7 @@ void Game::run() {
 			manager.player->getShape().setPosition(100, 700);
 		}
 
-		deltaTime = clock.restart().asSeconds();
+		
 
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -81,7 +81,7 @@ void Game::run() {
 		}
 
 
-		manager.player->update(deltaTime);
+		
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
 			menub = false;
@@ -105,9 +105,8 @@ void Game::run() {
 			menuManager.handleEvents(deltaTime);
 		}
 
-		window.clear();
+		
 		map.displayMap(window);
-		manager.player->draw(window);
 		/*closet.draw(window);
 		desk.draw(window);*/
 		/*box.draw(window);*/
