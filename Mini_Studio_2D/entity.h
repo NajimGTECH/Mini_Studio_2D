@@ -15,8 +15,6 @@ public:
 
 	float getFov() const;
 	float getOrientation() const;
-	bool getE() const;
-	bool reverseE();
 
 	sf::RectangleShape& getShape();
 	sf::RectangleShape& getBase();

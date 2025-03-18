@@ -22,8 +22,10 @@ public:
 
 	sf::Vector2f getYVelocity();
 	float getSpeed();
-	bool getWalkSide();
 	bool isJumping();
+	bool getWalkSide() const;
+	bool getE() const;
+	void reverseE();
 
 	void setYVelocity(sf::Vector2f newVelocity);
 	void canJump(bool canJump);
@@ -40,10 +42,10 @@ private:
 	float m_speed = 500.f;
 
 	bool m_canJump = false;
+	bool m_walkSide = false;
 
 	std::vector<std::shared_ptr<Entity>> m_tools;
-	bool m_walkSide = false;
-;
+
 	Gravity m_gravity;
 	std::mutex m_mutex; //used to make player threads safe
 };

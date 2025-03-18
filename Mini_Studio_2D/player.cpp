@@ -22,6 +22,7 @@ void Player::update(float deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30)
 	{
 		m_walkSide = true;
+		std::cout << "droite" << m_walkSide << std::endl;
 		moveVelocity = { deltaTime * m_speed, 0.f };
 		m_direction += { 1.f, 0.f };
 		if (!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
@@ -32,6 +33,7 @@ void Player::update(float deltaTime)
 		moveVelocity = { deltaTime * -m_speed, 0.f }; 
 		m_direction += { -1.f, 0.f };
 		m_walkSide = false;
+		std::cout << "gauche" << m_walkSide << std::endl;
 		moveVelocity = { deltaTime * -m_speed, 0.f };
 		if(!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
@@ -132,13 +134,21 @@ float Player::getSpeed()
 	return m_speed;
 }
 
-bool Player::getWalkSide() {
-	return m_walkSide;
-}
-
 bool Player::isJumping()
 {
 	return m_canJump;
+}
+
+bool Player::getWalkSide() const {
+	return m_walkSide;
+}
+
+bool Player::getE() const {
+	return E;
+}
+
+void Player::reverseE() {
+	E = !E;
 }
 
 void Player::setYVelocity(sf::Vector2f newVelocity)

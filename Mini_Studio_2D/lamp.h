@@ -10,7 +10,6 @@ public:
 	Raycast raycast;
 	sf::VertexArray fov_Vizualisation;
 
-
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 	void illuminate();

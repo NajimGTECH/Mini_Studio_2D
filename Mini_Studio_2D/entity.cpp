@@ -47,15 +47,6 @@ float Entity::setOrientation(float orientation) {
 	return m_orientation;
 }
 
-bool Entity::getE() const {
-	return E;
-}
-
-bool Entity::reverseE() {
-	E = !E;
-	return E;
-}
-
 
 bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)
 {
