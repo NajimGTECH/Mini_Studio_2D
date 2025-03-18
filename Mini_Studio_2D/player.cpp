@@ -6,7 +6,7 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 	m_shape.setPosition(500, 300);
 	m_base.setSize(sf::Vector2f(m_shape.getSize().x * 0.9f, m_shape.getSize().y / 10.f));
 
-	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x / 7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y);
+	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x / 7.f, m_shape.getPosition().y + m_shape.getSize().y*1.5 - m_base.getSize().y);
 
 	auto waterJet = std::make_shared<WaterJet>(sf::Vector2f(0, 0), -1, map, this);
 	m_tools.push_back(waterJet);
@@ -15,14 +15,14 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 
 	if (m_hasBag) {
 		m_coeffAnim = sf::Vector2f(214, 328);
-		m_scaling = 0.6;
+		m_scaling = 0.4;
 		if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
 			return;
 		}
 	}
 	else {
 		m_coeffAnim = sf::Vector2f(175, 356);
-		m_scaling = 0.5;
+		m_scaling = 0.3;
 		if (!m_texture.loadFromFile("Assets/Player/spritesheet_nobag.png")) {
 			return;
 		}
@@ -75,7 +75,7 @@ void Player::update(float deltaTime)
 	}
 
 	m_shape.setPosition(m_shape.getPosition() + m_yVelocity);
-	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x / 7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y + 5);
+	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x / 7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y + 10);
 
 	if (checkIfGrounded())
 	{
@@ -98,7 +98,7 @@ void Player::update(float deltaTime)
 		tool->update(deltaTime);
 	}
 
-	m_sprite.setPosition(m_shape.getPosition());
+	m_sprite.setPosition(m_shape.getPosition().x, m_shape.getPosition().y + 5);
 	m_sprite.setTextureRect(sf::IntRect(m_animVect.x * m_coeffAnim.x, m_animVect.y * m_coeffAnim.y, m_coeffAnim.x, m_coeffAnim.y));
 	anim(deltaTime);
 }
@@ -108,7 +108,7 @@ void Player::draw(sf::RenderWindow& window)
 	//window.draw(m_shape);
 	window.draw(m_sprite);
 	m_base.setFillColor(sf::Color::Blue);
-	window.draw(m_base);
+	//window.draw(m_base);
 
 	//draw loop for the player tools
 	for (auto& tool : m_tools)
