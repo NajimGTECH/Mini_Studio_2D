@@ -11,14 +11,20 @@ MapElements::MapElements(float x, float y, float width, float height, int id) : 
 	m_text.setFillColor(sf::Color::White);
 }
 
-void MapElements::draw(sf::RenderWindow& window) {
-	window.draw(m_text);
-	window.draw(shape);
+void MapElements::draw(sf::RenderWindow& window) 
+{
+
+	if (!isTransparent)
+	{
+		window.draw(m_text);
+		window.draw(shape);
+	}
+
 }
 
 void MapElements::openDoor() {
 	std::cout << "door is open" << std::endl;
-	shape.move(0, -200);
+	isTransparent = false;
 }
 
 void MapElements::washStain()

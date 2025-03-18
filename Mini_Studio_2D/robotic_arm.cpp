@@ -7,7 +7,7 @@ RoboticArm::RoboticArm(sf::Vector2f size, int health, Map& map, Entity* owner) :
 	m_hand.setPosition(m_owner->getShape().getPosition() + (m_owner->getShape().getSize() / 4.f));
 }
 
-void RoboticArm::update(float deltaTime) 
+void RoboticArm::update(float deltaTime)
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 	{

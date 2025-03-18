@@ -15,15 +15,12 @@ public:
 	bool opened = false;
 
 	int id;
-
+	bool isTransparent = true;
 	float x, y, width, height;
 
 
 
 	virtual void draw(sf::RenderWindow& window); 
-	
-	
-
 
 	void openDoor();
 	void washStain();
