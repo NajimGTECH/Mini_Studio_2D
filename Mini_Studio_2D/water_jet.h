@@ -9,7 +9,8 @@ class WaterDroplet;
 
 class WaterJet : public Entity {
 public:
-	WaterJet(sf::Vector2f s, int h, Map& map, Entity* owner);
+	WaterJet(sf::Vector2f size, int health, Map& map, Entity* owner);
+
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 	void newDroplet(float deltaTime);
@@ -20,6 +21,7 @@ private:
 	sf::Vector2f getDirectionFromPlayerToMouse(const sf::Vector2f& playerPosition, const sf::Vector2i& mousePosition);
 
 private:
+
 	Entity* m_owner;
 
 	std::vector<std::shared_ptr<WaterDroplet>> m_waterDroplets;

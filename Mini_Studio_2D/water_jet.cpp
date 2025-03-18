@@ -118,7 +118,7 @@ void WaterJet::newDroplet(float deltaTime)
 WaterDroplet::WaterDroplet(Map& map): Entity(sf::Vector2f(10,10), -1, map)
 {
 	shape.setFillColor(sf::Color(0, 255, 255, 255));
-	shape.setRadius(5);
+	shape.setRadius(3);
 	owner = nullptr;
 }
 
