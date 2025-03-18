@@ -14,7 +14,6 @@ void Game::run() {
 	Map map;
 	EntityManager manager(map);
 
-	Lamp lamp(60, 60, map);
 	Closet closet(60, 60, map);
 	Desk desk(60, 60, map);
 	Box box(60, 60, map);
@@ -53,7 +52,7 @@ void Game::run() {
 			}
 			if (event.type == sf::Event::KeyReleased) {
 				if (event.key.code == sf::Keyboard::E) {
-					lamp.illuminate(map);
+					/*manager.player->.illuminate();*/
 				}
 			}
 		}
@@ -68,8 +67,6 @@ void Game::run() {
 
 
 		manager.player->update(deltaTime);
-		lamp.raycast.attachedEntity = &lamp;
-		lamp.update(deltaTime);
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
 			menub = false;
@@ -96,7 +93,6 @@ void Game::run() {
 		window.clear();
 		map.displayMap(window);
 		manager.player->draw(window);
-		lamp.draw(window);
 		/*closet.draw(window);
 		desk.draw(window);*/
 		/*box.draw(window);*/

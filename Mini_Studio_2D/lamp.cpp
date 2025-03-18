@@ -6,6 +6,7 @@ Lamp::Lamp(int s, int h, Map& map, Entity* owner) : Entity(s, h, map) {
 	m_sprite.setTexture(m_texture);
 	m_sprite.setScale(2.0f, 2.0f);
 	m_sprite.setPosition(100, 100);
+	raycast.attachedEntity = this;
 	fov_Vizualisation = sf::VertexArray(sf::TriangleFan, 0);
 	m_owner = owner;
 }
@@ -17,18 +18,18 @@ void Lamp::update(float deltaTime) {
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		m_sprite.setTexture(m_texture1); // Changer la texture de la lampe
-		m_sprite.setPosition(m_owner->getSprite().getPosition().x - 20, m_owner->getSprite().getPosition().y); // Déplacez la lampe vers la gauche
+		m_sprite.setPosition(m_owner->getShape().getPosition().x - 50, m_owner->getShape().getPosition().y); // Déplacez la lampe vers la gauche
 		raycast.attachedEntity->setOrientation(180.0f); // Mettre à jour l'orientation de l'entité
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 		m_sprite.setTexture(m_texture); // Changer la texture de la lampe
-		m_sprite.setPosition(m_owner->getSprite().getPosition().x + 20, m_owner->getSprite().getPosition().y); // Déplacez la lampe vers la droite
+		m_sprite.setPosition(m_owner->getShape().getPosition().x + 100, m_owner->getShape().getPosition().y); // Déplacez la lampe vers la droite
 		raycast.attachedEntity->setOrientation(360.0f); // Mettre à jour l'orientation de l'entité
 	}
 }
 
 void Lamp::draw(sf::RenderWindow& window) {
-	if (E) {
+	if (!E) {
 		window.draw(m_sprite);
 		window.draw(fov_Vizualisation);
 	}

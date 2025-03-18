@@ -11,6 +11,7 @@ Player::Player(int size, int health, Map& map) : Entity(size, health, map)
 	auto waterJet = std::make_shared<WaterJet>(0, -1, map, this);
 	m_tools.push_back(waterJet);
 	auto lamp = std::make_shared<Lamp>(0, -1, map, this);
+	m_tools.push_back(lamp);
 }
 
 void Player::update(float deltaTime)
