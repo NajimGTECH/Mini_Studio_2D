@@ -28,6 +28,8 @@ public:
 	void ButtonCheck(Map& map, float deltaTime);
 	bool TerminalCheck(Map& map);
 
+	void deathCheck(Map& map);
+
 	void displayTerminal(sf::RenderWindow& window, Map&);
 
 };

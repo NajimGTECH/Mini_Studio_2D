@@ -44,6 +44,8 @@ void Game::run() {
 			manager.player->getShape().setPosition(100, 700);
 		}
 
+		manager.deathCheck(map);
+
 		deltaTime = clock.restart().asSeconds();
 
 		sf::Event event;

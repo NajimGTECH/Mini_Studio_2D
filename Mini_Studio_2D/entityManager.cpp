@@ -122,6 +122,20 @@ bool EntityManager::TerminalCheck(Map& map) {
     return false;
 }
 
+void EntityManager::deathCheck(Map& map) {
+    for (auto enemy : enemies) {
+        if (player->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
+            map.createMap(map.currentLevel);
+            generate(map, map.currentLevel);
+            if (map.currentLevel == 1) {
+                player->getShape().setPosition(700, -100);
+            }
+            else
+                player->getShape().setPosition(100, 700);
+        }
+    }
+}
+
 void EntityManager::displayTerminal(sf::RenderWindow& window, Map& map) {
     static sf::Texture terminalT, terminalGoodT, terminalBadT;
     static bool texturesLoaded = false;
