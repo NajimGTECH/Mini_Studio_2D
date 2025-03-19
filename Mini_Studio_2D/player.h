@@ -43,7 +43,7 @@ private:
 
 	float m_jumpPower = 900.f;
 
-	float m_speed = 500.f;
+
 
 	bool m_canJump = false;
 

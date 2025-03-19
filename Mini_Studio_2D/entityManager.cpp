@@ -62,7 +62,7 @@ void EntityManager::generate(Map& map, int levelIndex)
     while (m_mapFile.get(ch)) {
         switch (ch)
         {
-        case 'E': enemies.push_back(std::make_shared<Enemy>(sf::Vector2f(x, y), sf::Vector2f(x + 400,y), map)); x += 60; i++; break;
+        case 'E': enemies.push_back(std::make_shared<Enemy>(sf::Vector2f(x, y - 30),  map)); x += 60; i++; break;
         case '#':  x += 60; i++; break;
         case 'D':  x += 60; i++; break;
         case 'B':  x += 60; i++; break;

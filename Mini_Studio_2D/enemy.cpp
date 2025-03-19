@@ -1,7 +1,8 @@
 #include "enemy.h"
 
-Enemy::Enemy(sf::Vector2f start, sf::Vector2f end, Map& map) : startpos(start), endpos(end), Entity(sf::Vector2f(96,125), 1, map)
+Enemy::Enemy(sf::Vector2f start , Map& map) : startpos(start), Entity(sf::Vector2f(96,125), 1, map)
 {
+	m_speed = 300.f;
 	m_scaling = 1;
 
 	m_coeffAnim = sf::Vector2f(96, 124);
@@ -16,26 +17,29 @@ Enemy::Enemy(sf::Vector2f start, sf::Vector2f end, Map& map) : startpos(start), 
 
 void Enemy::update(float deltaTime)
 {
-	if (isMovingRight && m_sprite.getPosition().x > endpos.x) {
-		isMovingRight = false;
-		
-	}
-	else if (!isMovingRight && m_sprite.getPosition().x < startpos.x) {
-		isMovingRight = true;
+	m_shape.setSize(sf::Vector2f(96, 124));
+	m_shape.setPosition(m_sprite.getPosition());
 
+	if (isMovingRight && isCollisionDetected(sf::Vector2f(deltaTime * m_speed, 0))) {
+		isMovingRight = false;
+	}
+	else if (!isMovingRight && isCollisionDetected(sf::Vector2f(deltaTime * -m_speed, 0))) {
+		isMovingRight = true;
 	}
 
 	if (isMovingRight) {
 		m_sprite.move(1, 0);
 		m_sprite.setScale(m_scaling, m_scaling);
+		m_sprite.setOrigin(0, 0);
 	}
 	else {
 		m_sprite.move(-1, 0);
 		m_sprite.setScale(-m_scaling, m_scaling);
+		m_sprite.setOrigin(96, 0);
 	}
 	m_sprite.setTextureRect(sf::IntRect(m_animVect.x * m_coeffAnim.x, m_animVect.y * m_coeffAnim.y, m_coeffAnim.x, m_coeffAnim.y));
 
-
+	std::cout << isCollisionDetected(sf::Vector2f(2, 0)) << std::endl;
 	anim(deltaTime);
 }
 

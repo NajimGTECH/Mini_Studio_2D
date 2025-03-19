@@ -5,7 +5,7 @@ class Enemy : public Entity
 {
 public:
 	
-	Enemy(sf::Vector2f start, sf::Vector2f end, Map& map);
+	Enemy(sf::Vector2f start, Map& map);
 
 	void update(float deltaTime) override;
 

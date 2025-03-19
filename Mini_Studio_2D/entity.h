@@ -28,6 +28,7 @@ public:
 
 protected:
 
+	float m_speed;
 	sf::Clock m_animC;
 
 	sf::Vector2f m_coeffAnim;

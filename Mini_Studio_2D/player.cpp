@@ -4,6 +4,7 @@
 Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, map)
 {
 
+	m_speed = 500.f;
 	m_scaling = 0.6;
 
 	m_shape.setPosition(500, 300);
