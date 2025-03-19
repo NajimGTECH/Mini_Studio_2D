@@ -52,7 +52,7 @@ void Game::run() {
 			}
 			if (event.type == sf::Event::KeyReleased) {
 				if (event.key.code == sf::Keyboard::E) {
-					/*manager.player->.illuminate();*/
+					manager.player->reverseE();
 				}
 			}
 		}

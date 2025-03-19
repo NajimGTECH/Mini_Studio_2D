@@ -15,6 +15,8 @@ public:
 
 	float getFov() const;
 	float getOrientation() const;
+	bool getE() const;
+	bool reverseE();
 
 	sf::RectangleShape& getShape();
 	sf::RectangleShape& getBase();
@@ -23,6 +25,7 @@ public:
 	sf::Texture setTexture(sf::Texture texture);
 	float setOrientation(float orientation);
 	sf::Vector2f getDirection();
+	
 
 	bool isCollisionDetected(sf::Vector2f targetVelocity);
 
@@ -41,5 +44,7 @@ protected:
 	Map& m_map;
 	float m_fov = 60.0f;
 	float m_orientation = 360.0f;
+
+	bool E = false;
 };
 

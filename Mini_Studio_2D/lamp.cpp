@@ -12,7 +12,9 @@ Lamp::Lamp(int s, int h, Map& map, Entity* owner) : Entity(s, h, map) {
 }
 
 void Lamp::update(float deltaTime) {
-	illuminate();
+	if (E) {
+		illuminate();
+	}
 	for (const auto& intersection : raycast.intersections) {
 		fov_Vizualisation.append(sf::Vertex(intersection, sf::Color(255, 150, 30, 100)));
 	}
@@ -29,14 +31,13 @@ void Lamp::update(float deltaTime) {
 }
 
 void Lamp::draw(sf::RenderWindow& window) {
-	if (!E) {
+	if (E) {
 		window.draw(m_sprite);
 		window.draw(fov_Vizualisation);
 	}
 }
 
 void Lamp::illuminate() {
-	E = !E;
 	std::cout << "E" << std::endl;
 	raycast.renderRay(m_map);
 	fov_Vizualisation.clear();
