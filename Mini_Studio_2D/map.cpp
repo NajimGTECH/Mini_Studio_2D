@@ -3,7 +3,7 @@
 
 Map::Map() 
 {
-	if (!m_font.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
+	if (!m_font.loadFromFile("Assets/TextMenu/SolarPunk.otf")) {
 		std::cerr << "Erreur : Impossible de charger la police SolarPunk.otf" << std::endl;
 	}
 }

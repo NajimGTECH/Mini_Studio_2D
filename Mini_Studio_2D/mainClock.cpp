@@ -36,7 +36,7 @@ void MainClock::updateClock(sf::RenderWindow& window, float deltaTime)
 void MainClock::loadFont()
 {
 	//not working on debug
-	m_font.loadFromFile("Assets/TexteMenu/SolarPunk.otf");
+	m_font.loadFromFile("Assets/TextMenu/SolarPunk.otf");
 	m_text.setCharacterSize(50);
 	m_text.setFillColor(sf::Color::Red);
 	m_text.setFont(m_font);
