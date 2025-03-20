@@ -11,6 +11,7 @@
 #include "bookShelf.h"
 #include "chair.h"
 #include "shelf.h"
+#include "mainClock.h"
 
 class Game{
 private:

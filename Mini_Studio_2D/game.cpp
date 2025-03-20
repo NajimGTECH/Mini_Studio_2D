@@ -19,6 +19,7 @@ void Game::run() {
 	Shelf shelf(60, 60, map);*/
 	Menu menu(1920, 1080);
 	MenuManager menuManager(window, menu, map);
+	MainClock mainClock;
 
 
 	sf::Clock clock;
@@ -90,6 +91,7 @@ void Game::run() {
 
 		if (isPlaying) {
 
+			mainClock.updateClock(window, deltaTime);
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
