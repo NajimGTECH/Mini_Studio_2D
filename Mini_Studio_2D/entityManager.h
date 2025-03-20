@@ -8,6 +8,7 @@
 #include "player.h"
 #include "map.h"
 #include "digit.h"
+#include "tileManager.h"
 
 class EntityManager
 {
@@ -30,7 +31,7 @@ public:
 	void ButtonCheck(Map& map, float deltaTime);
 	bool TerminalCheck(Map& map);
 
-	void deathCheck(Map& map);
+	void deathCheck(Map& map, TileManager& tilemanager);
 
 	void displayTerminal(sf::RenderWindow& window, Map&);
 

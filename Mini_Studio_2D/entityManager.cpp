@@ -59,7 +59,7 @@ void EntityManager::generate(Map& map, int levelIndex)
 
     m_mapEFile.close();
 
-    m_mapEFile.open("C:/Users/sbrossard/source/repos/NajimGTECH/Mini_Studio_2D/Mini_Studio_2D/Maps/Level_1E.txt");
+    m_mapEFile.open("Maps/Level_1E.txt");
 
     if (!m_mapEFile) {
         std::cout << "erreur d'ouverture";
@@ -91,10 +91,10 @@ void EntityManager::generate(Map& map, int levelIndex)
             for (int x = 0; x < 30; x++)
             {
                 std::string checker = mapContent[x + 30 * y];
-                sf::Vector2f spawnPos = sf::Vector2f(64 * (float)x - 50, 64 * (float)y - 50);
+                sf::Vector2f spawnPos = sf::Vector2f(64 * (float)x, 64 * (float)y);
 
                 if (checker[1] == 'E') {
-                    enemies.push_back(std::make_shared<Enemy>(sf::Vector2f(500, 500), map));
+                    enemies.push_back(std::make_shared<Enemy>(spawnPos, map));
                 }
             }
         }
@@ -128,13 +128,15 @@ bool EntityManager::TerminalCheck(Map& map) {
     return false;
 }
 
-void EntityManager::deathCheck(Map& map) {
+void EntityManager::deathCheck(Map& map, TileManager& tilemanager){
     for (auto enemy : enemies) {
         if (player->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
             map.createMap(map.currentLevel);
             generate(map, map.currentLevel);
+            tilemanager.applyTileSet(map);
+
             if (map.currentLevel == 1) {
-                player->getShape().setPosition(700, -100);
+                player->getShape().setPosition(600, -100);
             }
             else
                 player->getShape().setPosition(100, 700);

@@ -49,7 +49,7 @@ void Game::run() {
 			manager.player->getSprite().setPosition(192, 200);
 		}
 
-		manager.deathCheck(map);
+		manager.deathCheck(map, tilemanager);
 
 		deltaTime = clock.restart().asSeconds();
 
@@ -95,9 +95,9 @@ void Game::run() {
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
+
 			for (auto enemy : manager.enemies) {
 				enemy->draw(window);
-				std::cout << enemy->getSprite().getPosition().x << ' ' << enemy->getSprite().getPosition().y;
 				enemy->update(deltaTime);
 			}
 			if (map.currentLevel == 0) {

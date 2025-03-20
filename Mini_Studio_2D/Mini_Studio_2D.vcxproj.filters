@@ -29,9 +29,9 @@
     <ClCompile Include="terminal.cpp" />
     <ClCompile Include="wall.cpp" />
     <ClCompile Include="water_jet.cpp" />
-    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="tileManager.cpp" />
     <ClCompile Include="empty.cpp" />
+    <ClCompile Include="enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backpack.h" />
@@ -62,9 +62,9 @@
     <ClInclude Include="tools_include.h" />
     <ClInclude Include="wall.h" />
     <ClInclude Include="water_jet.h" />
-    <ClInclude Include="enemy.h" />
     <ClInclude Include="tileManager.h" />
     <ClInclude Include="empty.h" />
+    <ClInclude Include="enemy.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />
