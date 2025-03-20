@@ -16,8 +16,6 @@ public:
 
 private:
 
-	sf::RectangleShape m_shape;
-
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 };

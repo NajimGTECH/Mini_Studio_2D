@@ -5,18 +5,20 @@ Closet::Closet(float x_, float y_, float width_, float height_, int id_)
 
 	id = id_; x = x_; y = y_; height = height_ * 2; width = width_ * 3;
 
+	m_mass = 500.f;
+
 	m_texture.loadFromFile("Assets/Furnitures/closet.png");
-	m_shape.setSize({ width_ * 2, height_ * 3 });
-	m_shape.setPosition({ x_, y_ });
+	shape.setSize({ width_ * 2, height_ * 3 });
+	shape.setPosition({ x_, y_ });
 
 	m_sprite.setTexture(m_texture);
-	m_sprite.setScale({ m_shape.getSize().x / m_texture.getSize().x , m_shape.getSize().y / m_texture.getSize().y });
-	m_sprite.setPosition(m_shape.getPosition());
+	m_sprite.setScale({ shape.getSize().x / m_texture.getSize().x , shape.getSize().y / m_texture.getSize().y });
+	m_sprite.setPosition(shape.getPosition());
 }
 
 void Closet::update(float deltaTime)
 {
-	m_sprite.setPosition(m_shape.getPosition());
+	m_sprite.setPosition(shape.getPosition());
 	//m_gravity.applyGravity(this, deltaTime);
 }
 

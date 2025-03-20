@@ -15,7 +15,7 @@
 
 class Game{
 private:
-	bool m_terminal;
+	bool m_terminal = false;
 public:
 	Game();
 	void run();

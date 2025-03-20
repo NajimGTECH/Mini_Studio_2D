@@ -5,18 +5,20 @@ Plant::Plant(float x_, float y_, float width_, float height_, int id_)
 
 	id = id_; x = x_; y = y_; height = height_; width = width_ * 2;
 
+	m_mass = 200.f;
+
 	m_texture.loadFromFile("Assets/Furnitures/plant.png");
-	m_shape.setSize({ width_ * 1, height_ * 2 });
-	m_shape.setPosition({ x_, y_ });
+	shape.setSize({ width_ * 1, height_ * 2 });
+	shape.setPosition({ x_, y_ });
 
 	m_sprite.setTexture(m_texture);
-	m_sprite.setScale({ m_shape.getSize().x / m_texture.getSize().x , m_shape.getSize().y / m_texture.getSize().y });
-	m_sprite.setPosition(m_shape.getPosition());
+	m_sprite.setScale({ shape.getSize().x / m_texture.getSize().x , shape.getSize().y / m_texture.getSize().y });
+	m_sprite.setPosition(shape.getPosition());
 }
 
 void Plant::update(float deltaTime)
 {
-	m_sprite.setPosition(m_shape.getPosition());
+	m_sprite.setPosition(shape.getPosition());
 	//m_gravity.applyGravity(this, deltaTime);
 }
 

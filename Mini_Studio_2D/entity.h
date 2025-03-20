@@ -7,7 +7,7 @@ class Entity
 {
 public:
 
-
+	bool isArmEquipped = false;
 
 	Entity(sf::Vector2f size, int hp, Map& map);
 

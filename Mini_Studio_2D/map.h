@@ -45,6 +45,7 @@ public:
 	std::vector<std::shared_ptr<MapElements>>& getAllNPCs();
 	std::vector<std::shared_ptr<MapElements>>& getAllTerminals();
 	std::vector<std::shared_ptr<MapElements>>& getAllStains();
+	std::vector<std::shared_ptr<MapElements>>& getAllFurnitures();
 
 	bool isSolid(int coordX, int coordY);
 

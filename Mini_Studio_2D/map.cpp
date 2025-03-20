@@ -364,6 +364,11 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllStains()
 	return allStains;
 }
 
+std::vector<std::shared_ptr<MapElements>>& Map::getAllFurnitures()
+{
+	return allFurnitures;
+}
+
 bool Map::isSolid(int coordX, int coordY)
 {
 	//for (auto& pair : mapElementsCoordinates)

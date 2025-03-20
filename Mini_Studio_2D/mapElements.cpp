@@ -54,3 +54,8 @@ bool MapElements::isWalkable() {
 	}
 	return false;
 }
+
+float MapElements::getMass()
+{
+	return m_mass;
+}

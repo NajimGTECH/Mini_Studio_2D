@@ -39,6 +39,9 @@ private:
 
 	bool checkIfGrounded();
 
+	std::shared_ptr<MapElements> checkIfFurnitureIsPushed(sf::Vector2f targetPosition);
+	bool isCollisionDetectedBetweenFurnitureAndWalls(std::shared_ptr<MapElements> furniture);
+
 private:
 	
 
@@ -46,7 +49,7 @@ private:
 
 	float m_jumpPower = 900.f;
 
-
+	float m_initialeSpeed;
 
 	bool m_canJump = false;
 	bool m_walkSide = false;

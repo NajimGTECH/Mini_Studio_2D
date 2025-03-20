@@ -1,11 +1,10 @@
 #include "game.h"
 #include "menu_manager.h"
 
-Game::Game() {}
+Game::Game() { m_terminal = false; }
 
 void Game::run() {
-	m_terminal = false;
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "The Perfect Job");
 	window.setFramerateLimit(120);
 
 	sf::Image icon;

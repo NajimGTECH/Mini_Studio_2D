@@ -28,11 +28,14 @@ public:
 	void washStain();
 	bool isWalkable();
 
+	float getMass();
+
 protected:
 
 	//Gravity m_gravity;
 
 	int m_opacity = 255;
+	float m_mass = 100.f;
 
 	sf::Font m_font;
 	sf::Text m_text;
