@@ -2,10 +2,10 @@
 #include "mapElements.h"
 //#include "player.h"
 
-class Closet : public MapElements
+class Plant : public MapElements
 {
 public:
-	Closet(float x, float y, float width, float height, int id);
+	Plant(float x, float y, float width, float height, int id);
 
 	void update(float deltaTime);
 	void draw(sf::RenderWindow& window);

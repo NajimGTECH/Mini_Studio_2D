@@ -26,6 +26,7 @@ void Map::createMap(int levelIndex) {
 	allStains.clear();
 	allNPCs.clear();
 	background.clear();
+	allFurnitures.clear();
 
 	if (!m_mapFile) {
 		std::cerr << "unable to open map file";
@@ -63,6 +64,9 @@ void Map::createCustomLevel(std::string customLevelPath)
 	allDoors.clear();
 	allTerminals.clear();
 	allStains.clear();
+	allNPCs.clear();
+	background.clear();
+	allFurnitures.clear();
 
 	if (!m_mapFile) {
 		std::cerr << "unable to open map file: " << "CustomLevels/" + customLevelPath << std::endl;
@@ -116,7 +120,7 @@ void Map::readMapFile()
 				createFurniture(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'T') {
-				createFurniture(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
+				createTerminal(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'B') {
 				createButton(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
@@ -251,11 +255,20 @@ void Map::createFurniture(float x, float y, float width, float height, int coord
 	case 1:
 		newFurniture = std::make_shared<Desk>(x, y, width, height, type);
 		allFurnitures.push_back(newFurniture);
+		break;
+	case 2:
+		newFurniture = std::make_shared<Closet>(x, y, width, height, type);
+		allFurnitures.push_back(newFurniture);
+		break;
+	case 3:
+		newFurniture = std::make_shared<Plant>(x, y, width, height, type);
+		allFurnitures.push_back(newFurniture);
+		break;
 	default:
 		break;
 	}
 
-	mapElementsCoordinates[{coordX, coordY}] = newFurniture;
+	//mapElementsCoordinates[{coordX, coordY}] = newFurniture;
 }
 
 void Map::createWall(float x, float y, float width, float height, int coordX, int coordY, int type){

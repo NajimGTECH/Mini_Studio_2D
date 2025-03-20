@@ -31,7 +31,7 @@ void Game::run() {
 	float deltaTime = 0.0f;
 	
 	sf::Font font;
-	if (!font.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
+	if (!font.loadFromFile("Assets/TextMenu/SolarPunk.otf")) {
 		std::cerr << "Erreur : Impossible de charger la police SolarPunk.otf" << std::endl;
 	}
 

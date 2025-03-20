@@ -166,6 +166,7 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mapElements.cpp" />
     <ClCompile Include="npc.cpp" />
+    <ClCompile Include="plant.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
     <ClCompile Include="shelf.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="mapElements.h" />
     <ClInclude Include="npc.h" />
+    <ClInclude Include="plant.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="robotic_arm.h" />
     <ClInclude Include="shelf.h" />

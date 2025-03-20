@@ -1,12 +1,12 @@
-#include "desk.h"
+#include "plant.h"
 
-Desk::Desk(float x_, float y_, float width_, float height_, int id_)
+Plant::Plant(float x_, float y_, float width_, float height_, int id_)
 {
 
-	id = id_; x = x_; y = y_; height = height_ * 2; width = width_ * 2;
+	id = id_; x = x_; y = y_; height = height_; width = width_ * 2;
 
-	m_texture.loadFromFile("Assets/Furnitures/desk.png");
-	m_shape.setSize({ width_*2, height_*2 });
+	m_texture.loadFromFile("Assets/Furnitures/plant.png");
+	m_shape.setSize({ width_ * 1, height_ * 2 });
 	m_shape.setPosition({ x_, y_ });
 
 	m_sprite.setTexture(m_texture);
@@ -14,13 +14,13 @@ Desk::Desk(float x_, float y_, float width_, float height_, int id_)
 	m_sprite.setPosition(m_shape.getPosition());
 }
 
-void Desk::update(float deltaTime) 
+void Plant::update(float deltaTime)
 {
 	m_sprite.setPosition(m_shape.getPosition());
 	//m_gravity.applyGravity(this, deltaTime);
 }
 
-void Desk::draw(sf::RenderWindow& window) 
+void Plant::draw(sf::RenderWindow& window)
 {
 	//window.draw(m_shape);
 	window.draw(m_sprite);
@@ -38,6 +38,6 @@ void Desk::push(Player& player) {
 	}
 }*/
 
-void Desk::anim(float deltaTime)
+void Plant::anim(float deltaTime)
 {
 }
