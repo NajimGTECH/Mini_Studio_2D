@@ -13,21 +13,15 @@ void Game::run() {
 
 
 	Map map;
+
 	EntityManager manager(map);
-	MainClock mainClock(10);
 	TileManager tilemanager;
 
-	/*Closet closet(60, 60, map);
-	Desk desk(60, 60, map);
-	Box box(60, 60, map);
-	BookShelf bookShelf(60, 60, map);
-	Chair chair(60, 60, map);
-	Shelf shelf(60, 60, map);*/
 	Menu menu(1920, 1080);
-	Screen screen(map);
-	MenuManager menuManager(window, menu, map,  tilemanager);
+	MenuManager menuManager(window, menu, map, tilemanager);
 
-	EntityManager manager(map);
+	Screen screen(map);
+	MainClock mainClock(10);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
