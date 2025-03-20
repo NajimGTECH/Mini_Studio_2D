@@ -27,6 +27,7 @@ public:
 	bool getWalkSide() const;
 	bool getE() const;
 	void reverseE();
+	bool getEnd();
 
 	bool isMoving();
 
@@ -38,7 +39,8 @@ private:
 	bool checkIfGrounded();
 
 private:
-	
+	bool end = false;
+
 	sf::Vector2f m_coeffAnim;
 
 	bool m_hasBag = false;
