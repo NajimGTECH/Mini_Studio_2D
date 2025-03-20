@@ -64,13 +64,15 @@ void EntityManager::generate(Map& map, int levelIndex)
 {
     enemies.clear();
 
+    std::cout << "niveau : " << levelIndex << std::endl;
+
     char ch;
     std::vector<std::string> mapContent;
     std::string str;
 
     m_mapEFile.close();
 
-    m_mapEFile.open("Maps/Level_1E.txt");
+    m_mapEFile.open("Maps/Level_1.txt");
 
     if (!m_mapEFile) {
         std::cout << "erreur d'ouverture";

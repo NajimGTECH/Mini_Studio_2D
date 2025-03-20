@@ -69,15 +69,16 @@ void Game::run() {
 					manager.player->reverseE();
 				}
 			}
-		}
-		if (event.type == sf::Event::KeyReleased) {
-			if (event.key.code == sf::Keyboard::E) {
-				if (manager.TerminalCheck(map)) {
-					m_terminal = !m_terminal;
-					manager.code.setString("");
+			if (event.type == sf::Event::KeyReleased) {
+				if (event.key.code == sf::Keyboard::E) {
+					if (manager.TerminalCheck(map)) {
+						m_terminal = !m_terminal;
+						manager.code.setString("");
+					}
 				}
 			}
 		}
+		
 
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
