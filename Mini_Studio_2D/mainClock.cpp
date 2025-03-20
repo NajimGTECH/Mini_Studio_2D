@@ -1,4 +1,5 @@
 #include "mainClock.h"
+#include<iostream>;
 #include <chrono>
 
 MainClock::MainClock()
@@ -12,7 +13,7 @@ MainClock::MainClock()
 MainClock::MainClock(float timeInSeconds)
 {
 	m_time = timeInSeconds;
-	m_text.setPosition({ 0, 0 });
+	m_text.setPosition({ 60, 50 });
 
 	loadFont();
 }
@@ -23,15 +24,14 @@ void MainClock::updateClock(sf::RenderWindow& window, float deltaTime)
 
 	if (m_time < 0) m_time = 0;
 
-	m_text.setString("Temps restant: " + std::to_string((int)m_time) + "s");
+	m_text.setString("Remaining time : " + std::to_string((int)m_time) + "s");
 	window.draw(m_text);
-
 }
 
 void MainClock::loadFont()
 {
 	//not working on debug
-	m_font.loadFromFile("assets/fonts/SolorPunk.otf");
+	m_font.loadFromFile("Assets/TexteMenu/SolarPunk.otf");
 	m_text.setCharacterSize(50);
 	m_text.setFillColor(sf::Color::Red);
 	m_text.setFont(m_font);

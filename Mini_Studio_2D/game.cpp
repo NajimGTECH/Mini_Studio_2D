@@ -19,7 +19,7 @@ void Game::run() {
 	Shelf shelf(60, 60, map);*/
 	Menu menu(1920, 1080);
 	MenuManager menuManager(window, menu, map);
-	MainClock mainClock;
+	MainClock mainClock(300);
 
 
 	sf::Clock clock;
@@ -54,7 +54,7 @@ void Game::run() {
 				window.close();
 			}
 			if (event.type == sf::Event::KeyReleased) {
-				if (event.key.code == sf::Keyboard::E) {
+				if (event.key.code == sf::Keyboard::R) {
 					manager.player->reverseE();
 				}
 			}
@@ -66,8 +66,6 @@ void Game::run() {
 					manager.code.setString("");
 				}
 			}
-		
-			
 		}
 
 
