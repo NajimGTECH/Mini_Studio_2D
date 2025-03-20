@@ -11,10 +11,15 @@ void Game::run() {
 	Map map;
 	TileManager tilemanager;
 
+	/*Closet closet(60, 60, map);
+	Desk desk(60, 60, map);
+	Box box(60, 60, map);
+	BookShelf bookShelf(60, 60, map);
+	Chair chair(60, 60, map);
+	Shelf shelf(60, 60, map);*/
 	Menu menu(1920, 1080);
 	MenuManager menuManager(window, menu, map,  tilemanager);
 
-	EntityManager manager(map);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
@@ -31,6 +36,7 @@ void Game::run() {
 	while (window.isOpen()) {
 
 		window.clear();
+		deltaTime = clock.restart().asSeconds();
 
 		if (manager.player->getShape().getPosition().x > 1950 || manager.player->getShape().getPosition().y > 1100)
 		{
@@ -58,12 +64,19 @@ void Game::run() {
 			}
 			if (event.type == sf::Event::KeyReleased) {
 				if (event.key.code == sf::Keyboard::E) {
-						if (manager.TerminalCheck(map)) {
-						m_terminal = !m_terminal;
-						manager.code.setString("");
-					}
-				}	
+					manager.player->reverseE();
+				}
 			}
+		}
+		if (event.type == sf::Event::KeyReleased) {
+			if (event.key.code == sf::Keyboard::E) {
+				if (manager.TerminalCheck(map)) {
+					m_terminal = !m_terminal;
+					manager.code.setString("");
+				}
+			}
+		
+			
 		}
 
 
@@ -78,7 +91,7 @@ void Game::run() {
 		}
 
 
-
+		
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
 			menub = false;
@@ -87,7 +100,7 @@ void Game::run() {
 
 
 		if (isPlaying) {
-			
+
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
@@ -113,12 +126,20 @@ void Game::run() {
 				manager.displayTerminal(window, map);
 			}
 		}
-		else if (menub){
+		else if (menub) {
 			menu.drawMenu(window);
 			menuManager.handleEvents(deltaTime);
 		}
 
-		//std::cout << deltaTime << endl;
+		
+		map.displayMap(window);
+		/*closet.draw(window);
+		desk.draw(window);*/
+		/*box.draw(window);*/
+		/*bookShelf.draw(window);*/
+		/*chair.draw(window);*/
+		/*shelf.draw(window);*/
+
 		window.display();
 	}
 }

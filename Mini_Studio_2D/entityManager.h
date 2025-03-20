@@ -9,6 +9,7 @@
 #include "map.h"
 #include "digit.h"
 
+class Player;
 class EntityManager
 {
 private:

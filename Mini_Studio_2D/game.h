@@ -3,9 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "player.h"
-#include "map.h"
 #include "entityManager.h"
+#include "lamp.h"
+#include "closet.h"
+#include "desk.h"
+#include "box.h"
+#include "bookShelf.h"
+#include "chair.h"
+#include "shelf.h"
 #include "tileManager.h"
 
 class Game{

@@ -1,7 +1,7 @@
-/*
-#include "raycaster.h"
+#include "raycast.h"
 
 #define PI 3.14159265
+#define NUM_RAYS 550 // Définir le nombre de rayons souhaité
 
 sf::Vector2f operator-(const sf::Vector2f& vector, float value)
 {
@@ -19,28 +19,23 @@ sf::Vector2f operator/(const sf::Vector2f& vector, float value)
 }
 
 sf::Vector2f normalize(const sf::Vector2f& vector) {
-
     float length = std::sqrt(vector.x * vector.x + vector.y * vector.y);
-
     if (length != 0) {
         return sf::Vector2f(vector.x / length, vector.y / length);
     }
-
     return sf::Vector2f(0.f, 0.f);
 }
 
-
-void Raycaster::renderRay(Grid& grid)
+void Raycast::renderRay(Map& map)
 {
     intersections.clear();
-    sf::Vector2f rayStart = attachedEntity->shape.getPosition(); // attachedEntity->m_shape.getPosition(); ( get a faire)
-    float startAngle = attachedEntity->orientation - attachedEntity->fov / 2.f; // a faire ( git : arientation et fov)
+    sf::Vector2f rayStart = attachedEntity->getSprite().getPosition();
+    float startAngle = attachedEntity->getOrientation() - attachedEntity->getFov() / 2.0f;
 
-	const float STEP_ANGLE = attachedEntity->fov / window::WINDOW_WIDTH; // a voir si juste taille de window actuelle ou namespace pour global
+    const float STEP_ANGLE = attachedEntity->getFov() / NUM_RAYS;
 
-    int side = 0;
 
-    for (int i = 0; i <= window::WINDOW_WIDTH; i++)
+    for (int i = 0; i <= NUM_RAYS; i++)
     {
         sf::Vector2f rayDir = normalize({ cos(degToRad(startAngle + i * STEP_ANGLE)), sin(degToRad(startAngle + i * STEP_ANGLE)) });
 
@@ -50,7 +45,7 @@ void Raycaster::renderRay(Grid& grid)
         };
 
         sf::Vector2f mapCheck = {
-             static_cast<int>(rayStart.x / CELL_SIZE) * (float)CELL_SIZE, // taille de la map divisée par le nombre de caractère 
+             static_cast<int>(rayStart.x / CELL_SIZE) * (float)CELL_SIZE,
              static_cast<int>(rayStart.y / CELL_SIZE) * (float)CELL_SIZE
         };
         sf::Vector2f rayLength;
@@ -81,7 +76,6 @@ void Raycaster::renderRay(Grid& grid)
             rayLength.y = ((mapCheck.y + 1) - rayStart.y) * rayUnitStepSize.y;
         }
 
-
         bool isTileFound = false;
         float maxDistance = 250.f;
         float distance = 0.f;
@@ -93,22 +87,20 @@ void Raycaster::renderRay(Grid& grid)
                 mapCheck.x += step.x;
                 distance = rayLength.x;
                 rayLength.x += rayUnitStepSize.x;
-                side = 0;
             }
             else
             {
                 mapCheck.y += step.y;
                 distance = rayLength.y;
                 rayLength.y += rayUnitStepSize.y;
-                side = 1;
             }
 
             int gridX = static_cast<int>(mapCheck.x / CELL_SIZE);
             int gridY = static_cast<int>(mapCheck.y / CELL_SIZE);
 
-            if (gridX >= 0 && gridX < GRID_WIDTH && gridY >= 0 && gridY < GRID_HEIGHT) // a calculé en fonction de map et tiles
+            if (gridX >= 0 && gridX < 32 && gridY >= 0 && gridY < 18)
             {
-                if (!grid.cells[gridY][gridX].walkable) // faire avec une autre nos collisions
+                if (map.isSolid(gridX, gridY))
                 {
                     isTileFound = true;
                 }
@@ -121,11 +113,9 @@ void Raycaster::renderRay(Grid& grid)
 
         intersections.push_back(rayStart + rayDir * distance);
     }
-    //return intersections;
 }
 
-float Raycaster::degToRad(float degree)
+float Raycast::degToRad(float degree)
 {
     return degree * PI / 180;
 }
-*/

@@ -15,18 +15,13 @@ public:
 	bool opened = false;
 
 	int id;
-
 	float x, y, width, height;
-
-
 
 	virtual void draw(sf::RenderWindow& window); 
 	
-	
-
-
 	void openDoor();
 	void washStain();
+	bool isWalkable();
 
 protected:
 
@@ -36,3 +31,10 @@ protected:
 	sf::Text m_text;
 };
 
+struct Vector2iHash {
+	std::size_t operator()(const sf::Vector2i& vec) const {
+		std::size_t hash_x = std::hash<int>{}(vec.x);
+
+		return hash_x;
+	}
+};

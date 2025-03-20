@@ -1,14 +1,16 @@
 #include "shelf.h"
 
 Shelf::Shelf(sf::Vector2f s, int h, Map& map) : Entity(s, h, map){
-	m_shape.setSize(sf::Vector2f(500, 100));
-	m_shape.setFillColor(sf::Color::Green);
+	m_texture.loadFromFile("Assets/Fournitures/shelf.png");
+	m_sprite.setTexture(m_texture);
+	m_sprite.setPosition(100, 200);
+	m_sprite.setScale(2, 2);
 }
 
 void Shelf::update(float deltaTime) {}
 
 void Shelf::draw(sf::RenderWindow& window) {
-	window.draw(m_shape);
+	window.draw(m_sprite);
 }
 
 void Shelf::anim(float deltaTime)

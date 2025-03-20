@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="backpack.cpp" />
+    <ClCompile Include="bookShelf.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="chair.cpp" />
@@ -166,16 +167,17 @@
     <ClCompile Include="mapElements.cpp" />
     <ClCompile Include="npc.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="raycaster.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
     <ClCompile Include="shelf.cpp" />
     <ClCompile Include="stain.cpp" />
     <ClCompile Include="terminal.cpp" />
+    <ClCompile Include="raycast.cpp" />
     <ClCompile Include="tileManager.cpp" />
     <ClCompile Include="wall.cpp" />
     <ClCompile Include="water_jet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bookShelf.h" />
     <ClInclude Include="backpack.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="button.h" />
@@ -198,15 +200,16 @@
     <ClInclude Include="mapElements.h" />
     <ClInclude Include="npc.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="raycaster.h" />
     <ClInclude Include="robotic_arm.h" />
     <ClInclude Include="shelf.h" />
     <ClInclude Include="stain.h" />
     <ClInclude Include="terminal.h" />
     <ClInclude Include="tileManager.h" />
     <ClInclude Include="tools_include.h" />
+    <ClInclude Include="raycast.h" />
     <ClInclude Include="wall.h" />
     <ClInclude Include="water_jet.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />

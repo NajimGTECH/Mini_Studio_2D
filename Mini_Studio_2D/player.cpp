@@ -14,6 +14,9 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 
 	auto waterJet = std::make_shared<WaterJet>(sf::Vector2f(0, 0), -1, map, this);
 	m_tools.push_back(waterJet);
+	auto lamp = std::make_shared<Lamp>(sf::Vector2f(0,0), -1, map, this);
+	m_tools.push_back(lamp);
+
 
 	if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
 		return;
@@ -58,6 +61,8 @@ void Player::update(float deltaTime)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30 || sf::Joystick::getAxisPosition(0, sf::Joystick::PovX) > 30)
 	{
+		m_walkSide = true;
+		std::cout << "droite" << m_walkSide << std::endl;
 
 		m_sprite.setOrigin(0, 0);
 		m_sprite.setScale(m_scaling, m_scaling);
@@ -73,6 +78,9 @@ void Player::update(float deltaTime)
 		m_sprite.setScale(-m_scaling, m_scaling);
 		moveVelocity = { deltaTime * -m_speed, 0.f }; 
 		m_direction += { -1.f, 0.f };
+		m_walkSide = false;
+		std::cout << "gauche" << m_walkSide << std::endl;
+		moveVelocity = { deltaTime * -m_speed, 0.f };
 		if(!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
 
@@ -98,7 +106,6 @@ void Player::update(float deltaTime)
 	if (checkIfGrounded())
 	{
 		m_yVelocity.y = 0.f;
-		//std::cout << "grounded:\t" << m_yVelocity.y << std::endl;
 		m_canJump = true;
 	}
 	else
@@ -186,6 +193,18 @@ float Player::getSpeed()
 bool Player::isJumping()
 {
 	return m_canJump;
+}
+
+bool Player::getWalkSide() const {
+	return m_walkSide;
+}
+
+bool Player::getE() const {
+	return E;
+}
+
+void Player::reverseE() {
+	E = !E;
 }
 
 bool Player::isMoving()

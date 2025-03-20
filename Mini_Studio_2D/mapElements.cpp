@@ -30,3 +30,11 @@ void MapElements::washStain()
 
 	shape.setFillColor(sf::Color(190, 95, 30, m_opacity));
 }
+
+bool MapElements::isWalkable() {
+	if (m_opacity >= 255)
+	{
+		return true;
+	}
+	return false;
+}

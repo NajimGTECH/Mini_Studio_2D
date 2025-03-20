@@ -24,6 +24,33 @@ sf::Vector2f Entity::getDirection()
 	return m_direction;
 }
 
+sf::Sprite& Entity::getSprite() {
+	return m_sprite;
+}
+
+sf::Texture& Entity::getTexture() {
+	return m_texture;
+}
+
+float Entity::getFov() const {
+	return m_fov;
+}
+
+sf::Texture Entity::setTexture(sf::Texture texture) {
+	m_texture = texture;
+	return m_texture;
+}
+
+float Entity::getOrientation() const {
+	return m_orientation;
+}
+
+float Entity::setOrientation(float orientation) {
+	m_orientation = orientation;
+	return m_orientation;
+}
+
+
 bool Entity::hasBag()
 {
 	return m_hasBag;

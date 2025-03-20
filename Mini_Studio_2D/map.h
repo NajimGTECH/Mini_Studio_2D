@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <unordered_map>
 #include <memory>
 #include <fstream>
 
@@ -22,13 +23,13 @@ public:
 
 	void readMapFile();
 
-	void createEmpty(float x, float y, float width, float height, int type);
-	void createWall(float x, float y, float width, float height, int type);
-	void createDoor(float x, float y, float width, float height, int type);
-	void createButton(float x, float y, float width, float height, int type);
-	void createNPC(float x, float y, float width, float height);
-	void createTerminal(float x, float y, float width, float height, int type);
-	void createStain(float x, float y, float width, float height, std::string text);
+	void createWall(float x, float y, float width, float height, int coordX, int coordY, int type);
+	void createDoor(float x, float y, float width, float height, int coordX, int coordY, int type);
+	void createButton(float x, float y, float width, float height, int coordX, int coordY, int type);
+	void createNPC(float x, float y, float width, float height, int coordX, int coordY);
+	void createTerminal(float x, float y, float width, float height, int coordX, int coordY, int type);
+	void createLastDoor(float x, float y, float width, float height, int coordX, int coordY, int type);
+	void createStain(float x, float y, float width, float height, std::string text, int coordX, int coordY);
 
 
 	void displayMap(sf::RenderWindow& window);
@@ -41,6 +42,7 @@ public:
 	std::vector<std::shared_ptr<MapElements>>& getAllTerminals();
 	std::vector<std::shared_ptr<MapElements>>& getAllStains();
 
+	bool isSolid(int coordX, int coordY);
 
 	bool loaded = false;
 	int currentLevel = 0;
@@ -54,14 +56,17 @@ private:
 	const int TILE_SIZE_PX = 64;
 
 	std::string m_code;
+
 	std::ifstream m_codeFile;
 	std::ifstream m_mapFile;
+
+	std::unordered_map<sf::Vector2i, std::shared_ptr<MapElements>, Vector2iHash> mapElementsCoordinates;
+
 	std::vector<std::shared_ptr<MapElements>> allWalls;
 	std::vector<std::shared_ptr<MapElements>> background;
 	std::vector<std::shared_ptr<MapElements>> allDoors;
 	std::vector<std::shared_ptr<MapElements>> allButtons;
 	std::vector<std::shared_ptr<MapElements>> allNPCs;
-
 	std::vector<std::shared_ptr<MapElements>> allTerminals;
 	std::vector<std::shared_ptr<MapElements>> allStains;
 
