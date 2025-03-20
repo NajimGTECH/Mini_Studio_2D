@@ -169,9 +169,17 @@ void Player::update(float deltaTime)
 
 	if (checkIfGrounded())
 	{
-		//std::cout << "grounded\n";
-		m_yVelocity.y = 0.f;
+		
 		m_canJump = true;
+
+		if (isCollisionDetected({0, 0}))
+		{
+			m_yVelocity.y = -m_gravity.getForce() * deltaTime; //to avoid getting stuck
+		}
+		else
+		{
+			m_yVelocity.y = 0.f;
+		}
 	}
 	else
 	{

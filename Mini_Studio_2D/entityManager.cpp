@@ -64,7 +64,7 @@ void EntityManager::generate(Map& map, int levelIndex)
 {
     enemies.clear();
 
-    std::cout << "niveau : " << levelIndex << std::endl;
+    //std::cout << "niveau : " << levelIndex << std::endl;
 
     char ch;
     std::vector<std::string> mapContent;
@@ -72,12 +72,11 @@ void EntityManager::generate(Map& map, int levelIndex)
 
     m_mapEFile.close();
 
-    m_mapEFile.open("Maps/Level_1.txt");
+    m_mapEFile.open("Maps/Level_" + std::to_string(levelIndex) + ".txt");
 
     if (!m_mapEFile) {
         std::cout << "erreur d'ouverture";
     }
-    std::cout << levelIndex;
 
     while (m_mapEFile.get(ch)) {
         if (ch == ' ' || ch == '\n')
@@ -109,10 +108,13 @@ void EntityManager::generate(Map& map, int levelIndex)
                 if (checker[1] == 'E') {
                     enemies.push_back(std::make_shared<Enemy>(spawnPos, map));
                 }
+                else if (checker[1] == 'P') {
+                    //std::cout << "Spawn pos: " << spawnPos.x << ", " << spawnPos.y << std::endl;
+                    player->getShape().setPosition(spawnPos + sf::Vector2f{0.f, -30.f});
+                }
             }
         }
     }
-
 
     m_mapEFile.close();
 }
