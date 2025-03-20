@@ -3,7 +3,7 @@
 
 Map::Map() 
 {
-	if (!m_font.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
+	if (!m_font.loadFromFile("Assets/TextMenu/SolarPunk.otf")) {
 		std::cerr << "Erreur : Impossible de charger la police SolarPunk.otf" << std::endl;
 	}
 }
@@ -26,6 +26,7 @@ void Map::createMap(int levelIndex) {
 	allStains.clear();
 	allNPCs.clear();
 	background.clear();
+	allFurnitures.clear();
 
 	if (!m_mapFile) {
 		std::cerr << "unable to open map file";
@@ -64,6 +65,9 @@ void Map::createCustomLevel(std::string customLevelPath)
 	allDoors.clear();
 	allTerminals.clear();
 	allStains.clear();
+	allNPCs.clear();
+	background.clear();
+	allFurnitures.clear();
 
 	if (!m_mapFile) {
 		std::cerr << "unable to open map file: " << "CustomLevels/" + customLevelPath << std::endl;
@@ -108,61 +112,64 @@ void Map::readMapFile()
 			sf::Vector2f spawnPos = sf::Vector2f(TILE_SIZE_PX * (float)x, TILE_SIZE_PX * (float)y);
 
 			if (checker[0] == '#') {
-				createWall(spawnPos.x, spawnPos.y, 64, 64, checker[1] - 48);
+				createWall(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'D') {
-				createDoor(spawnPos.x, spawnPos.y, 64, 64, checker[1] - 48);
+				createDoor(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
+			}
+			else if (checker[0] == 'F') {
+				createFurniture(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'T') {
-				createTerminal(spawnPos.x, spawnPos.y, 64, 64, checker[1] - 48);
+				createTerminal(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'B') {
-				createButton(spawnPos.x, spawnPos.y, 64, 64, checker[1] - 48);
+				createButton(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker == "~") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "", x, y);
 			}
 			else if (checker == "N") {
-				createNPC(spawnPos.x, spawnPos.y, 64, 64);
+				createNPC(spawnPos.x, spawnPos.y, 64, 64, x, y );
 			}
 			else if (checker == "0") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "0");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "0", x, y);
 			}			
 			else if (checker == "1") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "1");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "1" , x, y);
 			}
 			else if (checker == "2") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "2");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "2", x, y);
 			}
 			else if (checker == "3") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "3");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "3", x, y);
 			}
 			else if (checker == "4") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "4");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "4" , x, y);
 			}
 			else if (checker == "5") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "5");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "5", x, y);
 			}
 			else if (checker == "6") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "6");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "6" , x, y);
 			}
 			else if (checker == "7") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "7");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "7" , x, y);
 			}
 			else if (checker == "8") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "8");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "8" , x, y);
 			}
 			else if (checker == "9") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "9");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "9" , x, y);
 			}
 			else if (checker == ".") {
-				createEmpty(spawnPos.x, spawnPos.y, 64, 64, 0);
+				createEmpty(spawnPos.x, spawnPos.y, 64, 64 , x, y, 0);
 			}
 			else if (checker == "|") {
-				createEmpty(spawnPos.x, spawnPos.y, 64, 64, 1);
+				createEmpty(spawnPos.x, spawnPos.y, 64, 64, x, y, 1);
 			}
 			else if (checker == "[") {
-				createEmpty(spawnPos.x, spawnPos.y, 64, 64, 2);
+				createEmpty(spawnPos.x, spawnPos.y, 64, 64, x, y, 2);
 			}
 		}
 	}
@@ -176,7 +183,13 @@ void Map::readMapFile()
 	char ch;
 	int compte = 0;
 
+	int coordX = 0;
+	int coordY = 0;
+
 	while (m_mapFile.get(ch)) {
+
+		//std::cout << "Spawning map element at: [" << coordX << ", " << coordY << "]\n";
+
 		switch (ch)
 		{
 		case '#': createWall(x, y, 60, 60); x += 60; i++; break;
@@ -191,17 +204,17 @@ void Map::readMapFile()
 		case 'E': x += 60; i++; break;
 
 			//Stains:
-		case '~': createStain(x, y, 60, 60, ""); x += 60; i++; break;
-		case '0': createStain(x, y, 60, 60, "0"); x += 60; i++; break;
-		case '1': createStain(x, y, 60, 60, "1"); x += 60; i++; break;
-		case '2': createStain(x, y, 60, 60, "2"); x += 60; i++; break;
-		case '3': createStain(x, y, 60, 60, "3"); x += 60; i++; break;
-		case '4': createStain(x, y, 60, 60, "4"); x += 60; i++; break;
-		case '5': createStain(x, y, 60, 60, "5"); x += 60; i++; break;
-		case '6': createStain(x, y, 60, 60, "6"); x += 60; i++; break;
-		case '7': createStain(x, y, 60, 60, "7"); x += 60; i++; break;
-		case '8': createStain(x, y, 60, 60, "8"); x += 60; i++; break;
-		case '9': createStain(x, y, 60, 60, "9"); x += 60; i++; break;
+		case '~': createStain(x, y, 60, 60, "", coordX, coordY); x += 60; i++; coordX++; break;
+		case '0': createStain(x, y, 60, 60, "0", coordX, coordY); x += 60; i++; coordX++; break;
+		case '1': createStain(x, y, 60, 60, "1", coordX, coordY); x += 60; i++; coordX++; break;
+		case '2': createStain(x, y, 60, 60, "2", coordX, coordY); x += 60; i++; coordX++; break;
+		case '3': createStain(x, y, 60, 60, "3", coordX, coordY); x += 60; i++; coordX++; break;
+		case '4': createStain(x, y, 60, 60, "4", coordX, coordY); x += 60; i++; coordX++; break;
+		case '5': createStain(x, y, 60, 60, "5", coordX, coordY); x += 60; i++; coordX++; break;
+		case '6': createStain(x, y, 60, 60, "6", coordX, coordY); x += 60; i++; coordX++; break;
+		case '7': createStain(x, y, 60, 60, "7", coordX, coordY); x += 60; i++; coordX++; break;
+		case '8': createStain(x, y, 60, 60, "8", coordX, coordY); x += 60; i++; coordX++; break;
+		case '9': createStain(x, y, 60, 60, "9", coordX, coordY); x += 60; i++; coordX++; break;
 
 		}
 
@@ -214,39 +227,77 @@ void Map::readMapFile()
 		}
 		compte++;
 	}
+*/
 
-	std::cout << "mapsizeM" << compte;
-}*/
-
-void Map::createTerminal(float x, float y, float width, float height, int type) {
-	allTerminals.push_back(std::make_shared<Terminal>(x, y, width, height, type));
+void Map::createTerminal(float x, float y, float width, float height, int coordX, int coordY, int type) {
+	auto newTerm = std::make_shared<Terminal>(x, y, width, height, type);
+	allTerminals.push_back(newTerm);
+	mapElementsCoordinates[{coordX, coordY}] = newTerm;
 }
  
-void Map::createStain(float x, float y, float width, float height, std::string text)
+void Map::createStain(float x, float y, float width, float height, std::string text, int coordX, int coordY)
 {
-	allStains.push_back(std::make_shared<Stain>(x, y, width, height, text));
+	auto newStain = std::make_shared<Stain>(x, y, width, height, text);
+	allStains.push_back(newStain);
+	mapElementsCoordinates[{coordX, coordY}] = newStain;
 }
 
-void Map::createEmpty(float x, float y, float width, float height, int type)
+void Map::createEmpty(float x, float y, float width, float height, int coordX, int coordY, int type)
 {
 	background.push_back(std::make_shared<Empty>(x, y, width, height, type));
+	mapElementsCoordinates[{coordX, coordY}] = nullptr;
 }
 
-void Map::createWall(float x, float y, float width, float height, int type) {
-	allWalls.push_back(std::make_shared<Wall>(x, y, width, height, type));
-}
-
-void Map::createDoor(float x, float y, float width, float height, int type) {
-	allDoors.push_back(std::make_shared<Door>(x, y, width, height, type));
-}
-
-void Map::createButton(float x, float y, float width, float height, int type) {
-	allButtons.push_back(std::make_shared<Button>(x, y, width, height, type));
-}
-
-void Map::createNPC(float x, float y, float width, float height) 
+void Map::createFurniture(float x, float y, float width, float height, int coordX, int coordY, int type)
 {
-	allNPCs.push_back(std::make_shared<NPC>(x, y, width, height, std::make_shared<DialogueBox>(m_font)));
+
+	std::shared_ptr<MapElements> newFurniture;
+
+	switch (type)
+	{
+	case 1:
+		newFurniture = std::make_shared<Desk>(x, y, width, height, type);
+		allFurnitures.push_back(newFurniture);
+		break;
+	case 2:
+		newFurniture = std::make_shared<Closet>(x, y, width, height, type);
+		allFurnitures.push_back(newFurniture);
+		break;
+	case 3:
+		newFurniture = std::make_shared<Plant>(x, y, width, height, type);
+		allFurnitures.push_back(newFurniture);
+		break;
+	default:
+		break;
+	}
+
+	//mapElementsCoordinates[{coordX, coordY}] = newFurniture;
+}
+
+void Map::createWall(float x, float y, float width, float height, int coordX, int coordY, int type){
+	auto newWall = std::make_shared<Wall>(x, y, width, height, type);
+	allWalls.push_back(newWall);
+	mapElementsCoordinates[{coordX, coordY}] = newWall;
+}
+
+void Map::createDoor(float x, float y, float width, float height, int coordX, int coordY, int type) {
+	auto newDoor = std::make_shared<Door>(x, y, width, height, type);
+	allDoors.push_back(newDoor);
+	mapElementsCoordinates[{coordX, coordY}] = newDoor;
+}
+
+void Map::createButton(float x, float y, float width, float height, int coordX, int coordY, int type) {
+	auto newButton = std::make_shared<Button>(x, y, width, height, type);
+	allButtons.push_back(newButton);
+	mapElementsCoordinates[{coordX, coordY}] = newButton;
+}
+
+
+void Map::createNPC(float x, float y, float width, float height, int coordX, int coordY)
+{
+	auto newNPC = std::make_shared<NPC>(x, y, width, height, std::make_shared<DialogueBox>(m_font));
+	allNPCs.push_back(newNPC);
+	mapElementsCoordinates[{coordX, coordY}] = newNPC;
 }
 
 
@@ -260,7 +311,6 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& button : allButtons) {
 		button->draw(window);
 	}
-
 	for (auto& npc : allNPCs) {
 		npc->draw(window);
 	}
@@ -270,8 +320,15 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& stain : allStains) {
 		stain->draw(window);
 	}
-	for (auto& empty : background) {
-		empty->draw(window);
+	for (auto& furniture : allFurnitures) {
+		furniture->draw(window);
+	}
+}
+
+void Map::updateFurnitures(float deltaTime)
+{
+	for (auto& furniture : allFurnitures) {
+		furniture->update(deltaTime);
 	}
 }
 
@@ -308,6 +365,32 @@ std::vector<std::shared_ptr<MapElements>>& Map::getAllTerminals()
 std::vector<std::shared_ptr<MapElements>>& Map::getAllStains()
 {
 	return allStains;
+}
+
+std::vector<std::shared_ptr<MapElements>>& Map::getAllFurnitures()
+{
+	return allFurnitures;
+}
+
+bool Map::isSolid(int coordX, int coordY)
+{
+	//for (auto& pair : mapElementsCoordinates)
+	//{
+		//std::cout << "[" << pair.first.x << ", " << pair.first.y << "]" << ":\t" << pair.second->id << std::endl;
+	//}
+
+	//std::cout << "Coords vector: " << coordX << ", " << coordY << std::endl;
+	if (coordX >= 30 || coordX < 0 || coordY >= 17 || coordY < 0) return false;
+
+	if (mapElementsCoordinates.at(sf::Vector2i( coordX, coordY )) != nullptr)
+	{
+		return mapElementsCoordinates[{coordX, coordY}]->isWalkable();
+	}
+	else
+	{
+		//std::cout << "ELEMENT NOT FOUND\n";
+		return false;
+	}
 }
 
 std::string Map::getCode()

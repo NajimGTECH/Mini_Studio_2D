@@ -34,37 +34,237 @@
     <ClCompile Include="enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="backpack.h" />
-    <ClInclude Include="box.h" />
-    <ClInclude Include="button.h" />
-    <ClInclude Include="chair.h" />
-    <ClInclude Include="closet.h" />
-    <ClInclude Include="desk.h" />
-    <ClInclude Include="dialogue_box.h" />
-    <ClInclude Include="digit.h" />
-    <ClInclude Include="door.h" />
-    <ClInclude Include="entity.h" />
-    <ClInclude Include="entityManager.h" />
-    <ClInclude Include="game.h" />
-    <ClInclude Include="gravity.h" />
-    <ClInclude Include="menu.h" />
-    <ClInclude Include="menu_manager.h" />
-    <ClInclude Include="lamp.h" />
-    <ClInclude Include="map.h" />
-    <ClInclude Include="mapElements.h" />
-    <ClInclude Include="npc.h" />
-    <ClInclude Include="player.h" />
-    <ClInclude Include="raycaster.h" />
-    <ClInclude Include="robotic_arm.h" />
-    <ClInclude Include="shelf.h" />
-    <ClInclude Include="stain.h" />
-    <ClInclude Include="terminal.h" />
-    <ClInclude Include="tools_include.h" />
-    <ClInclude Include="wall.h" />
-    <ClInclude Include="water_jet.h" />
-    <ClInclude Include="tileManager.h" />
-    <ClInclude Include="empty.h" />
-    <ClInclude Include="enemy.h" />
+    <ClCompile Include="main.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="gravity.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="box.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="chair.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="closet.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="desk.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="shelf.cpp">
+      <Filter>Fichiers sources\fournitures</Filter>
+    </ClCompile>
+    <ClCompile Include="lamp.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="robotic_arm.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="mapElements.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="wall.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="entityManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="raycast.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="gravity.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="menu_manager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+
+    <ClCompile Include="button.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="door.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="entityManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="npc.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="dialogue_box.cpp">
+      <Filter>Fichiers sources</Filter>
+
+    <ClCompile Include="entityManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="door.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="terminal.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="water_jet.cpp">
+      <Filter>Fichiers sources\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="digit.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+    </ClCompile>
+    <ClCompile Include="stain.cpp">
+      <Filter>Fichiers sources\map related</Filter>
+
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="door.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="bookShelf.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="player.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="gravity.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="game.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="gravity.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_manager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+
+    <ClInclude Include="button.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="entityManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="npc.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="dialogue_box.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+
+    <ClInclude Include="entityManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="terminal.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="water_jet.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="tools_include.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="digit.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    <ClInclude">
+    <ClInclude Include="stain.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="door.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="bookShelf.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="rules.txt" />
+    <ClInclude Include="box.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="chair.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="closet.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="desk.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="shelf.h">
+      <Filter>Fichiers d%27en-tête\fournitures</Filter>
+    </ClInclude>
+    <ClInclude Include="lamp.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="robotic_arm.h">
+      <Filter>Fichiers d%27en-tête\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="wall.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="mapElements.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>Fichiers d%27en-tête\map related</Filter>
+    </ClInclude>
+    <ClInclude Include="entityManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="window.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="raycast.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />
