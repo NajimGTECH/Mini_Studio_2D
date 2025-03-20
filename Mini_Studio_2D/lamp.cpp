@@ -44,7 +44,6 @@ void Lamp::draw(sf::RenderWindow& window) {
 	if (dynamic_cast<Player*>(m_owner)->getE()) {
 		
 		window.draw(m_sprite);
-		//window.draw(m_shape);
 
 		if (!isCollisionDetected(sf::Vector2f(0, 0)))
 		{

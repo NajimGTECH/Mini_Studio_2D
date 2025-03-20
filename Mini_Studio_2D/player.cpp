@@ -273,6 +273,10 @@ void Player::reverseE() {
 	E = !E;
 }
 
+bool Player::getEnd() {
+	return end;
+}
+
 bool Player::isMoving()
 {
 	return sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30 || sf::Joystick::getAxisPosition(0, sf::Joystick::PovX) > 30

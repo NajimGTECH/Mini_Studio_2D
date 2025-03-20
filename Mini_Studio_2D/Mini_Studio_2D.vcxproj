@@ -148,11 +148,13 @@
     <ClCompile Include="box.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="chair.cpp" />
+    <ClCompile Include="mainClock.cpp" />
     <ClCompile Include="closet.cpp" />
     <ClCompile Include="desk.cpp" />
     <ClCompile Include="dialogue_box.cpp" />
     <ClCompile Include="digit.cpp" />
     <ClCompile Include="door.cpp" />
+    <ClCompile Include="screen.cpp" />
     <ClCompile Include="empty.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -183,6 +185,7 @@
     <ClInclude Include="box.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="chair.h" />
+    <ClInclude Include="mainClock.h" />
     <ClInclude Include="closet.h" />
     <ClInclude Include="desk.h" />
     <ClInclude Include="dialogue_box.h" />
@@ -190,6 +193,7 @@
     <ClInclude Include="door.h" />
     <ClInclude Include="empty.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="screen.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
     <ClInclude Include="furnitures_include.h" />
