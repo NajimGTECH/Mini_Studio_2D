@@ -7,7 +7,7 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 	m_speed = 500.f;
 	m_scaling = 0.6;
 
-	m_shape.setPosition(500, 300);
+	m_shape.setPosition(700, 300);
 	m_base.setSize(sf::Vector2f(m_shape.getSize().x * 0.9f, m_shape.getSize().y / 10.f));
 
 	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x / 7.f, m_shape.getPosition().y + m_shape.getSize().y*1.5 - m_base.getSize().y);
@@ -15,20 +15,23 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 	auto waterJet = std::make_shared<WaterJet>(sf::Vector2f(0, 0), -1, map, this);
 	m_tools.push_back(waterJet);
 
+	if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
+		return;
+	}
+
+	if (!m_texturebis.loadFromFile("Assets/Player/spritesheet_nobag.png")) {
+		return;
+	}
 
 	if (m_hasBag) {
 		m_coeffAnim = sf::Vector2f(214, 328);
 		m_scaling = 0.4;
-		if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
-			return;
-		}
+		
 	}
 	else {
 		m_coeffAnim = sf::Vector2f(175, 356);
 		m_scaling = 0.35;
-		if (!m_texture.loadFromFile("Assets/Player/spritesheet_nobag.png")) {
-			return;
-		}
+		
 	}
 
 	m_sprite.setTexture(m_texture);
@@ -42,16 +45,12 @@ void Player::update(float deltaTime)
 	if (m_hasBag) {
 		m_coeffAnim = sf::Vector2f(214, 328);
 		m_scaling = 0.4;
-		if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
-			return;
-		}
+		m_sprite.setTexture(m_texture);
 	}
 	else {
 		m_coeffAnim = sf::Vector2f(175, 356);
 		m_scaling = 0.35;
-		if (!m_texture.loadFromFile("Assets/Player/spritesheet_nobag.png")) {
-			return;
-		}
+		m_sprite.setTexture(m_texturebis);
 	}
 
 	sf::Vector2f moveVelocity = { 0.f, 0.f };

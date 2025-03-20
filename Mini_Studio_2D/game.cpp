@@ -9,9 +9,10 @@ void Game::run() {
 	window.setFramerateLimit(120);
 
 	Map map;
+	TileManager tilemanager;
 
 	Menu menu(1920, 1080);
-	MenuManager menuManager(window, menu, map);
+	MenuManager menuManager(window, menu, map,  tilemanager);
 
 	EntityManager manager(map);
 
@@ -36,9 +37,11 @@ void Game::run() {
 			map.currentLevel++;
 			map.createMap(map.currentLevel);
 			manager.generate(map, map.currentLevel);
+
+			tilemanager.applyTileSet(map);
 			map.loaded = true;
 			if (map.currentLevel == 1) {
-				manager.player->getShape().setPosition(700, -100);
+				manager.player->getShape().setPosition(600, -100);
 			}
 			else
 			manager.player->getShape().setPosition(100, 700);
@@ -80,6 +83,7 @@ void Game::run() {
 			isPlaying = true;
 			menub = false;
 		}
+
 
 
 		if (isPlaying) {

@@ -152,6 +152,7 @@
     <ClCompile Include="dialogue_box.cpp" />
     <ClCompile Include="digit.cpp" />
     <ClCompile Include="door.cpp" />
+    <ClCompile Include="empty.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entityManager.cpp" />
@@ -170,6 +171,7 @@
     <ClCompile Include="shelf.cpp" />
     <ClCompile Include="stain.cpp" />
     <ClCompile Include="terminal.cpp" />
+    <ClCompile Include="tileManager.cpp" />
     <ClCompile Include="wall.cpp" />
     <ClCompile Include="water_jet.cpp" />
   </ItemGroup>
@@ -183,6 +185,7 @@
     <ClInclude Include="dialogue_box.h" />
     <ClInclude Include="digit.h" />
     <ClInclude Include="door.h" />
+    <ClInclude Include="empty.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="shelf.h" />
     <ClInclude Include="stain.h" />
     <ClInclude Include="terminal.h" />
+    <ClInclude Include="tileManager.h" />
     <ClInclude Include="tools_include.h" />
     <ClInclude Include="wall.h" />
     <ClInclude Include="water_jet.h" />

@@ -30,6 +30,8 @@
     <ClCompile Include="wall.cpp" />
     <ClCompile Include="water_jet.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="tileManager.cpp" />
+    <ClCompile Include="empty.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backpack.h" />
@@ -61,6 +63,8 @@
     <ClInclude Include="wall.h" />
     <ClInclude Include="water_jet.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="tileManager.h" />
+    <ClInclude Include="empty.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />

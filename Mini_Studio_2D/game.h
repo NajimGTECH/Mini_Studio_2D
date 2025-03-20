@@ -6,6 +6,7 @@
 #include "player.h"
 #include "map.h"
 #include "entityManager.h"
+#include "tileManager.h"
 
 class Game{
 private:

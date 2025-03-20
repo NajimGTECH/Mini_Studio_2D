@@ -47,6 +47,8 @@ private:
 
 	bool m_canJump = false;
 
+	sf::Texture m_texturebis;
+
 	std::vector<std::shared_ptr<Entity>> m_tools;
 ;
 	Gravity m_gravity;

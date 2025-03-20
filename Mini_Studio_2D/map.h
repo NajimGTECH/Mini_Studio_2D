@@ -10,6 +10,7 @@
 #include "npc.h"
 #include "terminal.h"
 #include "stain.h"
+#include "empty.h"
 
 class Map
 {
@@ -21,18 +22,19 @@ public:
 
 	void readMapFile();
 
-	void createWall(float x, float y, float width, float height);
-	void createDoor(float x, float y, float width, float height);
-	void createButton(float x, float y, float width, float height);
+	void createEmpty(float x, float y, float width, float height, int type);
+	void createWall(float x, float y, float width, float height, int type);
+	void createDoor(float x, float y, float width, float height, int type);
+	void createButton(float x, float y, float width, float height, int type);
 	void createNPC(float x, float y, float width, float height);
-	void createTerminal(float x, float y, float width, float height);
-	void createLastDoor(float x, float y, float width, float height);
+	void createTerminal(float x, float y, float width, float height, int type);
 	void createStain(float x, float y, float width, float height, std::string text);
 
 
 	void displayMap(sf::RenderWindow& window);
 
 	std::vector<std::shared_ptr<MapElements>>& getAllWalls();
+	std::vector<std::shared_ptr<MapElements>>& getBackground();
 	std::vector<std::shared_ptr<MapElements>>& getAllDoors();
 	std::vector<std::shared_ptr<MapElements>>& getAllButtons();
 	std::vector<std::shared_ptr<MapElements>>& getAllNPCs();
@@ -49,10 +51,13 @@ public:
 	
 private:
 
+	const int TILE_SIZE_PX = 64;
+
 	std::string m_code;
 	std::ifstream m_codeFile;
 	std::ifstream m_mapFile;
 	std::vector<std::shared_ptr<MapElements>> allWalls;
+	std::vector<std::shared_ptr<MapElements>> background;
 	std::vector<std::shared_ptr<MapElements>> allDoors;
 	std::vector<std::shared_ptr<MapElements>> allButtons;
 	std::vector<std::shared_ptr<MapElements>> allNPCs;

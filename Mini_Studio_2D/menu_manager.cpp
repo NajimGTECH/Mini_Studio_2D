@@ -4,8 +4,8 @@
 using namespace sf;
 using namespace std;
 
-MenuManager::MenuManager(RenderWindow& window, Menu& menu, Map& map)
-    : window(window), menu(menu), m_map(map)
+MenuManager::MenuManager(RenderWindow& window, Menu& menu, Map& map, TileManager& tile)
+    : window(window), menu(menu), m_map(map), m_tilemanager(tile)
 {
     menu.switchToMain();
 }
@@ -30,6 +30,7 @@ void MenuManager::handleEvents(float deltaTime) {
                     if (!m_map.loaded) {
                         m_map.createMap(m_map.currentLevel);
                         m_map.loaded = true;
+                        m_tilemanager.applyTileSet(m_map);
                         std::cout << "map loaded" << std::endl;
                     }
                 }

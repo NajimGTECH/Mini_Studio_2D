@@ -5,10 +5,11 @@
 
 #include "menu.h"
 #include "map.h"
+#include "tileManager.h"
 
 class MenuManager {
 public:
-    MenuManager(RenderWindow& window, Menu& menu, Map& map);
+    MenuManager(RenderWindow& window, Menu& menu, Map& map, TileManager&);
     void handleEvents(float deltaTime);
     bool isPlayButtonClicked();
 
@@ -17,6 +18,7 @@ private:
     Menu& menu;
     bool gameIsLaunch = false;
     Map& m_map;
+    TileManager& m_tilemanager;
 };
 
 #endif
