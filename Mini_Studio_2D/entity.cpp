@@ -28,6 +28,10 @@ sf::Texture& Entity::getTexture() {
 	return m_texture;
 }
 
+void Entity::anim(float deltatime)
+{
+}
+
 float Entity::getFov() const {
 	return m_fov;
 }

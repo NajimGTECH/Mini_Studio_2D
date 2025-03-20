@@ -1,12 +1,24 @@
 #pragma once
-#include "entity.h"
-#include "player.h"
-class Desk : public Entity{
+#include "mapElements.h"
+//#include "player.h"
+
+class Desk : public MapElements 
+{
 public:
-	Desk(sf::Vector2f s, int h, Map& map);
-	void update(float deltaTime) override;
-	void draw(sf::RenderWindow& window) override;
-	void push(Player& player);
-	void anim(float deltaTime) override;
+	Desk(float x, float y, float width, float height, int id);
+
+	void update(float deltaTime);
+	void draw(sf::RenderWindow& window);
+
+	//void push(Player& player);
+
+	void anim(float deltaTime);
+
+private:
+
+	sf::RectangleShape m_shape;
+
+	sf::Texture m_texture;
+	sf::Sprite m_sprite;
 };
 

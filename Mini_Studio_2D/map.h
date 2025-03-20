@@ -12,6 +12,7 @@
 #include "terminal.h"
 #include "stain.h"
 #include "empty.h"
+#include "furnitures_include.h"
 
 class Map
 {
@@ -31,8 +32,11 @@ public:
 	void createStain(float x, float y, float width, float height, std::string text, int coordX, int coordY);
 	void createEmpty(float x, float y, float width, float height, int coordX, int coordY , int type);
 
+	void createFurniture(float x, float y, float width, float height, int coordX, int coordY , int type);
+
 
 	void displayMap(sf::RenderWindow& window);
+	void updateFurnitures(float deltaTime);
 
 	std::vector<std::shared_ptr<MapElements>>& getAllWalls();
 	std::vector<std::shared_ptr<MapElements>>& getBackground();
@@ -69,6 +73,7 @@ private:
 	std::vector<std::shared_ptr<MapElements>> allNPCs;
 	std::vector<std::shared_ptr<MapElements>> allTerminals;
 	std::vector<std::shared_ptr<MapElements>> allStains;
+	std::vector<std::shared_ptr<MapElements>> allFurnitures;
 
 	sf::Font m_font;
 };

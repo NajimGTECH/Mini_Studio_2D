@@ -4,10 +4,14 @@
 
 #include <SFML/Graphics.hpp>
 
+//#include "gravity.h"
+
 class MapElements
 {
 public:
   MapElements(float x, float y, float width, float height, int);
+  MapElements();
+
   virtual ~MapElements() {} 
 
 	
@@ -18,12 +22,15 @@ public:
 	float x, y, width, height;
 
 	virtual void draw(sf::RenderWindow& window); 
+	virtual void update(float deltaTime); 
 	
 	void openDoor();
 	void washStain();
 	bool isWalkable();
 
 protected:
+
+	//Gravity m_gravity;
 
 	int m_opacity = 255;
 

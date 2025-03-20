@@ -112,8 +112,11 @@ void Map::readMapFile()
 			else if (checker[0] == 'D') {
 				createDoor(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
+			else if (checker[0] == 'F') {
+				createFurniture(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
+			}
 			else if (checker[0] == 'T') {
-				createTerminal(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
+				createFurniture(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'B') {
 				createButton(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
@@ -238,6 +241,23 @@ void Map::createEmpty(float x, float y, float width, float height, int coordX, i
 	mapElementsCoordinates[{coordX, coordY}] = nullptr;
 }
 
+void Map::createFurniture(float x, float y, float width, float height, int coordX, int coordY, int type)
+{
+
+	std::shared_ptr<MapElements> newFurniture;
+
+	switch (type)
+	{
+	case 1:
+		newFurniture = std::make_shared<Desk>(x, y, width, height, type);
+		allFurnitures.push_back(newFurniture);
+	default:
+		break;
+	}
+
+	mapElementsCoordinates[{coordX, coordY}] = newFurniture;
+}
+
 void Map::createWall(float x, float y, float width, float height, int coordX, int coordY, int type){
 	auto newWall = std::make_shared<Wall>(x, y, width, height, type);
 	allWalls.push_back(newWall);
@@ -275,7 +295,6 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& button : allButtons) {
 		button->draw(window);
 	}
-
 	for (auto& npc : allNPCs) {
 		npc->draw(window);
 	}
@@ -285,8 +304,15 @@ void Map::displayMap(sf::RenderWindow& window) {
 	for (auto& stain : allStains) {
 		stain->draw(window);
 	}
-	for (auto& empty : background) {
-		empty->draw(window);
+	for (auto& furniture : allFurnitures) {
+		furniture->draw(window);
+	}
+}
+
+void Map::updateFurnitures(float deltaTime)
+{
+	for (auto& furniture : allFurnitures) {
+		furniture->update(deltaTime);
 	}
 }
 

@@ -8,6 +8,11 @@ void Game::run() {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
 	window.setFramerateLimit(120);
 
+	sf::Image icon;
+	icon.loadFromFile("Assets/Logo.png");
+	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
+
 	Map map;
 	TileManager tilemanager;
 
@@ -74,8 +79,6 @@ void Game::run() {
 					manager.code.setString("");
 				}
 			}
-		
-			
 		}
 
 
@@ -99,13 +102,14 @@ void Game::run() {
 
 		if (isPlaying) {
 
+			map.updateFurnitures(deltaTime);
 			manager.ButtonCheck(map, deltaTime);
-			map.displayMap(window);
-			manager.player->draw(window);
+
 			for (auto enemy : manager.enemies) {
 				enemy->draw(window);
 				enemy->update(deltaTime);
 			}
+
 			if (map.currentLevel == 0) {
 				if (manager.backpack) {
 					manager.backpack->update(deltaTime);
@@ -119,6 +123,7 @@ void Game::run() {
 			}
 
 			map.displayMap(window);
+			manager.player->draw(window);
 
 			if (!m_terminal) {
 				manager.player->update(deltaTime);

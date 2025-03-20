@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-
 #include "map.h"
 
 class Entity
@@ -14,7 +13,7 @@ public:
 
 	virtual void update(float deltaTime) = 0;
 	virtual void draw(sf::RenderWindow& window) = 0;
-	virtual void anim(float deltatime) = 0;
+	virtual void anim(float deltatime);
 
 
 	float getFov() const;

@@ -1,17 +1,32 @@
 #include "desk.h"
 
-Desk::Desk(sf::Vector2f s, int h, Map& map) : Entity(s, h, map) {
-	m_texture.loadFromFile("Assets/Fournitures/desk.png");
+Desk::Desk(float x_, float y_, float width_, float height_, int id_)
+{
+
+	id = id_; x = x_; y = y_; height = height_;
+
+	m_texture.loadFromFile("Assets/Furnitures/desk.png");
+	m_shape.setSize({ width_*2, height_*2 });
+	m_shape.setPosition({ x_, y_ });
+
 	m_sprite.setTexture(m_texture);
-	m_sprite.setPosition(500, 400);
+	m_sprite.setScale({ m_shape.getSize().x / m_texture.getSize().x , m_shape.getSize().y / m_texture.getSize().y });
+	m_sprite.setPosition(m_shape.getPosition());
 }
 
-void Desk::update(float deltaTime) {}
+void Desk::update(float deltaTime) 
+{
+	m_sprite.setPosition(m_shape.getPosition());
+	//m_gravity.applyGravity(this, deltaTime);
+}
 
-void Desk::draw(sf::RenderWindow& window) {
+void Desk::draw(sf::RenderWindow& window) 
+{
+	//window.draw(m_shape);
 	window.draw(m_sprite);
 }
 
+/*
 void Desk::push(Player& player) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		if (player.getWalkSide()) {
@@ -21,7 +36,7 @@ void Desk::push(Player& player) {
 			m_shape.move(-1, 0);
 		}
 	}
-}
+}*/
 
 void Desk::anim(float deltaTime)
 {

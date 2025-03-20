@@ -191,6 +191,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
+    <ClInclude Include="furnitures_include.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
     <ClInclude Include="menu.h" />
