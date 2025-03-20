@@ -34,7 +34,10 @@ void MapElements::update(float deltaTime)
 
 void MapElements::openDoor() {
 	std::cout << "door is open" << std::endl;
-	shape.move(0, -200);
+	canCollide = false;
+	m_opacity = 0;
+
+	shape.setFillColor(sf::Color(255, 255, 255, m_opacity));
 }
 
 void MapElements::washStain()
