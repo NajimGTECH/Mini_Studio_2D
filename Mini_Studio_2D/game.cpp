@@ -30,6 +30,7 @@ void Game::run() {
 
 	while (window.isOpen()) {
 
+
 		window.clear();
 
 		if (manager.player->getShape().getPosition().x > 1950 || manager.player->getShape().getPosition().y > 1100)
@@ -44,7 +45,8 @@ void Game::run() {
 				manager.player->getShape().setPosition(600, -100);
 			}
 			else
-			manager.player->getShape().setPosition(100, 700);
+			manager.player->getShape().setPosition(192, 200);
+			manager.player->getSprite().setPosition(192, 200);
 		}
 
 		manager.deathCheck(map);
@@ -87,12 +89,15 @@ void Game::run() {
 
 
 		if (isPlaying) {
-			
+
+			map.displayMap(window);
+
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
 			for (auto enemy : manager.enemies) {
 				enemy->draw(window);
+				std::cout << enemy->getSprite().getPosition().x << ' ' << enemy->getSprite().getPosition().y;
 				enemy->update(deltaTime);
 			}
 			if (map.currentLevel == 0) {
@@ -106,6 +111,9 @@ void Game::run() {
 					}
 				}
 			}
+
+
+
 			if (!m_terminal) {
 				manager.player->update(deltaTime);
 			}
@@ -118,7 +126,16 @@ void Game::run() {
 			menuManager.handleEvents(deltaTime);
 		}
 
-		//std::cout << deltaTime << endl;
+		
+
+		/*closet.draw(window);
+		desk.draw(window);*/
+		/*box.draw(window);*/
+		/*bookShelf.draw(window);*/
+		/*chair.draw(window);*/
+		/*shelf.draw(window);*/
+
+
 		window.display();
 	}
 }

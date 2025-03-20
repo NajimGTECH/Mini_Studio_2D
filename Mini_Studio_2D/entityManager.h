@@ -14,7 +14,9 @@ class EntityManager
 private:
 	std::vector<std::unique_ptr<Digit>> m_buttons;
 	sf::Font m_font;
-	std::ifstream m_mapFile;
+	std::ifstream m_mapEFile;
+	sf::Texture m_terminalT, m_terminalGoodT, m_terminalBadT;
+	bool m_texturesLoaded = false;
 public:
 	sf::Text code;
 	std::shared_ptr<Player> player;
