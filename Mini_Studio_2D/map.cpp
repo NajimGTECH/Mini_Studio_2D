@@ -6,6 +6,12 @@ Map::Map()
 	if (!m_font.loadFromFile("Assets/TextMenu/SolarPunk.otf")) {
 		std::cerr << "Erreur : Impossible de charger la police SolarPunk.otf" << std::endl;
 	}
+	if (!m_backTexture.loadFromFile("Assets/Tiles/background.png")) return;
+
+	m_back.setTexture(&m_backTexture);
+	m_back.setSize(sf::Vector2f(1920, 1080));
+	m_back.setPosition(sf::Vector2f(0, 0));
+	m_back.setFillColor(sf::Color(255, 255, 255, 50));
 }
 
 
@@ -302,6 +308,8 @@ void Map::createNPC(float x, float y, float width, float height, int coordX, int
 
 
 void Map::displayMap(sf::RenderWindow& window) {
+	window.draw(m_back);
+
 	for (auto& wall : allWalls) {
 		wall->draw(window);
 	}
