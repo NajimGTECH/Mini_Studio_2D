@@ -22,7 +22,12 @@ void MainClock::updateClock(sf::RenderWindow& window, float deltaTime)
 {
 	m_time -= deltaTime;
 
-	if (m_time < 0) m_time = 0;
+	if (m_time <= 0) {
+		m_time = 0;
+		m_isAlive = false;
+		/*std::cout << m_isAlive << std::endl;*/
+		std::cout << " end time " << std::endl;
+	}
 
 	m_text.setString("Remaining time : " + std::to_string((int)m_time) + "s");
 	window.draw(m_text);
@@ -36,3 +41,7 @@ void MainClock::loadFont()
 	m_text.setFillColor(sf::Color::Red);
 	m_text.setFont(m_font);
 }
+
+float MainClock::getTime() { return m_time; }
+
+bool MainClock::getIsAlive() { return m_isAlive; }

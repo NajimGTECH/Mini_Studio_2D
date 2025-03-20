@@ -1,16 +1,17 @@
 #pragma once
 #include"SFML/Graphics.hpp"
-
 #include"player.h"
+#include"mainClock.h"
+#include"map.h"
 
 class Screen {
 public:
-	Screen();
+	Screen(Map& map);
 
 	void draw(sf::RenderWindow& window);
-	void update(float deltatime);
 
-	Player* player;
+	std::shared_ptr<Player>player;
+	std::shared_ptr<MainClock>mainClock;
 
 private:
 	sf::Text m_lose;

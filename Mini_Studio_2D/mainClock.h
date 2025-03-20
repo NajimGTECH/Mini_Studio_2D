@@ -9,7 +9,8 @@ public:
 
 	void updateClock(sf::RenderWindow& window, float deltaTime);
 
-	float getTime() { return m_time; }
+	float getTime();
+	bool getIsAlive();
 
 private:
 
@@ -20,5 +21,7 @@ private:
 	float m_time;
 	sf::Font m_font;
 	sf::Text m_text;
+
+	bool m_isAlive = true;
 };
 

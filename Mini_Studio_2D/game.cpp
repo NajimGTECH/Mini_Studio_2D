@@ -10,6 +10,7 @@ void Game::run() {
 
 	Map map;
 	EntityManager manager(map);
+	MainClock mainClock(10);
 
 	/*Closet closet(60, 60, map);
 	Desk desk(60, 60, map);
@@ -19,7 +20,7 @@ void Game::run() {
 	Shelf shelf(60, 60, map);*/
 	Menu menu(1920, 1080);
 	MenuManager menuManager(window, menu, map);
-	MainClock mainClock(300);
+	Screen screen(map);
 
 
 	sf::Clock clock;
@@ -79,7 +80,7 @@ void Game::run() {
 			}
 		}
 
-
+		map.displayMap(window);
 		
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
@@ -105,8 +106,7 @@ void Game::run() {
 			menuManager.handleEvents(deltaTime);
 		}
 
-		
-		map.displayMap(window);
+		screen.draw(window);
 		/*closet.draw(window);
 		desk.draw(window);*/
 		/*box.draw(window);*/

@@ -44,7 +44,6 @@ void Player::update(float deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 30 || sf::Joystick::getAxisPosition(0, sf::Joystick::PovX) > 30)
 	{
 		m_walkSide = true;
-		std::cout << "droite" << m_walkSide << std::endl;
 
 		m_sprite.setOrigin(0, 0);
 		m_sprite.setScale(m_scaling, m_scaling);
@@ -61,7 +60,6 @@ void Player::update(float deltaTime)
 		moveVelocity = { deltaTime * -m_speed, 0.f }; 
 		m_direction += { -1.f, 0.f };
 		m_walkSide = false;
-		std::cout << "gauche" << m_walkSide << std::endl;
 		moveVelocity = { deltaTime * -m_speed, 0.f };
 		if(!isCollisionDetected(moveVelocity)) m_shape.setPosition(m_shape.getPosition() + moveVelocity);
 	}
