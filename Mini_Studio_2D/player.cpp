@@ -105,6 +105,7 @@ void Player::update(float deltaTime)
 
 	if (checkIfGrounded())
 	{
+		std::cout << "grounded\n";
 		m_yVelocity.y = 0.f;
 		m_canJump = true;
 	}
@@ -126,6 +127,7 @@ void Player::update(float deltaTime)
 	m_sprite.setPosition(m_shape.getPosition().x, m_shape.getPosition().y + 5);
 	m_sprite.setTextureRect(sf::IntRect(m_animVect.x * m_coeffAnim.x, m_animVect.y * m_coeffAnim.y, m_coeffAnim.x, m_coeffAnim.y));
 	anim(deltaTime);
+
 }
 
 void Player::draw(sf::RenderWindow& window)

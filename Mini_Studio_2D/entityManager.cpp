@@ -4,7 +4,17 @@
 EntityManager::EntityManager(Map& map) {
 	player = std::make_shared<Player>(sf::Vector2f(75,130), 10, map);
     backpack = std::make_shared<Backpack>(map);
-    
+
+
+    if (!m_texturesLoaded) {
+        if (!m_terminalT.loadFromFile("Assets/Terminal/terminal_cropped.png") ||
+            !m_terminalGoodT.loadFromFile("Assets/Terminal/terminal_green.png") ||
+            !m_terminalBadT.loadFromFile("Assets/Terminal/terminal_red.png")) {
+            return;
+        }
+        m_texturesLoaded = true;
+    }
+
 	m_font.loadFromFile("Assets/Font/digit.ttf");
 
 	std::vector<sf::Vector2f> buttonPositions = {
@@ -138,26 +148,18 @@ void EntityManager::deathCheck(Map& map) {
 }
 
 void EntityManager::displayTerminal(sf::RenderWindow& window, Map& map) {
-    static sf::Texture terminalT, terminalGoodT, terminalBadT;
-    static bool texturesLoaded = false;
+   
     static sf::Clock timer;
     static bool codeChecked = false;
     static bool codeValid = false;
 
-    if (!texturesLoaded) {
-        if (!terminalT.loadFromFile("Assets/Terminal/terminal_cropped.png") ||
-            !terminalGoodT.loadFromFile("Assets/Terminal/terminal_green.png") ||
-            !terminalBadT.loadFromFile("Assets/Terminal/terminal_red.png")) {
-            return;
-        }
-        texturesLoaded = true;
-    }
+   
 
 
-    sf::Texture* currentTexture = &terminalT;
+    sf::Texture* currentTexture = &m_terminalT;
     if (codeChecked) {
         if (timer.getElapsedTime().asSeconds() < 1.0f) {
-            currentTexture = codeValid ? &terminalGoodT : &terminalBadT;
+            currentTexture = codeValid ? &m_terminalGoodT : &m_terminalBadT;
         }
         else {
             codeChecked = false;

@@ -20,6 +20,7 @@ void Game::run() {
 	Menu menu(1920, 1080);
 	MenuManager menuManager(window, menu, map,  tilemanager);
 
+	EntityManager manager(map);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
@@ -55,8 +56,6 @@ void Game::run() {
 
 		manager.deathCheck(map);
 
-		deltaTime = clock.restart().asSeconds();
-
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::Closed) {
@@ -83,8 +82,7 @@ void Game::run() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 			for (auto& npc : map.getAllNPCs()) {
 				auto npcPtr = std::dynamic_pointer_cast<NPC>(npc);
-				if (npcPtr && npcPtr->isNearPlayer(manager.player->getShape().getPosition().x,
-					manager.player->getShape().getPosition().y)) {
+				if (npcPtr && npcPtr->isNearPlayer(manager.player->getShape().getPosition().x, manager.player->getShape().getPosition().y)) {
 					npcPtr->interact();
 				}
 			}
@@ -119,6 +117,9 @@ void Game::run() {
 					}
 				}
 			}
+
+			map.displayMap(window);
+
 			if (!m_terminal) {
 				manager.player->update(deltaTime);
 			}
@@ -132,7 +133,7 @@ void Game::run() {
 		}
 
 		
-		map.displayMap(window);
+
 		/*closet.draw(window);
 		desk.draw(window);*/
 		/*box.draw(window);*/

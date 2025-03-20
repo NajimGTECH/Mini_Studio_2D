@@ -2,18 +2,17 @@
 
 #include <SFML/Graphics.hpp>
 #include "window.h" 
-#include "entity.h"
-#include "entityManager.h"
 #include "mapElements.h"
 #include <cmath>
+#include "entity.h"
 
 class Raycast {
     public:
-        Raycast() {};
-        Entity* attachedEntity;
+
+        Entity* attachedEntity = 0;
         std::vector<sf::Vector2f> intersections;
 
-		int CELL_SIZE = 60;
+		int CELL_SIZE = 64;
         void renderRay(Map& map);
         float degToRad(float degree);
 };

@@ -107,61 +107,61 @@ void Map::readMapFile()
 			std::string checker = mapContent[x + 30 * y];
 			sf::Vector2f spawnPos = sf::Vector2f(TILE_SIZE_PX * (float)x, TILE_SIZE_PX * (float)y);
 			if (checker[0] == '#') {
-				createWall(spawnPos.x, spawnPos.y, 64, 64, checker[1] - 48);
+				createWall(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'D') {
-				createDoor(spawnPos.x, spawnPos.y, 64, 64, checker[1] - 48);
+				createDoor(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'T') {
-				createTerminal(spawnPos.x, spawnPos.y, 64, 64, checker[1] - 48);
+				createTerminal(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker[0] == 'B') {
-				createButton(spawnPos.x, spawnPos.y, 64, 64, checker[1] - 48);
+				createButton(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
 			else if (checker == "~") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "", x, y);
 			}
 			else if (checker == "N") {
-				createNPC(spawnPos.x, spawnPos.y, 64, 64);
+				createNPC(spawnPos.x, spawnPos.y, 64, 64, x, y );
 			}
 			else if (checker == "0") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "0");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "0", x, y);
 			}			
 			else if (checker == "1") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "1");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "1" , x, y);
 			}
 			else if (checker == "2") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "2");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "2", x, y);
 			}
 			else if (checker == "3") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "3");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "3", x, y);
 			}
 			else if (checker == "4") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "4");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "4" , x, y);
 			}
 			else if (checker == "5") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "5");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "5", x, y);
 			}
 			else if (checker == "6") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "6");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "6" , x, y);
 			}
 			else if (checker == "7") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "7");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "7" , x, y);
 			}
 			else if (checker == "8") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "8");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "8" , x, y);
 			}
 			else if (checker == "9") {
-				createStain(spawnPos.x, spawnPos.y, 64, 64, "9");
+				createStain(spawnPos.x, spawnPos.y, 64, 64, "9" , x, y);
 			}
 			else if (checker == ".") {
-				createEmpty(spawnPos.x, spawnPos.y, 64, 64, 0);
+				createEmpty(spawnPos.x, spawnPos.y, 64, 64 , x, y, 0);
 			}
 			else if (checker == "|") {
-				createEmpty(spawnPos.x, spawnPos.y, 64, 64, 1);
+				createEmpty(spawnPos.x, spawnPos.y, 64, 64, x, y, 1);
 			}
 			else if (checker == "[") {
-				createEmpty(spawnPos.x, spawnPos.y, 64, 64, 2);
+				createEmpty(spawnPos.x, spawnPos.y, 64, 64, x, y, 2);
 			}
 		}
 	}
@@ -232,32 +232,30 @@ void Map::createStain(float x, float y, float width, float height, std::string t
 	mapElementsCoordinates[{coordX, coordY}] = newStain;
 }
 
-void Map::createEmpty(float x, float y, float width, float height, int type)
+void Map::createEmpty(float x, float y, float width, float height, int coordX, int coordY, int type)
 {
 	background.push_back(std::make_shared<Empty>(x, y, width, height, type));
+	mapElementsCoordinates[{coordX, coordY}] = nullptr;
 }
-	auto newWall = std::make_shared<Wall>(x, y, width, height, 0);
+
+void Map::createWall(float x, float y, float width, float height, int coordX, int coordY, int type){
+	auto newWall = std::make_shared<Wall>(x, y, width, height, type);
 	allWalls.push_back(newWall);
 	mapElementsCoordinates[{coordX, coordY}] = newWall;
 }
 
-void Map::createDoor(float x, float y, float width, float height, int type) {
+void Map::createDoor(float x, float y, float width, float height, int coordX, int coordY, int type) {
 	auto newDoor = std::make_shared<Door>(x, y, width, height, type);
 	allDoors.push_back(newDoor);
 	mapElementsCoordinates[{coordX, coordY}] = newDoor;
 }
 
-void Map::createButton(float x, float y, float width, float height, int type) {
+void Map::createButton(float x, float y, float width, float height, int coordX, int coordY, int type) {
 	auto newButton = std::make_shared<Button>(x, y, width, height, type);
 	allButtons.push_back(newButton);
 	mapElementsCoordinates[{coordX, coordY}] = newButton;
 }
 
-void Map::createLastDoor(float x, float y, float width, float height, int type) {
-	auto newLastDoor = std::make_shared<Door>(x, y, width, height, type);
-	allDoors.push_back(newLastDoor);
-	mapElementsCoordinates[{coordX, coordY}] = newLastDoor;
-}
 
 void Map::createNPC(float x, float y, float width, float height, int coordX, int coordY)
 {
@@ -335,6 +333,8 @@ bool Map::isSolid(int coordX, int coordY)
 	//}
 
 	//std::cout << "Coords vector: " << coordX << ", " << coordY << std::endl;
+	if (coordX >= 30 || coordX < 0 || coordY >= 17 || coordY < 0) return false;
+
 	if (mapElementsCoordinates.at(sf::Vector2i( coordX, coordY )) != nullptr)
 	{
 		return mapElementsCoordinates[{coordX, coordY}]->isWalkable();

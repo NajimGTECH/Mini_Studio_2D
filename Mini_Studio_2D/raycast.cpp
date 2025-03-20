@@ -3,6 +3,7 @@
 #define PI 3.14159265
 #define NUM_RAYS 550 // Définir le nombre de rayons souhaité
 
+
 sf::Vector2f operator-(const sf::Vector2f& vector, float value)
 {
     return { vector.x - value, vector.y - value };

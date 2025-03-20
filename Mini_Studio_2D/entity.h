@@ -34,7 +34,7 @@ public:
 
 protected:
 
-	float m_speed;
+	float m_speed = 1000.f;
 	sf::Clock m_animC;
 
 	sf::Vector2f m_coeffAnim;
@@ -47,7 +47,6 @@ protected:
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::RectangleShape m_shape;
-	sf::Texture m_texture;
 	sf::Texture m_texture1;
 	sf::RectangleShape m_base;
 	sf::Vector2f m_size;

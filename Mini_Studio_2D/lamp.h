@@ -1,5 +1,5 @@
 #pragma once
-#include "entity.h"
+
 #include "raycast.h"
 #include "player.h"
 

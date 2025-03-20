@@ -28,8 +28,8 @@ public:
 	void createButton(float x, float y, float width, float height, int coordX, int coordY, int type);
 	void createNPC(float x, float y, float width, float height, int coordX, int coordY);
 	void createTerminal(float x, float y, float width, float height, int coordX, int coordY, int type);
-	void createLastDoor(float x, float y, float width, float height, int coordX, int coordY, int type);
 	void createStain(float x, float y, float width, float height, std::string text, int coordX, int coordY);
+	void createEmpty(float x, float y, float width, float height, int coordX, int coordY , int type);
 
 
 	void displayMap(sf::RenderWindow& window);

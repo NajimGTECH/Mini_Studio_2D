@@ -24,10 +24,6 @@ sf::Vector2f Entity::getDirection()
 	return m_direction;
 }
 
-sf::Sprite& Entity::getSprite() {
-	return m_sprite;
-}
-
 sf::Texture& Entity::getTexture() {
 	return m_texture;
 }
