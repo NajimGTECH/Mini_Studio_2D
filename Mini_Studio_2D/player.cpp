@@ -8,8 +8,11 @@ Player::Player(int size, int health, Map& map) : Entity(size, health, map)
 
 	m_base.setPosition(m_shape.getPosition().x + m_shape.getSize().x * 0.2f - m_shape.getSize().x/7.f, m_shape.getPosition().y + m_shape.getSize().y - m_base.getSize().y);
 
-	auto waterJet = std::make_shared<WaterJet>(0, -1, map, this);
-	m_tools.push_back(waterJet);
+	m_inventory.addTool(std::make_shared<WaterJet>(0, -1, map, this));
+	m_inventory.addTool(std::make_shared<RoboticArm>(0, -1, map));
+
+	/*auto waterJet = std::make_shared<WaterJet>(0, -1, map, this);*/
+	/*m_tools.push_back(waterJet);*/
 
 	if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
 		return;
@@ -82,6 +85,14 @@ void Player::update(float deltaTime)
 	m_sprite.setPosition(m_shape.getPosition());
 
 	anim(deltaTime);
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
+		m_inventory.switchTool(0);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
+		m_inventory.switchTool(1);
+	}
+	m_inventory.update(deltaTime);
 }
 
 void Player::draw(sf::RenderWindow& window)
@@ -89,7 +100,8 @@ void Player::draw(sf::RenderWindow& window)
 	window.draw(m_sprite);
 	m_base.setFillColor(sf::Color::Blue);
 	window.draw(m_base);
-
+	window.draw(m_sprite);
+	m_inventory.draw(window);
 	//draw loop for the player tools
 	for (auto& tool : m_tools)
 	{

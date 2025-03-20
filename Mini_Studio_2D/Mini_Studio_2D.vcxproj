@@ -148,16 +148,14 @@
     <ClCompile Include="chair.cpp" />
     <ClCompile Include="closet.cpp" />
     <ClCompile Include="desk.cpp" />
-
     <ClCompile Include="dialogue_box.cpp" />
-
     <ClCompile Include="digit.cpp" />
-
     <ClCompile Include="door.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="entityManager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gravity.cpp" />
+    <ClCompile Include="inventory.cpp" />
     <ClCompile Include="lamp.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
@@ -180,16 +178,14 @@
     <ClInclude Include="chair.h" />
     <ClInclude Include="closet.h" />
     <ClInclude Include="desk.h" />
-
     <ClInclude Include="dialogue_box.h" />
-
     <ClInclude Include="digit.h" />
-
     <ClInclude Include="door.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
+    <ClInclude Include="inventory.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="menu_manager.h" />
     <ClInclude Include="lamp.h" />

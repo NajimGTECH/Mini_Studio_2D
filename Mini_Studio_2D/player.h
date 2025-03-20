@@ -5,6 +5,7 @@
 #include <mutex>
 
 #include "entity.h"
+#include "inventory.h"
 #include "gravity.h"
 #include "tools_include.h"
 
@@ -46,7 +47,7 @@ private:
 	bool m_canJump = false;
 
 	std::vector<std::shared_ptr<Entity>> m_tools;
-;
+	Inventory m_inventory;
 	Gravity m_gravity;
 	std::mutex m_mutex; //used to make player threads safe
 };
