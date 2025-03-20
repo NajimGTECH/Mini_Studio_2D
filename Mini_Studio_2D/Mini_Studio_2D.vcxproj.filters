@@ -259,6 +259,9 @@
     <ClInclude Include="window.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
     <ClInclude Include="raycast.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
