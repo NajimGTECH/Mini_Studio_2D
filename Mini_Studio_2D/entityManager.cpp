@@ -2,7 +2,7 @@
 #include "player.h"
 
 EntityManager::EntityManager(Map& map) {
-	player = std::make_shared<Player>(sf::Vector2f(75,130), 10, map);
+    player = std::make_shared<Player>(sf::Vector2f(75, 130), 10, map);
     backpack = std::make_shared<Backpack>(map);
 
 
@@ -15,16 +15,16 @@ EntityManager::EntityManager(Map& map) {
         m_texturesLoaded = true;
     }
 
-	m_font.loadFromFile("Assets/Font/digit.ttf");
+    m_font.loadFromFile("Assets/Font/digit.ttf");
 
-	std::vector<sf::Vector2f> buttonPositions = {
-					{870, 723},
-		{746, 600}, {870, 604}, {992, 600},
-		{746, 480}, {870, 480}, {992, 480},
-		{750, 360}, {870, 360}, {992, 360},
+    std::vector<sf::Vector2f> buttonPositions = {
+                    {870, 723},
+        {746, 600}, {870, 604}, {992, 600},
+        {746, 480}, {870, 480}, {992, 480},
+        {750, 360}, {870, 360}, {992, 360},
     };
 
-    
+
     auto erase_button = std::make_unique<Digit>(0, 1);
     if (!erase_button->texture.loadFromFile("Assets/Terminal/digitstar.png")) {
         return;
@@ -72,7 +72,7 @@ void EntityManager::generate(Map& map, int levelIndex)
 
     m_mapEFile.close();
 
-    m_mapEFile.open("Maps/Level_1.txt");
+    m_mapEFile.open("Maps/Level_" + std::to_string(levelIndex) + ".txt");
 
     if (!m_mapEFile) {
         std::cout << "erreur d'ouverture";

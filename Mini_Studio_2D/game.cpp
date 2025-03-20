@@ -90,7 +90,6 @@ void Game::run() {
 			}
 		}
 
-		map.displayMap(window);
 		
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
