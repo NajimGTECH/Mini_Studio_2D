@@ -335,14 +335,14 @@ bool Player::isCollisionDetectedBetweenFurnitureAndWalls(std::shared_ptr<MapElem
 {
 	for (auto& wall : m_map.getAllWalls()) {
 
-		if (furniture->shape.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
+		if (furniture->shape.getGlobalBounds().intersects(wall->shape.getGlobalBounds()) && wall->canCollide)
 		{
 			return true;
 		}
 	}
 	for (auto& door : m_map.getAllDoors()) {
 
-		if (furniture->shape.getGlobalBounds().intersects(door->shape.getGlobalBounds()))
+		if (furniture->shape.getGlobalBounds().intersects(door->shape.getGlobalBounds()) && door->canCollide)
 		{
 			return true;
 		}
