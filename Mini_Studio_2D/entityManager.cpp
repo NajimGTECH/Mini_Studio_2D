@@ -64,49 +64,57 @@ void EntityManager::generate(Map& map, int levelIndex)
 {
     enemies.clear();
 
-    int i = 0, x = 0, y = 0, j = 0;
+    std::cout << "niveau : " << levelIndex << std::endl;
+
     char ch;
+    std::vector<std::string> mapContent;
+    std::string str;
 
-    m_mapFile.close();
-    m_mapFile.open("Maps/Level_" + std::to_string(levelIndex) + ".txt");
+    m_mapEFile.close();
 
-    while (m_mapFile.get(ch)) {
-        switch (ch)
+    m_mapEFile.open("Maps/Level_1.txt");
+
+    if (!m_mapEFile) {
+        std::cout << "erreur d'ouverture";
+    }
+    std::cout << levelIndex;
+
+    while (m_mapEFile.get(ch)) {
+        if (ch == ' ' || ch == '\n')
         {
-        case 'E': enemies.push_back(std::make_shared<Enemy>(sf::Vector2f(x, y - 30),  map)); x += 60; i++; break;
-        case '#':  x += 60; i++; break;
-        case 'D':  x += 60; i++; break;
-        case 'B':  x += 60; i++; break;
-
-        case 'N':  x += 60; i++; break;
-
-        case 'T':  x += 60; i++; break;
-        case 'P':  x += 60; i++; break;
-        case ' ':  x += 60; i++; break;
-            //Stains:
-        case '~':  x += 60; i++; break;
-        case '0':  x += 60; i++; break;
-        case '1':  x += 60; i++; break;
-        case '2':  x += 60; i++; break;
-        case '3':  x += 60; i++; break;
-        case '4':  x += 60; i++; break;
-        case '5':  x += 60; i++; break;
-        case '6':  x += 60; i++; break;
-        case '7':  x += 60; i++; break;
-        case '8':  x += 60; i++; break;
-        case '9':  x += 60; i++; break;
-
+            if (!str.empty())
+            {
+                mapContent.push_back(str);
+                str.clear();
+                
+            }
         }
-
-
-        if (i == 32) {
-            y += 60; x = 0; i = 0; j++;
-        }
-
-        if (j == 18) {
-            y = 0; x = 0; i = 0; j++;
+        else
+        {
+            str += ch;
         }
     }
+
+    if (!str.empty()) {
+        mapContent.push_back(str);
+    }
+    if (!mapContent.empty()) {
+        for (int y = 0; y < 17; y++)
+        {
+            for (int x = 0; x < 30; x++)
+            {
+                std::string checker = mapContent[x + 30 * y];
+                sf::Vector2f spawnPos = sf::Vector2f(64 * (float)x, 64 * (float)y);
+
+                if (checker[1] == 'E') {
+                    enemies.push_back(std::make_shared<Enemy>(spawnPos, map));
+                }
+            }
+        }
+    }
+
+
+    m_mapEFile.close();
 }
 
 
@@ -133,13 +141,15 @@ bool EntityManager::TerminalCheck(Map& map) {
     return false;
 }
 
-void EntityManager::deathCheck(Map& map) {
+void EntityManager::deathCheck(Map& map, TileManager& tilemanager){
     for (auto enemy : enemies) {
         if (player->getSprite().getGlobalBounds().intersects(enemy->getSprite().getGlobalBounds())) {
             map.createMap(map.currentLevel);
             generate(map, map.currentLevel);
+            tilemanager.applyTileSet(map);
+
             if (map.currentLevel == 1) {
-                player->getShape().setPosition(700, -100);
+                player->getShape().setPosition(600, -100);
             }
             else
                 player->getShape().setPosition(100, 700);

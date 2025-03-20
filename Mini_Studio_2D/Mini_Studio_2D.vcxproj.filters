@@ -29,9 +29,9 @@
     <ClCompile Include="terminal.cpp" />
     <ClCompile Include="wall.cpp" />
     <ClCompile Include="water_jet.cpp" />
-    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="tileManager.cpp" />
     <ClCompile Include="empty.cpp" />
+    <ClCompile Include="enemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -257,6 +257,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="window.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="raycast.h">

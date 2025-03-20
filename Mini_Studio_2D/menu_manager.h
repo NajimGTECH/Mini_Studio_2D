@@ -6,6 +6,7 @@
 #include "menu.h"
 #include "map.h"
 #include "tileManager.h"
+#include "entityManager.h"
 
 class MenuManager {
 public:

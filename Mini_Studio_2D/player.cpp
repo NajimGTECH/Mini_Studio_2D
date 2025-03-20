@@ -214,7 +214,6 @@ void Player::jump(float deltaTime)
 
 	if (m_canJump == false) return;
 
-	std::cout << "Jumping" << std::endl;
 
 	m_canJump = false;
 
@@ -233,7 +232,7 @@ void Player::jump(float deltaTime)
 		}
 
 		if (!isCollisionDetected(jumpVelocity)) { m_yVelocity += jumpVelocity;  }
-		else { m_yVelocity = { 0.f, 0.f }; std::cout << "Collision detected while jumping" << std::endl; break; }
+		else { m_yVelocity = { 0.f, 0.f };  break; }
 
 		if (m_yVelocity.y == m_gravity.getForce() * deltaTime) break;
 
@@ -358,7 +357,6 @@ void Player::anim(float deltaTime)
 		if (timeAnimation >= 150) {
 			m_animVect.x++;
 			m_animC.restart();
-			std::cout << m_sprite.getTextureRect().getPosition().x << ' ' << m_sprite.getTextureRect().getPosition().y << ' ' << m_animVect.x << std::endl;
 		}
 		if (m_animVect.x * m_coeffAnim.x >= m_texture.getSize().x) {
 			m_animVect.x = 0;

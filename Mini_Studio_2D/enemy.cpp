@@ -1,19 +1,29 @@
 #include "enemy.h"
 
-Enemy::Enemy(sf::Vector2f start , Map& map) : startpos(start), Entity(sf::Vector2f(96,125), 1, map)
+Enemy::Enemy(sf::Vector2f start, Map& map) : startpos(start), Entity(sf::Vector2f(96, 125), 1, map)
 {
 	m_speed = 300.f;
 	m_scaling = 1;
 
 	m_coeffAnim = sf::Vector2f(96, 124);
 
-	if (!m_texture.loadFromFile("Assets/Ennemi/spritesheet.png")) {
-		return;
-	}
+	std::cout << startpos.x << startpos.y;
+
+
 	m_sprite.setPosition(startpos);
+
+	if (!m_texture.loadFromFile("Assets/Enemy/spritesheet.png")) {
+		std::cerr;
+	}
+	
+
+	//m_texture.loadFromFile("Assets/Ennemi/spritesheet.png");
+
+
 	m_sprite.setTexture(m_texture);
 	m_sprite.setTextureRect(sf::IntRect(m_animVect.x * m_coeffAnim.x, m_animVect.y * m_coeffAnim.y, m_coeffAnim.x, m_coeffAnim.y));
 }
+
 
 void Enemy::update(float deltaTime)
 {
@@ -45,19 +55,27 @@ void Enemy::update(float deltaTime)
 
 void Enemy::draw(sf::RenderWindow& window)
 {
+	if (!m_texture.loadFromFile("Assets/Enemy/spritesheet.png")) {
+		std::cerr;
+	}
+
+
+	//m_texture.loadFromFile("Assets/Ennemi/spritesheet.png");
+
+
+	m_sprite.setTexture(m_texture);
 	window.draw(m_sprite);
 }
 
 void Enemy::anim(float deltaTime)
 {
 	int timeAnimation = m_animC.getElapsedTime().asMilliseconds();
-	
-		if (timeAnimation >= 150) {
-			m_animVect.x++;
-			m_animC.restart();
-			std::cout << m_sprite.getTextureRect().getPosition().x << ' ' << m_sprite.getTextureRect().getPosition().y << ' ' << m_animVect.x << std::endl;
-		}
-		if (m_animVect.x * m_coeffAnim.x >= m_texture.getSize().x) {
-			m_animVect.x = 0;
-		}
+
+	if (timeAnimation >= 150) {
+		m_animVect.x++;
+		m_animC.restart();
+	}
+	if (m_animVect.x * m_coeffAnim.x >= m_texture.getSize().x) {
+		m_animVect.x = 0;
+	}
 }

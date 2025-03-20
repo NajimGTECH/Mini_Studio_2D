@@ -37,6 +37,7 @@ void Game::run() {
 
 	while (window.isOpen()) {
 
+
 		window.clear();
 		deltaTime = clock.restart().asSeconds();
 
@@ -52,10 +53,11 @@ void Game::run() {
 				manager.player->getShape().setPosition(600, -100);
 			}
 			else
-			manager.player->getShape().setPosition(100, 700);
+			manager.player->getShape().setPosition(192, 200);
+			manager.player->getSprite().setPosition(192, 200);
 		}
 
-		manager.deathCheck(map);
+		manager.deathCheck(map, tilemanager);
 
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -67,15 +69,16 @@ void Game::run() {
 					manager.player->reverseE();
 				}
 			}
-		}
-		if (event.type == sf::Event::KeyReleased) {
-			if (event.key.code == sf::Keyboard::E) {
-				if (manager.TerminalCheck(map)) {
-					m_terminal = !m_terminal;
-					manager.code.setString("");
+			if (event.type == sf::Event::KeyReleased) {
+				if (event.key.code == sf::Keyboard::E) {
+					if (manager.TerminalCheck(map)) {
+						m_terminal = !m_terminal;
+						manager.code.setString("");
+					}
 				}
 			}
 		}
+		
 
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
@@ -101,6 +104,8 @@ void Game::run() {
 			mainClock.updateClock(window, deltaTime);
 			map.updateFurnitures(deltaTime);
 			manager.ButtonCheck(map, deltaTime);
+			map.displayMap(window);
+			manager.player->draw(window);
 
 			for (auto enemy : manager.enemies) {
 				enemy->draw(window);
@@ -119,8 +124,7 @@ void Game::run() {
 				}
 			}
 
-			map.displayMap(window);
-			manager.player->draw(window);
+
 
 			if (!m_terminal) {
 				manager.player->update(deltaTime);
