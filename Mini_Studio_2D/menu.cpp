@@ -23,7 +23,7 @@ Menu::Menu(float _width, float _height) : selectedIndex(0), menuState(MenuState:
 	}
 
 	menuMusic.setLoop(true);
-	volume = 0.5f;
+	volume = 15.5f;
 	menuMusic.setVolume(volume);
 	menuMusic.play();
 }
