@@ -9,6 +9,8 @@ void Game::run() {
 	window.setFramerateLimit(120);
 
 	Map map;
+	EntityManager manager(map);
+	MainClock mainClock(10);
 	TileManager tilemanager;
 
 	/*Closet closet(60, 60, map);
@@ -18,6 +20,7 @@ void Game::run() {
 	Chair chair(60, 60, map);
 	Shelf shelf(60, 60, map);*/
 	Menu menu(1920, 1080);
+	Screen screen(map);
 	MenuManager menuManager(window, menu, map,  tilemanager);
 
 	EntityManager manager(map);
@@ -62,7 +65,7 @@ void Game::run() {
 				window.close();
 			}
 			if (event.type == sf::Event::KeyReleased) {
-				if (event.key.code == sf::Keyboard::E) {
+				if (event.key.code == sf::Keyboard::R) {
 					manager.player->reverseE();
 				}
 			}
@@ -74,8 +77,6 @@ void Game::run() {
 					manager.code.setString("");
 				}
 			}
-		
-			
 		}
 
 
@@ -88,7 +89,7 @@ void Game::run() {
 			}
 		}
 
-
+		map.displayMap(window);
 		
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
@@ -99,6 +100,7 @@ void Game::run() {
 
 		if (isPlaying) {
 
+			mainClock.updateClock(window, deltaTime);
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
@@ -132,8 +134,7 @@ void Game::run() {
 			menuManager.handleEvents(deltaTime);
 		}
 
-		
-
+		screen.draw(window);
 		/*closet.draw(window);
 		desk.draw(window);*/
 		/*box.draw(window);*/

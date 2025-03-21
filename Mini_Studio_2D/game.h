@@ -12,6 +12,7 @@
 #include "chair.h"
 #include "shelf.h"
 #include "tileManager.h"
+#include "screen.h"
 
 class Game{
 private:

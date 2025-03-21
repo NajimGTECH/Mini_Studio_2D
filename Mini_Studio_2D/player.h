@@ -29,6 +29,7 @@ public:
 	bool getWalkSide() const;
 	bool getE() const;
 	void reverseE();
+	bool getEnd();
 
 	bool isMoving();
 
@@ -40,7 +41,9 @@ private:
 	bool checkIfGrounded();
 
 private:
-	
+	bool end = false;
+
+	sf::Vector2f m_coeffAnim;
 
 	sf::Vector2f m_yVelocity = { 0.f, 0.f };
 
