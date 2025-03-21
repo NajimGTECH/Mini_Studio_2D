@@ -26,6 +26,7 @@ void MenuManager::handleEvents(float deltaTime) {
                 if (option == 0) {
                     cout << "Lancer la partie !" << endl;
                     menu.startGame = true; // Indique que le jeu doit commencer
+                    menu.stopmenuMusic();
 
                     if (!m_map.loaded) {
                         m_map.createMap(m_map.currentLevel);
@@ -88,6 +89,7 @@ void MenuManager::handleEvents(float deltaTime) {
                 if (option == 0) 
                 {
                     menu.startGame = true; // Indique que le jeu doit commencer
+                    menu.stopmenuMusic();
 
                     auto text = menu.getTextFromOption(option + 1); //the element 0 is the title explainging how the custom levels system works
                     std::string customLevelPath = text.getString() + ".txt";
