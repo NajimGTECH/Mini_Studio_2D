@@ -150,6 +150,7 @@ void Player::update(float deltaTime)
 		m_direction += { 0.f, -1.f };
 	}
 
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 	{
 		m_direction += { 0.f, 1.f };
@@ -196,6 +197,14 @@ void Player::update(float deltaTime)
 	m_sprite.setPosition(m_shape.getPosition().x, m_shape.getPosition().y + 5);
 	m_sprite.setTextureRect(sf::IntRect(m_animVect.x * m_coeffAnim.x, m_animVect.y * m_coeffAnim.y, m_coeffAnim.x, m_coeffAnim.y));
 	anim(deltaTime);
+
+	if (sf::Joystick::isButtonPressed(0, 4)) {
+		m_inventory.switchTool(0);
+	}
+	if (sf::Joystick::isButtonPressed(0, 5)) {
+		m_inventory.switchTool(1);
+	}
+
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
 		m_inventory.switchTool(0);

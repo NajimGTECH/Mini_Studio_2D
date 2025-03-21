@@ -25,6 +25,8 @@ public:
 	std::shared_ptr<Backpack> backpack;
 	std::vector<std::shared_ptr<Enemy>> enemies;
 
+
+
 	EntityManager(Map& map);
 
 	void generate(Map& map, int levelIndex);

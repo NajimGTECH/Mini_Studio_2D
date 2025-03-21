@@ -4,6 +4,8 @@
 Game::Game() { m_terminal = false; }
 
 void Game::run() {
+	
+
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "The Perfect Job", sf::Style::Fullscreen);
 	window.setFramerateLimit(120);
 
@@ -19,7 +21,7 @@ void Game::run() {
 	MenuManager menuManager(window, menu, map, manager, tilemanager);
 
 	Screen screen(map);
-	MainClock mainClock(10);
+	MainClock mainClock(400);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
@@ -32,6 +34,7 @@ void Game::run() {
 	bool menub = true;
 	bool isPlaying = false;
 
+	int wait = 0.3;
 
 	while (window.isOpen()) {
 
@@ -76,11 +79,19 @@ void Game::run() {
 					}
 				}
 			}
+			if (sf::Joystick::isButtonPressed(0, 2)) {
+				if (manager.TerminalCheck(map) && wait <= 0) {
+					m_terminal = !m_terminal;
+					manager.code.setString("");
+					wait = 0.3;
+				}
+				else if (manager.TerminalCheck(map) && wait > 0) wait -= deltaTime;
+			}
 		}
 		
 
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) || sf::Joystick::isButtonPressed(0,3)) {
 			for (auto& npc : map.getAllNPCs()) {
 				auto npcPtr = std::dynamic_pointer_cast<NPC>(npc);
 				if (npcPtr && npcPtr->isNearPlayer(manager.player->getShape().getPosition().x, manager.player->getShape().getPosition().y)) {

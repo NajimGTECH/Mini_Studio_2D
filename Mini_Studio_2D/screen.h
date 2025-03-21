@@ -21,5 +21,5 @@ private:
 	sf::Font m_screenFont;
 	sf::RectangleShape backOpacity;
 
-	int m_countLevel = 8;
+	int m_countLevel = 0;
 };

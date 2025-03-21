@@ -15,7 +15,7 @@ RoboticArm::RoboticArm(sf::Vector2f size, int health, Map& map, Entity* owner) :
 
 void RoboticArm::update(float deltaTime)
 {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_owner->isMoving())
+	if ((sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Joystick::getAxisPosition( 0, sf::Joystick::Z) < -70) && m_owner->isMoving())
 	{
 		m_hand.setPosition(m_owner->getShape().getPosition() + (m_owner->getShape().getSize() / 4.f) + (m_owner->getDirection() * 50.f));
 		m_owner->isArmEquipped = true;

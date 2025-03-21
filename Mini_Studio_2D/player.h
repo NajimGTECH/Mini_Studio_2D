@@ -32,6 +32,8 @@ public:
 	void reverseE();
 	bool getEnd();
 
+	sf::Vector2f baseCoords;
+
 	bool isMoving();
 
 	void setYVelocity(sf::Vector2f newVelocity);
