@@ -111,6 +111,7 @@ void EntityManager::generate(Map& map, int levelIndex)
                 else if (checker[1] == 'P') {
                     //std::cout << "Spawn pos: " << spawnPos.x << ", " << spawnPos.y << std::endl;
                     player->getShape().setPosition(spawnPos + sf::Vector2f{0.f, -30.f});
+                    player->baseCoords = spawnPos;
                 }
             }
         }
@@ -150,11 +151,7 @@ void EntityManager::deathCheck(Map& map, TileManager& tilemanager){
             generate(map, map.currentLevel);
             tilemanager.applyTileSet(map);
 
-            if (map.currentLevel == 1) {
-                player->getShape().setPosition(600, -100);
-            }
-            else
-                player->getShape().setPosition(100, 700);
+            player->getShape().setPosition(player->baseCoords);
         }
     }
 }

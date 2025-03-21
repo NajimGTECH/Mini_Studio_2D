@@ -2,6 +2,9 @@
 #include <iostream>
 #include <vector>
 
+#include <random>
+#include <ctime>
+
 #include <SFML/Graphics.hpp>
 
 //#include "gravity.h"
@@ -37,6 +40,8 @@ protected:
 
 	int m_opacity = 255;
 	float m_mass = 100.f;
+
+	sf::Texture m_texture;
 
 	sf::Font m_font;
 	sf::Text m_text;

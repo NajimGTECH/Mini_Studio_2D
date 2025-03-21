@@ -1,8 +1,6 @@
 #include"screen.h"
 
 Screen::Screen(Map& map) {
-	player = std::make_shared<Player>(sf::Vector2f(100, 170), 10, map);
-	mainClock = std::make_shared<MainClock>(10);
 
 	m_screenFont.loadFromFile("Assets/TextMenu/SolarPunk.otf");
 	m_victory.setFont(m_screenFont);
@@ -23,6 +21,7 @@ Screen::Screen(Map& map) {
 
 void Screen::plusCountLevel() {
 	m_countLevel++;
+	std::cout << m_countLevel;
 }
 
 int Screen::getCountLevel() {
