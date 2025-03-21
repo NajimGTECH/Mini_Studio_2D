@@ -33,7 +33,7 @@ void Screen::draw(sf::RenderWindow& window) {
 	//	window.draw(backOpacity);
 	//	window.draw(m_lose);    /////////////////////////////////////////// A VOIR POUR CLOCK DE TEMPS DE JEU /////////////////////////////////////////////////
 	//}
-	if(m_countLevel == 10){
+	if(m_countLevel == 5){
 		window.draw(backOpacity);
 		window.draw(m_victory);
 	}
