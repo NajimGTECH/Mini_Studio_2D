@@ -11,9 +11,7 @@ void Game::run() {
 	icon.loadFromFile("Assets/Logo.png");
 	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-
 	Map map;
-
 	EntityManager manager(map);
 	TileManager tilemanager;
 
@@ -64,8 +62,8 @@ void Game::run() {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
-			if (event.type == sf::Event::KeyReleased) {
-				if (event.key.code == sf::Keyboard::R) {
+			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.key.code == sf::Mouse::Left) {
 					manager.player->reverseE();
 				}
 			}
@@ -137,13 +135,9 @@ void Game::run() {
 			menuManager.handleEvents(deltaTime);
 		}
 
+		
+
 		screen.draw(window);
-		/*closet.draw(window);
-		desk.draw(window);*/
-		/*box.draw(window);*/
-		/*bookShelf.draw(window);*/
-		/*chair.draw(window);*/
-		/*shelf.draw(window);*/
 
 		window.display();
 	}
