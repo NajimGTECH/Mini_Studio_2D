@@ -9,6 +9,7 @@ public:
 	void draw(sf::RenderWindow& window) override;
 	void move();
 	void anim(float deltaTime) override;
+	bool isMoving();
 
 private:
 

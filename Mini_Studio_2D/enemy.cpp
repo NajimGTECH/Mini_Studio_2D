@@ -79,3 +79,8 @@ void Enemy::anim(float deltaTime)
 		m_animVect.x = 0;
 	}
 }
+
+bool Enemy::isMoving()
+{
+	return true;
+}

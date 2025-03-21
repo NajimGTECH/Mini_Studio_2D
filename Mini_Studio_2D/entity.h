@@ -27,6 +27,7 @@ public:
 	float setOrientation(float orientation);
 	sf::Vector2f getDirection();
 
+	virtual bool isMoving() = 0;
 
 	bool hasBag();
 	bool isCollisionDetected(sf::Vector2f targetVelocity);

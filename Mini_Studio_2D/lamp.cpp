@@ -100,6 +100,11 @@ void Lamp::illuminate() {
 
 }
 
+bool Lamp::isMoving()
+{
+	return false;
+}
+
 
 void Lamp::anim(float deltaTime){}
 

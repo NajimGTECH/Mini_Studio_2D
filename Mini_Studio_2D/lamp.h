@@ -17,6 +17,7 @@ public:
 	Clipper2Lib::Point64 toPoint64(const sf::Vector2f& point);
 	sf::Vector2f toSfVector2f(const Clipper2Lib::Point64& point);
 
+	bool isMoving();
 
 private:
 	Entity* m_owner;
