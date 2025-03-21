@@ -12,7 +12,7 @@ void NPC::draw(sf::RenderWindow& window) {
 }
 
 void NPC::interact() {
-    dialogue->setText("Bonjour, tu doit être le nouvel employé.");
+    dialogue->setText("Ah, you must be the new recruit! Welcome to Nova Lab.");
     dialogue->show(true, shape.getPosition());
 }
 

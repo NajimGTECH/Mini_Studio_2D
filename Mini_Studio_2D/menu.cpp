@@ -14,6 +14,13 @@ Menu::Menu(float _width, float _height) : selectedIndex(0), menuState(MenuState:
 	if (!menuMusic.openFromFile("Assets/AudioMenu/Menumusic.mp3")) {
 		cout << "Erreur chargement musique" << endl;
 	}
+	if (!backgroundTexture.loadFromFile("Assets/TextMenu/backmenu.png")) {
+		cout << "Erreur chargement du fond" << endl;
+	}
+	else {
+		backgroundSprite.setTexture(backgroundTexture);
+		backgroundSprite.setScale(_width / backgroundTexture.getSize().x, _height / backgroundTexture.getSize().y);
+	}
 
 	menuMusic.setLoop(true);
 	volume = 0.5f;
@@ -364,6 +371,8 @@ void Menu::stopmenuMusic() {
 }
 
 void Menu::drawMenu(RenderWindow& window) {
+
+	window.draw(backgroundSprite);
 	for (int i = 0; i < menuBox.size(); i++) {
 		window.draw(menuBox[i]);
 	}
