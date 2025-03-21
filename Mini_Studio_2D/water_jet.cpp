@@ -5,6 +5,19 @@
 WaterJet::WaterJet(sf::Vector2f size, int health, Map& map, Entity* owner) : Entity(size, health, map)
 {
 		m_owner = owner;
+		
+		if (!m_texture.loadFromFile("Assets/Player/bah_pipe_water.png")) return;
+
+		m_coeffAnim = (sf::Vector2f(195, 65));
+
+		m_shape.setTexture(&m_texture);
+		m_shape.setOrigin(-50 , 0);
+		m_shape.setPosition(m_owner->getShape().getPosition());
+		m_shape.setSize(sf::Vector2f(100, 100));
+		m_shape.setFillColor(sf::Color::White);
+
+		m_shape.setTextureRect(sf::IntRect(m_animVect.x * m_coeffAnim.x, m_animVect.y * m_coeffAnim.y, m_coeffAnim.x, m_coeffAnim.y));
+
 }
 
 void WaterJet::update(float deltaTime)
@@ -17,6 +30,10 @@ void WaterJet::update(float deltaTime)
 	{
 		sf::Vector2f playerPosition = m_owner->getShape().getPosition() + m_owner->getShape().getSize() / 2.f;
 		sf::Vector2f direction;
+
+
+		anim(deltaTime);
+
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
@@ -38,9 +55,30 @@ void WaterJet::update(float deltaTime)
 		}
 
 
+		
+
 		m_direction = direction;
 		m_isActive = true;
 		newDroplet(deltaTime);
+
+		static int diff = 0;
+
+
+
+		if (m_owner->getDirection().x == 1) {
+			m_shape.setOrigin(-50, 0);
+			m_shape.setScale(1, 1);
+			diff = 35;
+		}
+
+		if (m_owner->getDirection().x == -1) {
+			m_shape.setOrigin(50, 0);
+			m_shape.setScale(-1, 1);
+			diff = -90;
+		}
+
+		m_shape.setPosition(m_owner->getShape().getPosition().x + diff, m_owner->getShape().getPosition().y + 40);
+
 	}
 	else
 	{
@@ -57,11 +95,19 @@ void WaterJet::update(float deltaTime)
 			drop->update(deltaTime);
 		}
 	}
+
+
+
 }
 
 
 void WaterJet::draw(sf::RenderWindow & window) {
 	// Draw the water jet
+	
+	
+	if (m_isActive)
+		window.draw(m_shape);
+
 
 	for (auto& drop : m_waterDroplets)
 	{
@@ -102,6 +148,20 @@ void WaterJet::newDroplet(float deltaTime)
 			);
 		newDrop->owner = m_owner;
 		newDrop->shape.setPosition(newDrop->owner->getShape().getPosition() + newDrop->owner->getShape().getSize() / 2.f);
+
+		static int diff = 0;
+		
+		if (newDrop->owner->getDirection().x == 1) {
+			diff = 50;
+		}
+
+		if (newDrop->owner->getDirection().x == -1) {
+			diff = -100;
+		}
+	
+		newDrop->m_diff = diff;
+
+		newDrop->shape.setPosition(newDrop->shape.getPosition().x + newDrop->m_diff, newDrop->shape.getPosition().y - 22);
 
 		std::thread(&WaterDroplet::decreseDirection, newDrop, deltaTime).detach();
 
@@ -223,8 +283,25 @@ bool WaterDroplet::isCollisionDetected()
 
 void WaterJet::anim(float deltaTime)
 {
+	int timeAnimation = m_animC.getElapsedTime().asMilliseconds();
+
+	if (timeAnimation >= 50 && m_animVect.x < 14) {
+		m_animVect.x++;
+		m_animC.restart();
+		std::cout << "anim";
+	}
+}
+
+bool WaterJet::isMoving()
+{
+	return false;
 }
 
 void WaterDroplet::anim(float deltaTime) {
 
+}
+
+bool WaterDroplet::isMoving()
+{
+	return false;
 }

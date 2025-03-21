@@ -21,3 +21,8 @@ void Backpack::anim(float deltaTime) {
 
 	m_sprite.setPosition(800, 800 - yOffset);
 }
+
+bool Backpack::isMoving()
+{
+	return false;
+}

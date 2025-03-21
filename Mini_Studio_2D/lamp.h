@@ -13,6 +13,7 @@ public:
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
 	void illuminate();
+	bool isMoving();
 
 private:
 	Entity* m_owner;

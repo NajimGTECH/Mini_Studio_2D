@@ -12,13 +12,22 @@ RoboticArm::RoboticArm(sf::Vector2f size, int health, Map& map, Entity* owner) :
 }
 
 
+
 void RoboticArm::update(float deltaTime)
 {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && m_owner->isMoving())
 	{
 		m_hand.setPosition(m_owner->getShape().getPosition() + (m_owner->getShape().getSize() / 4.f) + (m_owner->getDirection() * 50.f));
 		m_owner->isArmEquipped = true;
 		m_isActive = true;
+		if (m_owner->getDirection().x == 1) {
+			m_hand.setOrigin(0, 0);
+			m_hand.setScale(1, 1);
+		}
+		else if (m_owner->getDirection().x == -1) {
+			m_hand.setOrigin(m_owner->getShape().getSize().x / 4.f, 0);
+			m_hand.setScale(-1, 1);
+		}
 	}
 	else
 	{
@@ -42,4 +51,9 @@ void RoboticArm::move()
 
 void RoboticArm::anim(float deltaTime)
 {
+}
+
+bool RoboticArm::isMoving()
+{
+	return false;
 }
