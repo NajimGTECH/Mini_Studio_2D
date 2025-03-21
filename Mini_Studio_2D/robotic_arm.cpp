@@ -14,12 +14,11 @@ RoboticArm::RoboticArm(sf::Vector2f size, int health, Map& map, Entity* owner) :
 
 void RoboticArm::update(float deltaTime)
 {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Right) && )
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 	{
-		if(m_owner->getDirection().x == 1)
-			m_hand.setPosition(m_owner->getShape().getPosition() + (m_owner->getShape().getSize() / 4.f) + (m_owner->getDirection() * 50.f));
-			m_owner->isArmEquipped = true;
-			m_isActive = true;
+		m_hand.setPosition(m_owner->getShape().getPosition() + (m_owner->getShape().getSize() / 4.f) + (m_owner->getDirection() * 50.f));
+		m_owner->isArmEquipped = true;
+		m_isActive = true;
 	}
 	else
 	{

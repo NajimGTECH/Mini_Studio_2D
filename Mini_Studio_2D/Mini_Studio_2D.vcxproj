@@ -144,14 +144,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="backpack.cpp" />
+    <ClCompile Include="bookShelf.cpp" />
     <ClCompile Include="box.cpp" />
     <ClCompile Include="button.cpp" />
     <ClCompile Include="chair.cpp" />
+    <ClCompile Include="mainClock.cpp" />
     <ClCompile Include="closet.cpp" />
     <ClCompile Include="desk.cpp" />
     <ClCompile Include="dialogue_box.cpp" />
     <ClCompile Include="digit.cpp" />
     <ClCompile Include="door.cpp" />
+    <ClCompile Include="screen.cpp" />
     <ClCompile Include="empty.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="entity.cpp" />
@@ -165,21 +168,24 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mapElements.cpp" />
     <ClCompile Include="npc.cpp" />
+    <ClCompile Include="plant.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="raycaster.cpp" />
     <ClCompile Include="robotic_arm.cpp" />
     <ClCompile Include="shelf.cpp" />
     <ClCompile Include="stain.cpp" />
     <ClCompile Include="terminal.cpp" />
+    <ClCompile Include="raycast.cpp" />
     <ClCompile Include="tileManager.cpp" />
     <ClCompile Include="wall.cpp" />
     <ClCompile Include="water_jet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bookShelf.h" />
     <ClInclude Include="backpack.h" />
     <ClInclude Include="box.h" />
     <ClInclude Include="button.h" />
     <ClInclude Include="chair.h" />
+    <ClInclude Include="mainClock.h" />
     <ClInclude Include="closet.h" />
     <ClInclude Include="desk.h" />
     <ClInclude Include="dialogue_box.h" />
@@ -187,8 +193,10 @@
     <ClInclude Include="door.h" />
     <ClInclude Include="empty.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="screen.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="entityManager.h" />
+    <ClInclude Include="furnitures_include.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gravity.h" />
     <ClInclude Include="menu.h" />
@@ -197,19 +205,24 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="mapElements.h" />
     <ClInclude Include="npc.h" />
+    <ClInclude Include="plant.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="raycaster.h" />
     <ClInclude Include="robotic_arm.h" />
     <ClInclude Include="shelf.h" />
     <ClInclude Include="stain.h" />
     <ClInclude Include="terminal.h" />
     <ClInclude Include="tileManager.h" />
     <ClInclude Include="tools_include.h" />
+    <ClInclude Include="raycast.h" />
     <ClInclude Include="wall.h" />
     <ClInclude Include="water_jet.h" />
+    <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game_icon.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

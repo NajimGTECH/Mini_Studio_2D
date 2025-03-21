@@ -1,26 +1,33 @@
 #include "game.h"
 #include "menu_manager.h"
 
-Game::Game() {}
+Game::Game() { m_terminal = false; }
 
 void Game::run() {
-	m_terminal = false;
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Mini Studio 2D");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "The Perfect Job", sf::Style::Fullscreen);
 	window.setFramerateLimit(120);
 
+	sf::Image icon;
+	icon.loadFromFile("Assets/Logo.png");
+	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+
+
 	Map map;
+
+	EntityManager manager(map);
 	TileManager tilemanager;
 
 	Menu menu(1920, 1080);
-	MenuManager menuManager(window, menu, map,  tilemanager);
+	MenuManager menuManager(window, menu, map, manager, tilemanager);
 
-	EntityManager manager(map);
+	Screen screen(map);
+	MainClock mainClock(10);
 
 	sf::Clock clock;
 	float deltaTime = 0.0f;
 	
 	sf::Font font;
-	if (!font.loadFromFile("Assets/TexteMenu/SolarPunk.otf")) {
+	if (!font.loadFromFile("Assets/TextMenu/SolarPunk.otf")) {
 		std::cerr << "Erreur : Impossible de charger la police SolarPunk.otf" << std::endl;
 	}
 
@@ -32,6 +39,7 @@ void Game::run() {
 
 
 		window.clear();
+		deltaTime = clock.restart().asSeconds();
 
 		if (manager.player->getShape().getPosition().x > 1950 || manager.player->getShape().getPosition().y > 1100)
 		{
@@ -41,17 +49,15 @@ void Game::run() {
 
 			tilemanager.applyTileSet(map);
 			map.loaded = true;
-			if (map.currentLevel == 1) {
-				manager.player->getShape().setPosition(600, -100);
-			}
-			else
-			manager.player->getShape().setPosition(192, 200);
-			manager.player->getSprite().setPosition(192, 200);
+			//if (map.currentLevel == 1) {
+			//	manager.player->getShape().setPosition(600, -100);
+			//}
+			//else
+			//manager.player->getShape().setPosition(192, 200);
+			//manager.player->getSprite().setPosition(192, 200);
 		}
 
 		manager.deathCheck(map, tilemanager);
-
-		deltaTime = clock.restart().asSeconds();
 
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -59,28 +65,32 @@ void Game::run() {
 				window.close();
 			}
 			if (event.type == sf::Event::KeyReleased) {
+				if (event.key.code == sf::Keyboard::R) {
+					manager.player->reverseE();
+				}
+			}
+			if (event.type == sf::Event::KeyReleased) {
 				if (event.key.code == sf::Keyboard::E) {
-						if (manager.TerminalCheck(map)) {
+					if (manager.TerminalCheck(map)) {
 						m_terminal = !m_terminal;
 						manager.code.setString("");
 					}
-				}	
+				}
 			}
 		}
+		
 
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 			for (auto& npc : map.getAllNPCs()) {
 				auto npcPtr = std::dynamic_pointer_cast<NPC>(npc);
-				if (npcPtr && npcPtr->isNearPlayer(manager.player->getShape().getPosition().x,
-					manager.player->getShape().getPosition().y)) {
+				if (npcPtr && npcPtr->isNearPlayer(manager.player->getShape().getPosition().x, manager.player->getShape().getPosition().y)) {
 					npcPtr->interact();
 				}
 			}
 		}
 
-
-
+		
 		if (menuManager.isPlayButtonClicked()) {
 			isPlaying = true;
 			menub = false;
@@ -90,8 +100,8 @@ void Game::run() {
 
 		if (isPlaying) {
 
-			map.displayMap(window);
-
+			mainClock.updateClock(window, deltaTime);
+			map.updateFurnitures(deltaTime);
 			manager.ButtonCheck(map, deltaTime);
 			map.displayMap(window);
 			manager.player->draw(window);
@@ -100,6 +110,7 @@ void Game::run() {
 				enemy->draw(window);
 				enemy->update(deltaTime);
 			}
+
 			if (map.currentLevel == 0) {
 				if (manager.backpack) {
 					manager.backpack->update(deltaTime);
@@ -121,20 +132,18 @@ void Game::run() {
 				manager.displayTerminal(window, map);
 			}
 		}
-		else if (menub){
+		else if (menub) {
 			menu.drawMenu(window);
 			menuManager.handleEvents(deltaTime);
 		}
 
-		
-
+		screen.draw(window);
 		/*closet.draw(window);
 		desk.draw(window);*/
 		/*box.draw(window);*/
 		/*bookShelf.draw(window);*/
 		/*chair.draw(window);*/
 		/*shelf.draw(window);*/
-
 
 		window.display();
 	}

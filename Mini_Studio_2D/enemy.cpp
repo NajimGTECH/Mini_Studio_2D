@@ -12,7 +12,7 @@ Enemy::Enemy(sf::Vector2f start, Map& map) : startpos(start), Entity(sf::Vector2
 
 	m_sprite.setPosition(startpos);
 
-	if (!m_texture.loadFromFile("Assets/Ennemi/spritesheet.png")) {
+	if (!m_texture.loadFromFile("Assets/Enemy/spritesheet.png")) {
 		std::cerr;
 	}
 	
@@ -55,7 +55,7 @@ void Enemy::update(float deltaTime)
 
 void Enemy::draw(sf::RenderWindow& window)
 {
-	if (!m_texture.loadFromFile("Assets/Ennemi/spritesheet.png")) {
+	if (!m_texture.loadFromFile("Assets/Enemy/spritesheet.png")) {
 		std::cerr;
 	}
 

@@ -206,14 +206,14 @@ bool WaterDroplet::isCollisionDetected()
 {
 	for (auto& wall : m_map.getAllWalls()) {
 
-		if (shape.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
+		if (shape.getGlobalBounds().intersects(wall->shape.getGlobalBounds()) && wall->canCollide)
 		{
 			return true;
 		}
 	}
 	for (auto& door : m_map.getAllDoors()) {
 
-		if (shape.getGlobalBounds().intersects(door->shape.getGlobalBounds()))
+		if (shape.getGlobalBounds().intersects(door->shape.getGlobalBounds()) && door->canCollide)
 		{
 			return true;
 		}

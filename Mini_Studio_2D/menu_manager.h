@@ -10,7 +10,7 @@
 
 class MenuManager {
 public:
-    MenuManager(RenderWindow& window, Menu& menu, Map& map, TileManager&);
+    MenuManager(RenderWindow& window, Menu& menu, Map& map, EntityManager& entityManager, TileManager& tileManager);
     void handleEvents(float deltaTime);
     bool isPlayButtonClicked();
 
@@ -19,6 +19,7 @@ private:
     Menu& menu;
     bool gameIsLaunch = false;
     Map& m_map;
+    EntityManager& m_entityManager;
     TileManager& m_tilemanager;
 };
 

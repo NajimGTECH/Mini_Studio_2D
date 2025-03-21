@@ -24,6 +24,33 @@ sf::Vector2f Entity::getDirection()
 	return m_direction;
 }
 
+sf::Texture& Entity::getTexture() {
+	return m_texture;
+}
+
+void Entity::anim(float deltatime)
+{
+}
+
+float Entity::getFov() const {
+	return m_fov;
+}
+
+sf::Texture Entity::setTexture(sf::Texture texture) {
+	m_texture = texture;
+	return m_texture;
+}
+
+float Entity::getOrientation() const {
+	return m_orientation;
+}
+
+float Entity::setOrientation(float orientation) {
+	m_orientation = orientation;
+	return m_orientation;
+}
+
+
 bool Entity::hasBag()
 {
 	return m_hasBag;
@@ -37,14 +64,14 @@ bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)
 
 	for (auto& wall : m_map.getAllWalls()) {
 
-		if (hitboxDummy.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
+		if (hitboxDummy.getGlobalBounds().intersects(wall->shape.getGlobalBounds()) && wall->canCollide)
 		{
 			return true;
 		}
 	}
 	for (auto& door : m_map.getAllDoors()) {
 
-		if (hitboxDummy.getGlobalBounds().intersects(door->shape.getGlobalBounds()))
+		if (hitboxDummy.getGlobalBounds().intersects(door->shape.getGlobalBounds()) && door->canCollide)
 		{
 			return true;
 		}

@@ -1,19 +1,30 @@
 #include "entityManager.h"
+#include "player.h"
 
 EntityManager::EntityManager(Map& map) {
-	player = std::make_shared<Player>(sf::Vector2f(75,130), 10, map);
+    player = std::make_shared<Player>(sf::Vector2f(75, 130), 10, map);
     backpack = std::make_shared<Backpack>(map);
-    
-	m_font.loadFromFile("Assets/Font/digit.ttf");
 
-	std::vector<sf::Vector2f> buttonPositions = {
-					{870, 723},
-		{746, 600}, {870, 604}, {992, 600},
-		{746, 480}, {870, 480}, {992, 480},
-		{750, 360}, {870, 360}, {992, 360},
+
+    if (!m_texturesLoaded) {
+        if (!m_terminalT.loadFromFile("Assets/Terminal/terminal_cropped.png") ||
+            !m_terminalGoodT.loadFromFile("Assets/Terminal/terminal_green.png") ||
+            !m_terminalBadT.loadFromFile("Assets/Terminal/terminal_red.png")) {
+            return;
+        }
+        m_texturesLoaded = true;
+    }
+
+    m_font.loadFromFile("Assets/Font/digit.ttf");
+
+    std::vector<sf::Vector2f> buttonPositions = {
+                    {870, 723},
+        {746, 600}, {870, 604}, {992, 600},
+        {746, 480}, {870, 480}, {992, 480},
+        {750, 360}, {870, 360}, {992, 360},
     };
 
-    
+
     auto erase_button = std::make_unique<Digit>(0, 1);
     if (!erase_button->texture.loadFromFile("Assets/Terminal/digitstar.png")) {
         return;
@@ -53,18 +64,19 @@ void EntityManager::generate(Map& map, int levelIndex)
 {
     enemies.clear();
 
+    //std::cout << "niveau : " << levelIndex << std::endl;
+
     char ch;
     std::vector<std::string> mapContent;
     std::string str;
 
     m_mapEFile.close();
 
-    m_mapEFile.open("Maps/Level_1E.txt");
+    m_mapEFile.open("Maps/Level_" + std::to_string(levelIndex) + ".txt");
 
     if (!m_mapEFile) {
         std::cout << "erreur d'ouverture";
     }
-    std::cout << levelIndex;
 
     while (m_mapEFile.get(ch)) {
         if (ch == ' ' || ch == '\n')
@@ -96,10 +108,13 @@ void EntityManager::generate(Map& map, int levelIndex)
                 if (checker[1] == 'E') {
                     enemies.push_back(std::make_shared<Enemy>(spawnPos, map));
                 }
+                else if (checker[1] == 'P') {
+                    //std::cout << "Spawn pos: " << spawnPos.x << ", " << spawnPos.y << std::endl;
+                    player->getShape().setPosition(spawnPos + sf::Vector2f{0.f, -30.f});
+                }
             }
         }
     }
-
 
     m_mapEFile.close();
 }
@@ -145,26 +160,18 @@ void EntityManager::deathCheck(Map& map, TileManager& tilemanager){
 }
 
 void EntityManager::displayTerminal(sf::RenderWindow& window, Map& map) {
-    static sf::Texture terminalT, terminalGoodT, terminalBadT;
-    static bool texturesLoaded = false;
+   
     static sf::Clock timer;
     static bool codeChecked = false;
     static bool codeValid = false;
 
-    if (!texturesLoaded) {
-        if (!terminalT.loadFromFile("Assets/Terminal/terminal_cropped.png") ||
-            !terminalGoodT.loadFromFile("Assets/Terminal/terminal_green.png") ||
-            !terminalBadT.loadFromFile("Assets/Terminal/terminal_red.png")) {
-            return;
-        }
-        texturesLoaded = true;
-    }
+   
 
 
-    sf::Texture* currentTexture = &terminalT;
+    sf::Texture* currentTexture = &m_terminalT;
     if (codeChecked) {
         if (timer.getElapsedTime().asSeconds() < 1.0f) {
-            currentTexture = codeValid ? &terminalGoodT : &terminalBadT;
+            currentTexture = codeValid ? &m_terminalGoodT : &m_terminalBadT;
         }
         else {
             codeChecked = false;

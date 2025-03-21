@@ -10,6 +10,7 @@
 #include "digit.h"
 #include "tileManager.h"
 
+class Player;
 class EntityManager
 {
 private:
