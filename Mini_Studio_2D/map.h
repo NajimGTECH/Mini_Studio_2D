@@ -14,6 +14,7 @@
 #include "empty.h"
 #include "furnitures_include.h"
 
+
 class Map
 {
 public:
@@ -33,6 +34,7 @@ public:
 	void createEmpty(float x, float y, float width, float height, int coordX, int coordY , int type);
 
 	void createFurniture(float x, float y, float width, float height, int coordX, int coordY , int type);
+
 
 
 	void displayMap(sf::RenderWindow& window);
@@ -59,6 +61,9 @@ public:
 private:
 
 	const int TILE_SIZE_PX = 64;
+
+	sf::RectangleShape m_back;
+	sf::Texture m_backTexture;
 
 	std::string m_code;
 

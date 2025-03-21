@@ -11,6 +11,7 @@ TileManager::TileManager()
 void TileManager::applyTileSet(Map& map)
 {
 
+
 	for (auto wall : map.getAllWalls()) {
 		wall->shape.setTexture(&m_tileSet);
 		if (wall->id == 0) {

@@ -4,8 +4,8 @@
 using namespace sf;
 using namespace std;
 
-MenuManager::MenuManager(RenderWindow& window, Menu& menu, Map& map, TileManager& tile)
-    : window(window), menu(menu), m_map(map), m_tilemanager(tile)
+MenuManager::MenuManager(RenderWindow& window, Menu& menu, Map& map, EntityManager& entityManager, TileManager& tile)
+    : window(window), menu(menu), m_map(map), m_tilemanager(tile), m_entityManager(entityManager)
 {
     menu.switchToMain();
 }
@@ -29,9 +29,10 @@ void MenuManager::handleEvents(float deltaTime) {
 
                     if (!m_map.loaded) {
                         m_map.createMap(m_map.currentLevel);
+                        m_entityManager.generate(m_map, m_map.currentLevel);
                         m_map.loaded = true;
                         m_tilemanager.applyTileSet(m_map);
-                        std::cout << "map loaded" << std::endl;
+                        //std::cout << "map loaded" << std::endl;
                     }
                 }
                 else if (option == 1) {

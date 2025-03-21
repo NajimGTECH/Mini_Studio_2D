@@ -6,6 +6,12 @@ Map::Map()
 	if (!m_font.loadFromFile("Assets/TextMenu/SolarPunk.otf")) {
 		std::cerr << "Erreur : Impossible de charger la police SolarPunk.otf" << std::endl;
 	}
+	if (!m_backTexture.loadFromFile("Assets/Tiles/background.png")) return;
+
+	m_back.setTexture(&m_backTexture);
+	m_back.setSize(sf::Vector2f(1920, 1080));
+	m_back.setPosition(sf::Vector2f(0, 0));
+	m_back.setFillColor(sf::Color(255, 255, 255, 50));
 }
 
 
@@ -30,6 +36,7 @@ void Map::createMap(int levelIndex) {
 
 	if (!m_mapFile) {
 		std::cerr << "unable to open map file";
+		return;
 	}
 	if (!m_codeFile) {
 		std::cerr << "unable to open code file";
@@ -42,11 +49,11 @@ void Map::createMap(int levelIndex) {
 		currentLine++;
 		if (currentLine == levelIndex) {  // Si on atteint la ligne du niveau demandé
 			m_code = line;
-			std::cout << "got it" << std::endl;
+			//std::cout << "got it" << std::endl;
 			break;
 		}
 	}
-	std::cout << m_code << " est le code" << std::endl;
+	//std::cout << m_code << " est le code" << std::endl;
 
 	readMapFile();
 }
@@ -97,7 +104,6 @@ void Map::readMapFile()
 			{
 				str += ch;
 			}
-
 	}
 
 	if (!str.empty()) {
@@ -110,6 +116,7 @@ void Map::readMapFile()
 		{
 			std::string checker = mapContent[x + 30 * y];
 			sf::Vector2f spawnPos = sf::Vector2f(TILE_SIZE_PX * (float)x, TILE_SIZE_PX * (float)y);
+
 			if (checker[0] == '#') {
 				createWall(spawnPos.x, spawnPos.y, 64, 64, x, y, checker[1] - 48);
 			}
@@ -172,6 +179,8 @@ void Map::readMapFile()
 			}
 		}
 	}
+
+	m_mapFile.close();
 }
 
 /*void Map::readMapFile()
@@ -299,6 +308,8 @@ void Map::createNPC(float x, float y, float width, float height, int coordX, int
 
 
 void Map::displayMap(sf::RenderWindow& window) {
+	window.draw(m_back);
+
 	for (auto& wall : allWalls) {
 		wall->draw(window);
 	}

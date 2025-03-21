@@ -173,9 +173,17 @@ void Player::update(float deltaTime)
 
 	if (checkIfGrounded())
 	{
-		//std::cout << "grounded\n";
-		m_yVelocity.y = 0.f;
+		
 		m_canJump = true;
+
+		if (isCollisionDetected({0, 0}))
+		{
+			m_yVelocity.y = -m_gravity.getForce() * deltaTime; //to avoid getting stuck
+		}
+		else
+		{
+			m_yVelocity.y = 0.f;
+		}
 	}
 	else
 	{
@@ -226,7 +234,6 @@ void Player::jump(float deltaTime)
 
 	if (m_canJump == false) return;
 
-	std::cout << "Jumping" << std::endl;
 
 	m_canJump = false;
 
@@ -245,7 +252,7 @@ void Player::jump(float deltaTime)
 		}
 
 		if (!isCollisionDetected(jumpVelocity)) { m_yVelocity += jumpVelocity;  }
-		else { m_yVelocity = { 0.f, 0.f }; std::cout << "Collision detected while jumping" << std::endl; break; }
+		else { m_yVelocity = { 0.f, 0.f };  break; }
 
 		if (m_yVelocity.y == m_gravity.getForce() * deltaTime) break;
 
@@ -347,14 +354,14 @@ bool Player::isCollisionDetectedBetweenFurnitureAndWalls(std::shared_ptr<MapElem
 {
 	for (auto& wall : m_map.getAllWalls()) {
 
-		if (furniture->shape.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
+		if (furniture->shape.getGlobalBounds().intersects(wall->shape.getGlobalBounds()) && wall->canCollide)
 		{
 			return true;
 		}
 	}
 	for (auto& door : m_map.getAllDoors()) {
 
-		if (furniture->shape.getGlobalBounds().intersects(door->shape.getGlobalBounds()))
+		if (furniture->shape.getGlobalBounds().intersects(door->shape.getGlobalBounds()) && door->canCollide)
 		{
 			return true;
 		}
@@ -370,7 +377,6 @@ void Player::anim(float deltaTime)
 		if (timeAnimation >= 150) {
 			m_animVect.x++;
 			m_animC.restart();
-			std::cout << m_sprite.getTextureRect().getPosition().x << ' ' << m_sprite.getTextureRect().getPosition().y << ' ' << m_animVect.x << std::endl;
 		}
 		if (m_animVect.x * m_coeffAnim.x >= m_texture.getSize().x) {
 			m_animVect.x = 0;

@@ -20,6 +20,7 @@ public:
 
 	int id;
 	float x, y, width, height;
+	bool canCollide = true;
 
 	virtual void draw(sf::RenderWindow& window); 
 	virtual void update(float deltaTime); 

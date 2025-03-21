@@ -64,14 +64,14 @@ bool Entity::isCollisionDetected(sf::Vector2f targetVelocity)
 
 	for (auto& wall : m_map.getAllWalls()) {
 
-		if (hitboxDummy.getGlobalBounds().intersects(wall->shape.getGlobalBounds()))
+		if (hitboxDummy.getGlobalBounds().intersects(wall->shape.getGlobalBounds()) && wall->canCollide)
 		{
 			return true;
 		}
 	}
 	for (auto& door : m_map.getAllDoors()) {
 
-		if (hitboxDummy.getGlobalBounds().intersects(door->shape.getGlobalBounds()))
+		if (hitboxDummy.getGlobalBounds().intersects(door->shape.getGlobalBounds()) && door->canCollide)
 		{
 			return true;
 		}
