@@ -19,14 +19,6 @@ Player::Player(sf::Vector2f size, int health, Map& map) : Entity(size, health, m
 	m_inventory.addTool(std::make_shared<RoboticArm>(sf::Vector2f(0, 0), -1, map, this));
 	m_inventory.addTool(std::make_shared<Lamp>(sf::Vector2f(0, 0), -1, map, this));
 
-	//Tools
-	/*auto waterJet = std::make_shared<WaterJet>(sf::Vector2f(0, 0), -1, map, this);
-	m_tools.push_back(waterJet);
-	auto roboticArm = std::make_shared<RoboticArm>(sf::Vector2f(0, 0), -1, map, this);
-	m_tools.push_back(roboticArm);
-	auto lamp = std::make_shared<Lamp>(sf::Vector2f(0,0), -1, map, this);
-	m_tools.push_back(lamp);*/
-
 
 	if (!m_texture.loadFromFile("Assets/Player/spritesheet_bag.png")) {
 		return;
