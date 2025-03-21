@@ -11,9 +11,7 @@ void Game::run() {
 	icon.loadFromFile("Assets/Logo.png");
 	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-
 	Map map;
-
 	EntityManager manager(map);
 	TileManager tilemanager;
 
@@ -44,6 +42,7 @@ void Game::run() {
 		if (manager.player->getShape().getPosition().x > 1950 || manager.player->getShape().getPosition().y > 1100)
 		{
 			map.currentLevel++;
+			screen.plusCountLevel();
 			map.createMap(map.currentLevel);
 			manager.generate(map, map.currentLevel);
 
@@ -100,6 +99,10 @@ void Game::run() {
 
 		if (isPlaying) {
 
+			if (mainClock.getIsAlive() == 0 || screen.getCountLevel() == 10) {
+				isPlaying = false;
+			}
+
 			mainClock.updateClock(window, deltaTime);
 			map.updateFurnitures(deltaTime);
 			manager.ButtonCheck(map, deltaTime);
@@ -124,7 +127,6 @@ void Game::run() {
 			}
 
 
-
 			if (!m_terminal) {
 				manager.player->update(deltaTime);
 			}
@@ -138,12 +140,6 @@ void Game::run() {
 		}
 
 		screen.draw(window);
-		/*closet.draw(window);
-		desk.draw(window);*/
-		/*box.draw(window);*/
-		/*bookShelf.draw(window);*/
-		/*chair.draw(window);*/
-		/*shelf.draw(window);*/
 
 		window.display();
 	}

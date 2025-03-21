@@ -71,12 +71,18 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)\Libs\SFML\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\ayite\Documents\GitHub\NajimGTECH\Mini_Studio_2D\Libs\Clipper2\Clipper2-main\CPP\Clipper2Lib\include;$(SolutionDir)\Libs\SFML\include;$(SolutionDir)\Libs\Clipper2\Clipper2-main\CPP\Clipper2Lib\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libs\SFML\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\Libs\SFML\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\ayite\Documents\GitHub\NajimGTECH\Mini_Studio_2D\Libs\Clipper2\Clipper2-main\CPP\Clipper2Lib\include;$(SolutionDir)\Libs\SFML\include;$(SolutionDir)\Libs\Clipper2\Clipper2-main\CPP\Clipper2Lib\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libs\SFML\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);&lt;C:\Users\ayite\Documents\GitHub\NajimGTECH\Clipper2\Clipper2-main\CPP\Clipper2Lib\include</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);&lt;C:\Users\ayite\Documents\GitHub\NajimGTECH\Clipper2\Clipper2-main\CPP\Clipper2Lib\include</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -84,6 +90,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>&lt;C:\Users\ayite\Documents\GitHub\NajimGTECH\Clipper2\Clipper2-main\CPP\Clipper2Lib\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -98,6 +106,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>&lt;C:\Users\ayite\Documents\GitHub\NajimGTECH\Clipper2\Clipper2-main\CPP\Clipper2Lib\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -112,7 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Libs\SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>&lt;C:\Users\ayite\Documents\GitHub\NajimGTECH\Clipper2\Clipper2-main\CPP\Clipper2Lib\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
@@ -130,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Libs\SFML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>&lt;C:\Users\ayite\Documents\GitHub\NajimGTECH\Clipper2\Clipper2-main\CPP\Clipper2Lib\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>

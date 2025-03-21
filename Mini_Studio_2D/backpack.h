@@ -10,6 +10,8 @@ public:
 	void update(float deltaTime);
 	void draw(sf::RenderWindow& window);
 	void anim(float deltaTime);
+
+	bool isMoving();
 private:
 	float m_max_height = 30;
 	float m_frequency = 0.7;

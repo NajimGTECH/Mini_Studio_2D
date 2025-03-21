@@ -5,46 +5,80 @@
 WaterJet::WaterJet(sf::Vector2f size, int health, Map& map, Entity* owner) : Entity(size, health, map)
 {
 		m_owner = owner;
+		
+		if (!m_texture.loadFromFile("Assets/Player/bag_pipe_water.png")) return;
+
+		m_coeffAnim = (sf::Vector2f(195, 65));
+
+		m_animVect = sf::Vector2f(0, 0);
+
+		m_shape.setTexture(&m_texture);
+		m_shape.setOrigin(-50 , 0);
+		m_shape.setPosition(m_owner->getShape().getPosition());
+		m_shape.setSize(sf::Vector2f(200, 100));
+		m_shape.setFillColor(sf::Color::White);
+
+		m_shape.setTextureRect(sf::IntRect(m_animVect.x * m_coeffAnim.x, m_animVect.y * m_coeffAnim.y, m_coeffAnim.x, m_coeffAnim.y));
+
 }
 
 void WaterJet::update(float deltaTime)
 {
-	
-	bool joystickMoved = sf::Joystick::getAxisPosition(0, sf::Joystick::U) > 50 || sf::Joystick::getAxisPosition(0, sf::Joystick::U) < -50 ||
-		sf::Joystick::getAxisPosition(0, sf::Joystick::V) > 50 || sf::Joystick::getAxisPosition(0, sf::Joystick::V) < -50;
+	bool joystickMoved = sf::Joystick::getAxisPosition(0, sf::Joystick::U) > 50 ||
+		sf::Joystick::getAxisPosition(0, sf::Joystick::U) < -50 ||
+		sf::Joystick::getAxisPosition(0, sf::Joystick::V) > 50 ||
+		sf::Joystick::getAxisPosition(0, sf::Joystick::V) < -50;
 
-	if ((sf::Mouse::isButtonPressed(sf::Mouse::Left) || joystickMoved) && m_owner->hasBag())
-	{
+	bool shouldBeActive = (sf::Mouse::isButtonPressed(sf::Mouse::Left) || joystickMoved) && m_owner->hasBag();
+
+	if (shouldBeActive && m_animState == IDLE) {
+		m_animState = APPEARING;
+		m_animTime = 0.f;
+	}
+
+	if (!shouldBeActive && m_animState == ACTIVE) {
+		m_animState = DISAPPEARING;
+		m_animTime = 0.f;
+	}
+
+	anim(deltaTime);
+
+	static int diff = 0;
+
+	if (m_owner->getDirection().x == 1) {
+		diff = -43;
+		m_shape.setOrigin(-50, 0);
+		m_shape.setScale(1, 1);
+	}
+
+	if (m_owner->getDirection().x == -1) {
+		diff = -90;
+		m_shape.setOrigin(147, 0);
+		m_shape.setScale(-1, 1);
+	}
+
+	if (m_animState != IDLE) {
+		m_shape.setPosition(m_owner->getShape().getPosition().x + diff, m_owner->getShape().getPosition().y + 10);
+	}
+
+	if (m_animState == ACTIVE) {
 		sf::Vector2f playerPosition = m_owner->getShape().getPosition() + m_owner->getShape().getSize() / 2.f;
 		sf::Vector2f direction;
 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			sf::Vector2i mousePosition = sf::Mouse::getPosition();
 			direction = getDirectionFromPlayerToMouse(playerPosition, mousePosition);
 		}
-		else
-		{
+		else {
 			float joystickU = sf::Joystick::getAxisPosition(0, sf::Joystick::U);
 			float joystickV = sf::Joystick::getAxisPosition(0, sf::Joystick::V);
-
 			direction = sf::Vector2f(joystickU, joystickV);
 			float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-			if (length != 0)
-			{
-				direction /= length;
-			}
+			if (length != 0) direction /= length;
 		}
 
-
 		m_direction = direction;
-		m_isActive = true;
 		newDroplet(deltaTime);
-	}
-	else
-	{
-		m_isActive = false;
 	}
 
 	for (int i = m_waterDroplets.size() - 1; i >= 0; i--) {
@@ -60,14 +94,18 @@ void WaterJet::update(float deltaTime)
 }
 
 
-void WaterJet::draw(sf::RenderWindow & window) {
-	// Draw the water jet
+
+void WaterJet::draw(sf::RenderWindow& window) {
+	if (m_animState != IDLE) {
+		window.draw(m_shape);
+	}
 
 	for (auto& drop : m_waterDroplets)
 	{
 		drop->draw(window);
 	}
 }
+
 
 sf::Vector2f WaterJet::getDirectionFromPlayerToMouse(const sf::Vector2f& playerPosition, const sf::Vector2i& mousePosition)
 {
@@ -102,6 +140,20 @@ void WaterJet::newDroplet(float deltaTime)
 			);
 		newDrop->owner = m_owner;
 		newDrop->shape.setPosition(newDrop->owner->getShape().getPosition() + newDrop->owner->getShape().getSize() / 2.f);
+
+		static int diff = 0;
+		
+		if (newDrop->owner->getDirection().x == 1) {
+			diff = 50;
+		}
+
+		if (newDrop->owner->getDirection().x == -1) {
+			diff = -100;
+		}
+	
+		newDrop->m_diff = diff;
+
+		newDrop->shape.setPosition(newDrop->shape.getPosition().x + newDrop->m_diff, newDrop->shape.getPosition().y + 10);
 
 		std::thread(&WaterDroplet::decreseDirection, newDrop, deltaTime).detach();
 
@@ -223,8 +275,65 @@ bool WaterDroplet::isCollisionDetected()
 
 void WaterJet::anim(float deltaTime)
 {
+	m_animTime += deltaTime;
+
+	// Phase d'apparition
+	if (m_animState == APPEARING) {
+		// On garde le jet visible pendant l'animation d'apparition
+		if (m_animTime >= m_animDuration) {
+			m_animState = ACTIVE;  // L'animation d'apparition est terminée
+			m_animVect.x = 14;     // On finit l'animation d'apparition
+			std::cout << "Fin de l'animation d'apparition\n";
+			m_shape.setFillColor(sf::Color(255, 255, 255, 255));  // Assurer que le jet est totalement visible
+		}
+		else {
+			// Animation d'apparition : on part de 14 et on va vers 0
+			m_animVect.x = 14 - static_cast<int>((m_animTime / m_animDuration) * 14);
+			std::cout << "Animation d'apparition: Frame " << m_animVect.x << "\n";
+			m_shape.setFillColor(sf::Color(255, 255, 255, 255));  // Garder la shape visible pendant l'animation
+		}
+	}
+
+	// Phase d'activation (le jet est toujours visible)
+	if (m_animState == ACTIVE) {
+		m_shape.setFillColor(sf::Color(255, 255, 255, 255));  // Toujours visible
+		m_animVect.x = 0;  // Utiliser la dernière frame de l'animation
+	}
+
+	// Phase de disparition
+	if (m_animState == DISAPPEARING) {
+		if (m_animTime >= m_animDuration) {
+			m_animState = IDLE;  // L'animation de disparition est terminée
+			m_animVect.x = 0;    // Le jet est totalement caché
+			std::cout << "Fin de l'animation de disparition\n";
+			m_shape.setFillColor(sf::Color(255, 255, 255, 0));  // Le jet devient transparent
+		}
+		else {
+			// Animation de disparition : on part de 0 et on va vers 14
+			m_animVect.x = static_cast<int>((m_animTime / m_animDuration) * 14);
+			std::cout << "Animation de disparition: Frame " << m_animVect.x << "\n";
+			// Pendant l'animation de disparition, on commence à rendre le jet plus transparent
+			int alpha = static_cast<int>(255 - ((m_animTime / m_animDuration) * 255));
+			m_shape.setFillColor(sf::Color(255, 255, 255, alpha));  // On réduit la transparence
+		}
+	}
+
+	// Mise à jour de la texture du sprite
+	m_shape.setTextureRect(sf::IntRect(m_animVect.x * m_coeffAnim.x, m_animVect.y * m_coeffAnim.y, m_coeffAnim.x, m_coeffAnim.y));
+}
+
+
+
+bool WaterJet::isMoving()
+{
+	return false;
 }
 
 void WaterDroplet::anim(float deltaTime) {
 
+}
+
+bool WaterDroplet::isMoving()
+{
+	return false;
 }

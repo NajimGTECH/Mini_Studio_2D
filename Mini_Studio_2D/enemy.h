@@ -13,6 +13,8 @@ public:
 
 	void anim(float deltaTime) override;
 
+	bool isMoving();
+
 private:
 
 	bool isMovingRight = true;

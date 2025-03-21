@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "entityManager.h"
-#include "lamp.h"
 #include "closet.h"
 #include "desk.h"
 #include "box.h"
@@ -20,5 +19,7 @@ private:
 public:
 	Game();
 	void run();
+
+	std::shared_ptr<Lamp>lamp;
 };
 
