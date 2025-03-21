@@ -1,9 +1,13 @@
 #include "npc.h"
 
 NPC::NPC(float x, float y, float width, float height, std::shared_ptr<DialogueBox> dialogueBox) : MapElements(x, y, width, height, -1), dialogue(dialogueBox) {
-    shape.setSize(sf::Vector2f(width, height));
-    shape.setFillColor(sf::Color::Yellow); 
-    shape.setPosition(x, y);
+
+    if (!m_texture.loadFromFile("Assets/Enemy/patron.png")) return;
+    shape.setTexture(&m_texture);
+
+    shape.setSize(sf::Vector2f(width, height * 2));
+    shape.setPosition(x, y - 50);
+    shape.setScale(1.4, 1.4);
 }
 
 void NPC::draw(sf::RenderWindow& window) {
