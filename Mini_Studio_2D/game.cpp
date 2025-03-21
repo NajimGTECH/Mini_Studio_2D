@@ -79,7 +79,7 @@ void Game::run() {
 					}
 				}
 			}
-			if (sf::Joystick::isButtonPressed(0, 2)) {
+			if (sf::Joystick::isButtonPressed(0, 3)) {
 				if (manager.TerminalCheck(map) && wait <= 0) {
 					m_terminal = !m_terminal;
 					manager.code.setString("");
@@ -90,6 +90,13 @@ void Game::run() {
 		}
 		
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) || sf::Joystick::isButtonPressed(0, 2)) {
+			map.createMap(map.currentLevel);
+			manager.generate(map, map.currentLevel);
+			tilemanager.applyTileSet(map);
+
+			manager.player->getShape().setPosition(manager.player->baseCoords);
+		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) || sf::Joystick::isButtonPressed(0,3)) {
 			for (auto& npc : map.getAllNPCs()) {
