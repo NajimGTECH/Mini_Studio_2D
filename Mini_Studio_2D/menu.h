@@ -38,6 +38,8 @@ public:
 
 	MenuState menuState;
 	Music menuMusic;
+	Texture backgroundTexture;
+	Sprite backgroundSprite;
 
 	bool startGame = false;
 
