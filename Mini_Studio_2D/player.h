@@ -7,6 +7,7 @@
 //#include "entity.h"
 #include "gravity.h"
 #include "tools_include.h"
+#include "inventory.h"
 
 class Player : public Entity
 {
@@ -60,7 +61,7 @@ private:
 	sf::Texture m_texturebis;
 
 	std::vector<std::shared_ptr<Entity>> m_tools;
-
+	Inventory m_inventory;
 	Gravity m_gravity;
 	std::mutex m_mutex; //used to make player threads safe
 };
