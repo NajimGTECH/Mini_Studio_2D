@@ -15,14 +15,18 @@ public:
 	void newDroplet(float deltaTime);
 	void anim(float deltaTime) override;
 	bool isMoving();
+
+	enum AnimState { IDLE, APPEARING, ACTIVE, DISAPPEARING };
 private:
 
 	sf::Vector2f getDirectionFromPlayerToMouse(const sf::Vector2f& playerPosition, const sf::Vector2i& mousePosition);
 
 private:
 	Entity* m_owner;
-
-
+	sf::Vector2f m_lastDirection = sf::Vector2f(0.f, 0.f);
+	AnimState m_animState = IDLE;
+	float m_animTime = 0.f;
+	const float m_animDuration = 0.5f;
 
 	std::vector<std::shared_ptr<WaterDroplet>> m_waterDroplets;
 
@@ -34,6 +38,8 @@ class WaterDroplet : public Entity
 public:
 	WaterDroplet(Map& map);
 	~WaterDroplet();
+
+
 
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
