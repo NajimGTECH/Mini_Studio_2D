@@ -42,6 +42,7 @@ void Game::run() {
 		if (manager.player->getShape().getPosition().x > 1950 || manager.player->getShape().getPosition().y > 1100)
 		{
 			map.currentLevel++;
+			screen.plusCountLevel();
 			map.createMap(map.currentLevel);
 			manager.generate(map, map.currentLevel);
 
@@ -98,6 +99,10 @@ void Game::run() {
 
 		if (isPlaying) {
 
+			if (mainClock.getIsAlive() == 0 || screen.getCountLevel() == 10) {
+				isPlaying = false;
+			}
+
 			mainClock.updateClock(window, deltaTime);
 			map.updateFurnitures(deltaTime);
 			manager.ButtonCheck(map, deltaTime);
@@ -122,7 +127,6 @@ void Game::run() {
 			}
 
 
-
 			if (!m_terminal) {
 				manager.player->update(deltaTime);
 			}
@@ -134,8 +138,6 @@ void Game::run() {
 			menu.drawMenu(window);
 			menuManager.handleEvents(deltaTime);
 		}
-
-		
 
 		screen.draw(window);
 
